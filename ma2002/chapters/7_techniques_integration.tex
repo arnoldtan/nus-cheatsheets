@@ -1,0 +1,117 @@
+\documentclass[../ma2002_notes.tex]{subfiles}
+\begin{document}
+\section{Techniques of Integration}
+\subsection{Inverse Substitution Rule}
+Let \(f\) be a continuous function. If \(x=g(t)\) is
+\begin{enumerate}
+	\item one-to-one, and
+	\item\(g'\) is continuous
+\end{enumerate}
+Then
+\[\int f(x)\,dx=\int f(g(t))g'(t)\,dt\]
+
+\subsection{Integration by Parts}
+Let \(u\) and \(v\) be functions that are differentiable with continuous derivatives. Then
+\[\int\left(u\frac{dv}{dx}\right)\,dx=uv-\int\left(\frac{du}{dx}v\right)\,dx\]
+Or in differential forms,
+\[\int u\,dv=uv-\int v\,du\]
+
+\subsection{Trigonometric Substitution}
+If the integrand contains the square root of quadratic functions, one may try the \textbf{trigonometric substitution} method as follows:
+\begin{enumerate}
+	\item Complete the square to obtain the following forms:
+\end{enumerate}
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+Form & Substitution & Domain & Simplified Form\\
+\hline
+\(\sqrt{a^2-x^2}\quad(a>0)\) & \(x=a\sin t\) & \(t\in[-\frac{\pi}{2},\frac{\pi}{2}]\) & \(a\cos t\)\\[5pt]
+\hline
+\(\sqrt{a^2+x^2}\quad(a>0)\) & \(x=a\tan t\) & \(t\in(-\frac{\pi}{2},\frac{\pi}{2})\) & \(a\sec t\)\\[5pt]
+\hline
+\(\sqrt{x^2-a^2}\quad(a>0)\) & \(x=a\sec t\) & \(t\in[0,\frac{\pi}{2})\cup[\pi,\frac{3\pi}{2})\) & \(a\tan t\)\\[5pt]
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Unique Factorisation of Polynomial}
+\textbf{Theorem.} Every non-constant single-variable polynomial with real coefficients can be uniquely factorised as the product of
+\begin{enumerate}
+	\item real linear factors
+	\begin{itemize}
+		\item For all \(a\in\mathbb{R},\ r\in\mathbb{N}\quad(x+a)^r\)
+	\end{itemize}
+	\item real irreducible quadratic factors
+	\begin{itemize}
+		\item For all \(b,c\in\mathbb{R},\ s\in\mathbb{N},\ b^2<4c\quad(x^2+bx+c)^s\)
+	\end{itemize}
+\end{enumerate}
+
+\subsection{Proper Rational Function}
+\textbf{Definition.} If \(f(x)=\frac{A(x)}{B(x)}\) is a rational function where \(A(x)\) and \(B(x)\) are polynomials. \(f(x)\) is a \textbf{proper rational function} if
+\[\deg A(x)<\deg B(x)\]
+
+\subsection{Converting from Improper to Proper Rational Function}
+If \(f(x)=\frac{A(x)}{B(x)}\) where \(A(x)\) and \(B(x)\) are polynomials and \(\deg A(x)\geq\deg B(x)\). Then the following method converts \(f(x)\) into a proper rational function:
+\begin{enumerate}
+	\item Use long division to get
+	\begin{itemize}
+		\item\(A(x)=B(x)Q(x)+R(x)\), where \(\deg R(x)<\deg B(x)\)
+	\end{itemize}
+	\item Then \(f(x)=\frac{A(x)}{B(x)}=Q(x)+\frac{R(x)}{B(x)}\)
+\end{enumerate}
+
+\subsection{Decomposing Proper Rational Function into Partial Fractions}
+\textbf{Theorem.} Every proper rational function can be uniquely expressed as the sum of \textbf{partial fractions}. Let \(f(x)=\frac{A(x)}{B(x)}\) be a proper rational function. Then \(f(x)\) is the sum of the following partial fractions:
+\begin{enumerate}
+	\item If \(x+a\) is a linear factor of \(B(x)\) with multiplicity \(r\)
+	\begin{itemize}
+		\item\(\displaystyle\frac{A_1}{x+a}+\frac{A_2}{(x+a)^2}+\ldots+\frac{A_r}{(x+a)^r}\)
+	\end{itemize}
+	\item If \(x^2+bx+c\) is an irreducible factor of \(B(x)\) with multiplicity \(s\)
+	\begin{itemize}
+		\item\(\displaystyle\frac{B_1x+C_1}{x^2+bx+c}+\frac{B_2x+C_2}{(x^2+bx+c)^2}+\ldots+\frac{B_sx+C_s}{(x^2+bx+c)^s}\)
+	\end{itemize}
+\end{enumerate}
+
+\subsection{Integration of Rational Functions}
+\subsubsection{Integral of $\frac{1}{(x+a)^k}$}
+To evaluate \(\displaystyle\int\frac{dx}{(x+a)^k}\), use the substitution \(u=x+a\)
+
+\subsubsection{Integral of $\frac{x}{(x^2+bx+c)^k}$}
+To evaluate \(\displaystyle\int\frac{x}{(x^2+bx+c)^k}\,dx\), use the substitution \(u=x^2+bx+c\). Then
+\[\int\frac{x}{(x^2+bx+c)^k}\,dx=\frac{1}{2}\int\frac{du}{u^k}-\frac{b}{2}\int\frac{dx}{(x^2+bx+c)^k}\]
+
+\subsubsection{Integral of $\frac{1}{(x^2+bx+c)^k}$}
+\begin{enumerate}
+	\item\(x^2+bx+c=(x+\frac{b}{2})^2+(c-\frac{b^2}{4})\)
+	\item Let \(u=x+\frac{b}{2},\ \alpha=\sqrt{c-\frac{b^2}{4}}\). Then \(x^2+bx+c=u^2+\alpha^2\)
+	\begin{itemize}
+		\item\(\displaystyle\int\frac{dx}{(x^2+bx+c)^k}=\int\frac{du}{(u^2+\alpha^2)^k}\)
+	\end{itemize}
+	\item Let \(u=\alpha v\). Then \(u^2+\alpha^2=\alpha^2(v^2+1)\)
+	\begin{itemize}
+		\item\(\displaystyle\int\frac{du}{(u^2+\alpha^2)^k}=\int\frac{\alpha\,dv}{(\alpha^2(1+v^2))^k}=\frac{1}{\alpha^{2k-1}}\int\frac{dv}{(1+v^2)^k}\)
+	\end{itemize}
+\end{enumerate}
+
+\subsection{Universal Trigonometric Substitution}
+Let \(f\) be a rational expression in two variables. Then
+\[\int f(\sin x,\cos x)\,dx=\int f\left(\frac{2t}{1+t^2},\frac{1-t^2}{1+t^2}\right)\frac{2}{1+t^2}\,dt\]
+
+\subsection{More Integral Formulae}
+\subsubsection{Integral of Integer Power of $\frac{1}{1+x^2}$}
+Let \(x=\tan t,\ t\in(-\frac{\pi}{2},\frac{\pi}{2})\)
+\[\forall n\in\mathbb{N}\quad\int\frac{dx}{(1+x^2)^n}=\int(\cos t)^{2n-2}\,dt\]
+
+\subsubsection{Integral of Non-Zero Power of $\cos x$}
+\(\forall n\ne0\),
+\[\int(\cos x)^n\,dx=\frac{1}{n}(\cos x)^{n-1}\sin x+\frac{n-1}{n}\int(\cos x)^{n-2}\,dx\]
+
+\subsubsection{Integral of $\ln x$}
+\[\int\ln x\,dx=x\ln x-x+C\]
+
+\subsubsection{Integral of $\sin^{-1}x$}
+\[\int\sin^{-1}x\,dx=x\sin^{-1}x+\sqrt{1-x^2}+C\]
+\end{document}

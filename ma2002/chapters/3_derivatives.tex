@@ -1,0 +1,90 @@
+\documentclass[../ma2002_notes.tex]{subfiles}
+\begin{document}
+\section{Derivatives}
+\subsection{Definition of Derivative at a point}
+The \textbf{derivative} of a function \(f\) at \(a\) is the limit
+\[f'(a)=\lim_{h\to0}\frac{f(a+h)-f(a)}{h}=\lim_{x\to a}\frac{f(x)-f(a)}{x-a}\]
+If \(f'(a)\) exists, then \(f\) is \textbf{differentiable} at \(a\).
+
+\subsection{Derivative as a Function}
+The \textbf{derivative} of a function \(f\) is the function
+\[f'(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}{h}=\lim_{z\to x}\frac{f(z)-f(x)}{z-x}\text{, if the limit exists}\]
+
+\subsection{Differentiability on an open interval}
+A function \(f\) is differentiable on an open interval \(I\) if
+\[f\text{ is differentiable at every point in }I\]
+
+\subsection{Differentiability implies Continuity}
+If a function \(f\) is differentiable at \(a\), then \(f\) is continuous at \(a\)
+
+\subsection{Differentiation Formulas}
+Suppose \(f\) and \(g\) are differentiable at \(x\) and \(c\in\mathbb{R}\)
+\subsubsection{Constant Functions}
+\[\frac{d}{dx}(c)=0\]
+
+\subsubsection{Constant Multiple}
+\[(cf)'(x)=cf'(x)\]
+
+\subsubsection{Sum}
+\[(f+g)'(x)=f'(x)+g'(x)\]
+
+\subsubsection{Difference}
+\[(f-g)'(x)=f'(x)-g'(x)\]
+
+\subsubsection{Product}
+\[(fg)'(x)=f'(x)g(x)+f(x)g'(x)\]
+
+\subsubsection{Quotient}
+\[\left(\frac{f}{g}\right)'(x)=\frac{f'(x)g(x)-f(x)g'(x)}{[g(x)]^2}\]
+
+\subsubsection{Integer Power}
+\[\forall n\in\mathbb{Z}\quad\frac{d}{dx}x^n=nx^{n-1}\]
+
+\subsection{Differentiable Functions}
+\subsubsection{Polynomials}
+Every polynomial is differentiable on \(\mathbb{R}\)
+
+\subsubsection{Rational Functions}
+Every rational function is differentiable on its domain
+
+\subsubsection{Trigonometric Functions}
+Trigonometric Functions are differentiable on their domain
+\begin{align*}
+	\frac{d}{dx}\sin x&=\cos x\\
+	\frac{d}{dx}\cos x&=-\sin x\\
+	\frac{d}{dx}\tan x&=\sec^2x\\
+	\frac{d}{dx}\cot x&=-\csc^2x\\
+	\frac{d}{dx}\sec x&=\sec x\tan x\\
+	\frac{d}{dx}\csc x&=-\csc x\cot x
+\end{align*}
+
+\subsection{Chain Rule}
+If \(f\) is differentiable at \(x\) and \(g\) is differentiable at \(f(x)\), then
+\[(g\circ f)'(x)=g'(f(x))f'(x)\]
+
+\subsection{Implicit Differentiation}
+\subsubsection{Implicit Function}
+Let \(f(x,y)=0\) be an equation in \(x\) and \(y\). If \(y\) can be expressed in \(x\) near a point on \(f(x,y)=0\), then
+\[y\text{ is an \textbf{implicit function} of }x\text{ near the point}\]
+
+\subsubsection{Implicit Differentiation}
+Furthermore, if \(y\) is an implicit function of \(x\) such that \(\frac{dy}{dx}\) exists, then \(\frac{dy}{dx}\) can be evaluated by implicit differentiation as follows:
+\begin{enumerate}
+	\item Differentiate \(f(x,y)=0\) w.r.t. \(x\), regarding \(y\) as a differentiable function in \(x\)
+	\item Solve for \(\frac{dy}{dx}\) in terms of \(x\) and \(y\)
+\end{enumerate}
+
+\subsection{Higher Derivatives}
+Let \(f\) be a function
+\begin{enumerate}
+	\item The \textbf{zeroth derivative} of \(f\) is \(f=f^{(0)}\)
+	\item For \(n\in\mathbb{N}\), the \(\pmb{n^{th}}\textbf{ derivative}\) of \(f\) is \(f^{(n)}=(f^{(n-1)})'\)
+	\begin{enumerate}
+		\item \(f\) is \(\pmb{n}\)\textbf{ times differentiable} if \(f^{(n)}\) exists
+	\end{enumerate}
+	\item Let \(y=f(x)\). \(f^{(n)}(x)=\frac{d^ny}{dx^n}\)
+	\begin{enumerate}
+		\item This is the \(n^{\text{th}}\) derivative of \(y\) w.r.t. \(x\)
+	\end{enumerate}
+\end{enumerate}
+\end{document}

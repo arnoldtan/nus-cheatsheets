@@ -1,0 +1,215 @@
+\documentclass[../ma2002_notes.tex]{subfiles}
+\begin{document}
+\section{Integrals}
+\subsection{Limit of a Sequence}
+Let \(\{a_n\}\) be a sequence. Then \(\lim\limits_{n\to\infty}a_n=L\in\mathbb{R}\) means for \(\epsilon>0\), there exists \(N\in\mathbb{N}\) such that
+\[n>N\implies\abs{a_n-L}<\epsilon\]
+
+\subsection{Limit of a Sequence and Function}
+Let \(f\) be a function such that
+\begin{enumerate}
+	\item\(\forall n\in\mathbb{N}\quad a_n=f(n)\), and
+	\item\(\lim\limits_{x\to\infty}f(x)=L\)
+\end{enumerate}
+Then \(\lim\limits_{n\to\infty}a_n=L\)
+
+\subsection{Definite Integral}
+Let \(f\) be a continuous function on \([a,b]\)
+\begin{enumerate}
+	\item Divide \([a,b]\) into \(n\) equal subintervals, each of length \(\Delta x=\frac{b-a}{n}\)
+	\begin{itemize}
+		\item\([x_0,x_1],[x_1,x_2],\ldots,[x_{n-1},x_n]\qquad x_i=a+i\Delta x\)
+	\end{itemize}
+	\item Choose \textbf{sample points} \(x_1^*,x_2^*,\ldots,x_n^*\) from these subintervals:
+	\begin{itemize}
+		\item\(x_1^*\in[x_0,x_1],x_2^*\in[x_1,x_2],\ldots,x_n^*\in[x_{n-1},x_n]\)
+	\end{itemize}
+	\item Compute the \textbf{Riemann sum}:
+	\begin{itemize}
+		\item\(f(x_1^*)\Delta x+\ldots+f(x_n^*)\Delta x=\sum\limits_{i=1}^{n}f(x_i^*)\Delta x\)
+	\end{itemize}
+	\item The \textbf{definite integral} of \(f\) from \(a\) to \(b\):
+	\begin{itemize}
+		\item\(\lim\limits_{n\to\infty}\sum\limits_{i=1}^nf(x_i^*)\Delta x=\int_a^bf(x)\,dx\)
+	\end{itemize}
+\end{enumerate}
+
+\subsection{Geometric Properties of the Integral}
+\subsubsection{Integral of the Negative of a Function}
+\[\int_a^b(-f(x))\,dx=-\int_a^bf(x)\,dx\]
+
+\subsubsection{Integral of Constant Functions}
+\[\int_a^bc\,dx=c(b-a)\]
+
+\subsubsection{Monotonicity}
+Let \(f\) and \(g\) be continuous functions on \([a,b]\) and if
+\begin{itemize}
+	\item\(\forall x\in[a,b]\quad f(x)\geq g(x)\)
+\end{itemize}
+Then \(\int_a^bf(x)\,dx\geq\int_a^bg(x)\,dx\)
+
+\subsubsection{Max-Min Inequality}
+Let \(f\) be a continuous function on \([a,b]\), and \(m\) and \(M\) are the minimum and maximum values of \(f\) on \([a,b]\) respectively. Then
+\[m(b-a)\leq\int_a^bf(x)\,dx\leq M(b-a)\]
+
+\subsubsection{Additivity}
+Let \(f\) be a continuous function on \([a,b]\). Then \(\forall c\in(a,b)\),
+\[\int_a^cf(x)\,dx+\int_c^bf(x)\,dx=\int_a^bf(x)\,dx\]
+
+\subsubsection{Order of Integration}
+\textbf{Definition.} If \(a>b\) and \(f\) is a function continuous on \([b,a]\). Then define
+\[\int_a^bf(c)\,dx=-\int_b^af(x)\,dx\]
+
+\subsubsection{Zero Width Interval}
+\textbf{Definition.} If \(f\) is defined at \(a\), then define
+\[\int_a^af(x)\,dx=0\]
+
+\subsection{Properties of the Integral}
+Let \(f\) and \(g\) be a continuous function on an interval \(I\) and \(k\in\mathbb{R}\)
+
+\subsubsection{Additivity}
+For any \(a,b,c\in I\),
+\[\int_a^cf(x)\,dx+\int_c^bf(x)\,dx=\int_a^bf(x)\,dx\]
+
+\subsubsection{Constant Multiple}
+For any \(a,b\in I\),
+\[\int_a^bkf(x)\,dx=k\int_a^bf(x)\,dx\]
+
+\subsubsection{Sum and Difference}
+For any \(a,b\in I\),
+\[\int_a^b(f(x)\pm g(x))\,dx=\int_a^bf(x)\,dx\pm\int_a^bg(x)\,dx\]
+
+\subsection{Fundamental Theorem of Calculus (Part I)}
+If \(f\) is continuous on \([a,b]\). Let \(g(x)=\int_a^xf(t)\,dt\). Then
+\begin{enumerate}
+	\item\(g\) is continuous on \([a,b]\)
+	\item\(g\) is differentiable on \((a,b)\), and
+	\item\(\forall x\in(a,b)\quad g'(x)=f(x)\)
+\end{enumerate}
+
+\subsubsection{Remarks}
+Let \(c\in[a,b]\). Then
+\begin{itemize}
+	\item\(\int_a^xf(t)\,dt-\int_c^xf(t)\,dt=\int_a^cf(t)\,dt\) is a constant
+	\begin{enumerate}
+		\item\(\int_c^xf(t)\,dt\) is continuous on \([a,b]\),
+		\item differentiable on \((a,b)\) with derivative \(f(x)\)
+	\end{enumerate}
+\end{itemize}
+
+\subsection{Mean Value Theorem for Definite Integrals}
+If \(f\) is continuous on \([a,b]\), then there exists \(c\in(a,b)\) such that
+\[\int_a^bf(x)\,dx=(b-a)f(c)\]
+
+\subsection{Fundamental Theorem of Calculus (Part II)}
+If \(f\) is a function continuous on \([a,b]\) and if \(F\) is a function such that
+\begin{enumerate}
+	\item it is continuous on \([a,b]\),
+	\item differentiable on \((a,b)\), and
+	\item\(\forall x\in(a,b)\quad F'(x)=f(x)\)
+\end{enumerate}
+Then
+\[\int_a^bf(x)\,dx=F(b)-F(a)=\at{F(x)}{x=a}{x=b}\]
+
+\subsection{Basic Integration Formulae}
+If \(f\) and \(g\) are continuous functions and \(k\in\mathbb{R}\). Then
+
+\subsubsection{Constant Multiple Rule}
+\[\int kf(x)\,dx=k\int f(x)\,dx\]
+
+\subsubsection{Sum and Difference Rule}
+\[\int(f(x)\pm g(x))\,dx=\int f(x)\,dx\pm\int g(x)\,dx\]
+
+\subsubsection{Power Rule}
+\[\forall r\in\mathbb{Q}\setminus{-1}\quad\int x^r\,dx=\frac{x^{r+1}}{r+1}+C\]
+
+\subsubsection{Trigonometric Functions}
+\begin{align*}
+	&\int\cos x\,dx=\sin x+C\\
+	&\int\sin x\,dx=-\cos x+C\\
+	&\int\sec^2x\,dx=\tan x+C\\
+	&\int\csc^2x\,dx=-\cot x+C\\
+	&\int\sec x\tan x\,dx=\sec x+C\\
+	&\int\csc x\cot x\,dx=-\csc x+C
+\end{align*}
+
+\subsection{Substitution Rule (Indefinite Integral)}
+If
+\begin{enumerate}
+	\item\(u=g(x)\) is differentiable and its range is an interval \(I\)
+	\item\(g'\) is continuous and \(f\) is continuous on \(I\)
+\end{enumerate}
+Then
+\[\int f(g(x))g'(x)\,dx=\int f(u)\,du\]
+
+\subsection{Substitution Rule (Definite Integral)}
+If
+\begin{enumerate}
+	\item\(g'\) is continuous on \([a,b]\), and
+	\item\(f\) is continuous on the range of \(g\)
+\end{enumerate}
+Then
+\[\int_a^bf(g(x))g'(x)\,dx=\int_{g(a)}^{g(b)}f(u)\,du\]
+
+\subsection{Integral of Odd/Even Functions}
+Let \(f\) be a function continuous on \([-a,a]\)
+
+\subsubsection{Odd}
+If \(f\) is odd, then \(\int_{-a}^af(x)\,dx=0\)
+
+\subsubsection{Even}
+If \(f\) is even, then \(\int_{-a}^af(x)\,dx=2\int_0^af(x)\,dx\)
+
+\subsection{Improper Integral}
+\textbf{Definition.} Let \(f\) be continuous on \([a,b)\), discontinuous at \(b\) from the left. Then the \textbf{improper integral}
+\[\int_a^bf(x)\,dx=\lim_{t\to b^-}\int_a^tf(x)\,dx\]
+Let \(f\) be continuous on \((a,b]\), discontinuous at \(a\) from the right. Then the \textbf{improper integral}
+\[\int_a^bf(x)\,dx=\lim_{t\to a^+}\int_t^bf(x)\,dx\]
+
+\subsubsection{Additivity}
+\textbf{Definition.} If \(f\) is discontinuous at \(c\in(a,b)\). The \textbf{improper integral}
+\[\int_a^bf(x)\,dx=\int_a^cf(x)\,dx+\int_c^bf(x)\,dx\]
+LHS exists \(\iff\) both integrals on RHS exists
+
+\subsection{Improper Integral and Continuous Extension}
+\subsubsection{Continuous Extension to Endpoints}
+Let \(f\) be a function such that
+\begin{enumerate}
+	\item it is continuous on \((a,b)\), and
+	\item\(\lim\limits_{x\to a^+}f(x)\) and \(\lim\limits_{x\to b^-}f(x)\) exists
+\end{enumerate}
+Let \(f_1\) be the continuous extension of \(f\). Then
+\[\int_a^bf(x)\,dx=\int_a^bf_1(x)\,dx\]
+
+\subsubsection{Removable Discontinuities}
+Let \(f\) be a function such that
+\begin{enumerate}
+	\item it is continuous on \([a,b]\) except at a finite number of points at which \(f\) has removable discontinuities
+\end{enumerate}
+Let \(f_1\) be the continuous extension of \(f\). Then
+\[\int_a^bf(x)\,dx=\int_a^bf_1(x)\,dx\]
+
+\subsection{Improper Integral to Infinity}
+\textbf{Definition.} Let \(f\) be a function such that
+\subsubsection{Improper Integral to $\infty$}
+\(\int_a^tf(x)\,dx\) exists for every \(t\geq a\). Then the \textbf{improper integral}
+\[\int_a^\infty f(x)\,dx=\lim\limits_{t\to\infty}\int_a^tf(x)\,dx\]
+
+\subsubsection{Improper Integral to $-\infty$}
+\(\int_t^bf(x)\,dx\) exists for every \(t\leq b\). Then the \textbf{improper integral}
+\[\int_{-\infty}^b f(x)\,dx=\lim\limits_{t\to-\infty}\int_t^bf(x)\,dx\]
+
+\subsection{Improper Integral on $(-\infty,\infty)$}
+\textbf{Definition.} Let \(a\in\mathbb{R}\), the \textbf{improper integral}
+\[\int_{-\infty}^\infty f(x)\,dx=\int_{-\infty}^af(x)\,dx+\int_a^\infty f(x)\,dx\]
+
+\subsubsection{Remarks}
+\begin{itemize}
+	\item LHS is convergent \(\iff\) both integrals on RHS are convergent
+	\item If \(\int_{-\infty}^af(x)\,dx\) and \(\int_a^\infty f(x)\,dx\) are convergent, then \(\forall b\in\mathbb{R}\),
+	\begin{enumerate}
+		\item\(\int_{-\infty}^bf(x)\,dx\) and \(\int_b^\infty f(x)\,dx\) are convergent, and
+		\item\(\int_{-\infty}^af(x)\,dx+\int_a^\infty f(x)\,dx=\int_{-\infty}^bf(x)\,dx+\int_b^\infty f(x)\,dx\)
+	\end{enumerate}
+\end{itemize}
+\end{document}

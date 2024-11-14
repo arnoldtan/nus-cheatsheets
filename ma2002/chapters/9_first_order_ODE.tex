@@ -1,0 +1,128 @@
+\documentclass[../ma2002_notes.tex]{subfiles}
+\begin{document}
+\section{First Order Ordinary Differential Equations}
+\subsection{Ordinary Differential Equation}
+\textbf{Definition.} An \textbf{ordinary differential equation} (abbr. \textbf{ODE}) is an equation of the form
+\[F(x,y,\frac{dy}{dx},\ldots,\frac{d^ny}{dx^n})=0\]
+where \(y\) is an implicit function in variable \(x\)
+
+\subsubsection{Degree of ODE}
+The highest order of the derivative is the \textbf{degree} of the ODE
+
+\subsection{First Order ODE}
+A \textbf{first order ODE} has the form
+\[\frac{dy}{dx}=F(x,y)\]
+
+\subsection{First Order ODE in only $x$}
+\subsubsection{Method to Solve}
+\(\displaystyle\frac{dy}{dx}=f(x)\) can be solved by simply integrating both sides w.r.t. \(x\). Then
+\[y=\int f(x)\,dx\]
+
+\subsection{First Order ODE in only $y$}
+\subsubsection{Method to Solve}
+\(\displaystyle\frac{dy}{dx}=g(y)\implies\frac{dx}{dy}=\frac{1}{g(y)}\ \)(for \(g(y)\ne0\)). Then,
+\[x=\int\frac{1}{g(y)}\,dy\]
+
+\subsection{Separable First Order ODE}
+\textbf{Definition.} A first order ODE \(\displaystyle\frac{dy}{dx}=F(x,y)\) is separable if
+\[F(x,y)=f(x)g(y)\]
+
+\subsubsection{Method to Solve}
+\(\displaystyle\frac{dy}{dx}=f(x)g(y)\implies\frac{1}{g(y)}\frac{dy}{dx}=f(x)\ \)(for \(g(y)\ne0\)). Then,
+\[\int\frac{1}{g(y)}\,dy=\int f(x)\,dx\]
+
+\subsection{Homogeneous Functions}
+\textbf{Definition.} Let \(F(x_1,\ldots,x_m)\) be a function in \(m\) variables. \(F\) is \textbf{homogeneous of degree} \(\pmb{n}\) if \(\forall t\in\mathbb{R}\setminus\{0\}\)
+\[F(tx_1,\ldots,tx_m)=t^nF(x_1,\ldots,x_m)\]
+
+\subsection{Homogeneous First Order ODE}
+\textbf{Definition.} A first order ODE \(\displaystyle\frac{dy}{dx}=F(x,y)\) is \textbf{homogeneous} if
+\begin{enumerate}
+	\item\(F(x,y)\) is homogeneous of degree zero
+	\begin{itemize}
+		\item\(\forall t\in\mathbb{R}\setminus\{0\}\quad F(tx,ty)=F(x,y)\)
+		\item\textbf{Remarks.} The term \(\displaystyle\frac{y}{x}\) or \(\displaystyle\frac{x}{y}\) should appear in the function
+	\end{itemize}
+\end{enumerate}
+
+\subsubsection{Method to Solve}
+\begin{enumerate}
+	\item Convert equation to standard form \(\displaystyle\frac{dy}{dx}=F(x,y)\)
+	\item Let \(z=y/x\)
+	\begin{itemize}
+		\item\(y=xz\) and \(\displaystyle\frac{dy}{dx}=z+x\frac{dz}{dx}\)
+		\item\(\forall x\ne0\quad F(x,y)=F(x,xz)=F(1,z)\)
+	\end{itemize}
+	\item The ODE becomes \(\displaystyle z+x\frac{dz}{dx}=F(1,z)\)
+	\begin{itemize}
+		\item This is separable in variables \(x\) and \(z\)
+	\end{itemize}
+\end{enumerate}
+
+\subsection{First Order Linear ODE}
+\textbf{Definition.} A first order ODE \(\displaystyle\frac{dy}{dx}=F(x,y)\) is \textbf{linear} if
+\[F(x,y)=f(x)y+g(x)\]
+The \textbf{standard form} of a first order linear ODE is
+\[\frac{dy}{dx}+p(x)y=q(x)\]
+
+\subsubsection{Method to Solve}
+\begin{itemize}
+	\item If \(\displaystyle\frac{dy}{dx}+p(x)y=0\). Then it is a separable equation.
+	\item If \(\displaystyle\frac{dy}{dx}+p(x)y=q(x)\), proceed as follows:
+	\begin{enumerate}
+		\item Evaluate \(\int p(x)\,dx=P(x)+C\)
+		\item Evaluate an \textbf{integrating factor} \(v(x)=e^{P(x)}\)
+		\item\(\displaystyle y=\frac{1}{v(x)}\int v(x)q(x)\,dx\)
+		\item\textbf{Remark.} Different integrating factors differ by a constant multiple and produce the same solution
+	\end{enumerate}
+\end{itemize}
+
+\subsection{Bernoulli's Equation}
+\textbf{Definition.} A \textbf{Bernoulli's differential equation} has the form
+\begin{itemize}
+	\item\(\displaystyle\frac{dy}{dx}+p(x)y=q(x)y^n\), where \(n\in\mathbb{R}\)
+\end{itemize}
+
+\subsubsection{Method to Solve}
+\begin{itemize}
+	\item If \(n=0\), it is a first order linear ODE
+	\item If \(n=1\), it is a first order linear and separable ODE
+	\item If \(n\ne0,1\), proceed as follows:
+	\begin{enumerate}
+		\item Let \(z=y^{1-n}\)
+		\item\(\displaystyle\frac{dz}{dx}+(1-n)p(x)z=(1-n)q(x)\), which is a linear equation
+	\end{enumerate}
+\end{itemize}
+
+\subsection{Exponential Growth and Decay}
+\textbf{Theorem.} The general solution to \(\displaystyle\frac{dy}{dt}=ky\) is
+\[y=C\exp(kt)\]
+
+\subsection{Continuously Compounded Interest}
+\textbf{Theorem.} If an amount \(A_0\) is invested at \(r\) interest. If the interest is compounded continuously, the value of the investment at time \(t\) is
+\[A(t)=A_0\exp(rt)\]
+
+\subsection{Exponential Decay}
+Let \(\displaystyle\frac{dm}{dt}=km\), where \(k<0\). Then
+\[m(t)=m(0)\exp(kt)\]
+
+\subsubsection{Half-Life}
+\textbf{half-life} \(\pmb{t_{1/2}}\) is the time required for half of the quantity to decay. Then
+\[k=-\frac{\ln2}{t_{1/2}}\]
+
+\subsection{Logistic Population Growth}
+\textbf{Definition.} The \textbf{logistic growth} model with \(M>0\) as the \textbf{limiting population} or \textbf{carrying capacity} and \(r>0\) is given by
+\[\frac{dP}{dt}=r(M-P)P\]
+
+\subsubsection{Solving the Logistic Growth Model}
+This is a Bernoulli's differential equation with the following general solution which is also known as the \textbf{logistic function}:
+\[P(t)=\frac{M}{1+C\exp(-Mrt)}\]
+
+\subsection{Newton's Law of Cooling}
+Let \(T(t)\) be the temperature of an object at time \(t\) and \(T_S\) be the surrounding temperature. Then
+\begin{itemize}
+	\item\(\displaystyle\frac{dT}{dt}=-r(T-T_S)\), where \(r>0\) is a constant
+\end{itemize}
+Then
+\[T(t)=T_S+(T_0-T_S)\exp(-rt)\]
+\end{document}		

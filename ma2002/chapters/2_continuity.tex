@@ -1,0 +1,152 @@
+\documentclass[../ma2002_notes.tex]{subfiles}
+\begin{document}
+\section{Continuity}
+\subsection{Definition of Continuity}
+A function \(f\) is \textbf{continuous} at \(a\) if
+\[\lim_{x\to a}f(x)=f(a)\]
+
+\subsection{Definition of Discontinuity}
+A function \(f\) is \textbf{discontinuous} at \(a\) if it is not continuous at \(a\).
+
+\subsection{Types of Discontinuity}
+\subsubsection{Removable Discontinuity and Continuous Extension}
+A function \(f\) has a \textbf{removable discontinuity} at \(a\) if
+\begin{enumerate}
+	\item \(\displaystyle\lim_{x\to a}f(x)\) exists, and
+	\item \(f(a)\) is undefined or \(\displaystyle\lim_{x\to a}f(x)\ne f(a)\)
+\end{enumerate}
+A function \(f_1\) is the \textbf{continuous extension} of \(f\) at \(a\) if
+\[f_1(x) =
+\begin{cases}
+	f(x) & x\ne a \\
+	\lim \limits_{x\to a}f(x) & x=a
+\end{cases}
+\]
+
+\subsubsection{Infinite Discontinuity}
+A function \(f\) has an \textbf{infinite discontinuity} at \(a\) if
+\[\lim_{x\to a^+}f(x)=\pm\infty\text{ or }\lim_{x\to a^-}f(x)=\pm\infty\]
+
+\subsubsection{Jump Discontinuity}
+A function \(f\) has a \textbf{jump discontinuity} at \(a\) if
+\begin{enumerate}
+	\item \(\lim\limits_{x\to a^-}f(x)\) and \(\lim\limits_{x\to a^+}f(x)\) exists, and
+	\item \(\lim\limits_{x\to a^-}f(x)\ne\lim\limits_{x\to a^+}f(x)\)
+\end{enumerate}
+
+\subsection{One-Sided Continuity}
+A function \(f\) is \textbf{continuous} from the \textbf{left} at \(a\) if
+\[\lim_{x\to a^-}f(x)=f(a)\]
+and \(f\) is \textbf{continuous} from the \textbf{right} at \(a\) if
+\[\lim_{x\to a^+}f(x)=f(a)\]
+
+\subsection{Continuity on Intervals}
+A function \(f\) is continuous on a closed interval \([a,b]\) if \(f\) is
+\begin{enumerate}
+	\item continuous at every \(x\in(a,b)\),
+	\item continuous from the right at \(a\), and
+	\item continuous from the left at \(b\)
+\end{enumerate}
+
+\subsection{Properties of Continuous Functions}
+Let \(f\) and \(g\) be continuous functions at \(a\), then
+
+\subsubsection{Constant Multiples}
+\[cf\text{ is continuous at a, where }c\in\mathbb{R}\]
+
+\subsubsection{Sums}
+\[f+g\text{ is continuous at a}\]
+
+\subsubsection{Differences}
+\[f-g\text{ is continuous at a}\]
+
+\subsubsection{Products}
+\[fg\text{ is continuous at a}\]
+
+\subsubsection{Quotients}
+\[\text{If } g(a)\ne0\text{, then }f/g\text{ is continuous at a}\]
+
+\subsubsection{Powers}
+\[f^n\text{ is continuous at a, where }n\in\mathbb{Z}\]
+
+\subsection{Substitution in Limits}
+\subsubsection{Main Theorem}
+Let \(f\) and \(g\) be functions, if
+\begin{enumerate}
+	\item \(\lim\limits_{x\to a}f(x)=b\) and \(\lim\limits_{y\to b}g(y)=c\), and
+	\item \(f(x)\ne b\) for all \(x\) in an open interval containing \(a\) except at \(a\)
+\end{enumerate}
+Then \(\lim\limits_{x\to a}g(f(x))=c=\lim\limits_{y\to b}g(y)\)
+
+\subsubsection{Further Results}
+\[\lim_{x\to a}f(x) = \lim_{h\to 0}f(a+h)\]
+
+\subsubsection{Alternative Definition of Continuity}
+\(f\) is continuous at \(a\iff\lim\limits_{h\to 0}f(a+h)=f(a)\)
+
+\subsection{Composite Functions}
+\subsubsection{Limit Operator Commutes With Continuous Function}
+Let \(f\) and \(g\) be functions, if
+\begin{enumerate}
+	\item \(\lim\limits_{x\to a}f(x)=b\), and
+	\item \(g\) is continuous at \(b\)
+\end{enumerate}
+Then \(\lim\limits_{x\to a}g(f(x))=g(b)=g\left(\lim\limits_{x\to a}(f(x)\right)\)
+
+\subsubsection{Composite of Continuous Functions}
+If \(f\) is continuous at \(a\) and \(g\) is continuous at \(f(a)\), then
+\[g\circ f\text{ is continuous at }a\]
+
+\subsection{Continuous Functions}
+\subsubsection{Constant Functions}
+\[\forall c\in\mathbb{R}\quad f(x)=c\text{ is continuous on }\mathbb{R}\]
+
+\subsubsection{Identity Function}
+\[f(x)=x\text{ is continuous on }\mathbb{R}\]
+
+\subsubsection{Integer Power Functions}
+\[\forall n\in\mathbb{N}\quad f(x)=x^n\text{ is continuous on }\mathbb{R}\]
+
+\subsubsection{Monomials}
+\[f(x)=cx^n\text{ is continuous on }\mathbb{R}\]
+
+\subsubsection{Polynomials}
+\[f(x)=c_nx^n+c_{n-1}x^{n-1}+\ldots+c_1x+c_0\text{ is continuous on }\mathbb{R}\]
+
+\subsubsection{Rational Functions}
+A function \(f\) is a \textbf{rational function} if
+\[f(x) = P(x)/Q(x)\text{, where }P(x)\text{ and }Q(x)\text{ are polynomials}\]
+\(f\) is continuous on its domain \(\{x\mid Q(x)\ne0\}\)
+
+\subsubsection{Root Functions}
+\[f(x)=\sqrt[n]{x}\) is continuous on its domain = \(\begin{cases}
+\mathbb{R} & n\text{ is odd} \\
+[0,\infty) & n\text{ is even} \\
+\end{cases}\]
+
+\subsubsection{Rational Power Functions}
+\[\forall r\in\mathbb{Q}\quad f(x)=x^r\text{ is continuous on its domain}\]
+
+\subsubsection{Trigonometric Functions}
+\begin{enumerate}
+	\item \(\sin x\) and \(\cos x\) are continuous on \(\mathbb{R}\)
+	\item \(\tan x\) and \(\sec x\) are continuous on their domain = \(\{x\mid \cos x\ne0\}=\mathbb{R}\setminus\{\frac{\pi}{2}+k\pi\mid k\in\mathbb{Z}\}\)
+	\item \(\cot x\) and \(\csc x\) are continuous on their domain = \(\{x\mid \sin x\ne0\}=\mathbb{R}\setminus\{k\pi\mid k\in\mathbb{Z}\}\)
+\end{enumerate}
+
+\subsection{Intermediate Value Theorem (Simple Version)}
+Suppose
+\begin{enumerate}
+	\item \(f\) is continuous on a finite closed interval \([a,b]\), and
+	\item \(f(a)<0\) and \(f(b)>0\); or \(f(a)>0\) and \(f(b)<0\)
+\end{enumerate}
+Then there exists \(c\in(a,b)\) such that \(f(c)=0\)
+
+\subsection{Intermediate Value Theorem (General Version)}
+Suppose
+\begin{enumerate}
+	\item \(f\) is continuous on a finite closed interval \([a,b]\), and
+	\item \(f(a)\ne f(b)\) and \(N\) is between \(f(a)\) and \(f(b)\)
+\end{enumerate}
+Then there exists \(c\in(a,b)\) such that \(f(c)=N\)
+\end{document}

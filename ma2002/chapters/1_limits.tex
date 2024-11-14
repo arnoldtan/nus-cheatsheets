@@ -1,0 +1,104 @@
+\documentclass[../ma2002_notes.tex]{subfiles}
+\begin{document}
+\section{Limits}
+\subsection{Precise Definition of Limits}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+Side(s) & Value & Notation & For & there exists & such that & implies\\
+\hline
+Both sides & \multirow{3}{*}{Finite} & \(\displaystyle\lim_{x\to a}f(x)=L\) & \multirow{3}{*}{\(\epsilon>0\)} & \multirow{9}{*}{\(\delta>0\)} & \(0<\abs{x-a}<\delta\) & \multirow{3}{*}{\(\abs{f(x)-L}<\epsilon\)} \\
+\cline{1-1}\cline{3-3}\cline{6-6}
+Right hand & & \(\displaystyle\lim_{x\to a^+}f(x)=L\) & & & \(0<x-a<\delta\) & \\
+\cline{1-1}\cline{3-3}\cline{6-6}
+Left hand & & \(\displaystyle\lim_{x\to a^-}f(x)=L\) & & & \(0<a-x<\delta\) & \\
+\cline{1-4}\cline{6-7}
+Both sides & \multirow{3}{*}{Infinite} & \(\displaystyle\lim_{x\to a}f(x)=\infty\) & \multirow{3}{*}{\(M>0\)} & & \(0<\abs{x-a}<\delta\) & \multirow{3}{*}{\(f(x)>M\)} \\
+\cline{1-1}\cline{3-3}\cline{6-6}
+Right hand & & \(\displaystyle\lim_{x\to a^+}f(x)=\infty\) & & & \(0<x-a<\delta\) & \\
+\cline{1-1}\cline{3-3}\cline{6-6}
+Left hand & & \(\displaystyle\lim_{x\to a^-}f(x)=\infty\) & & & \(0<a-x<\delta\) & \\
+\cline{1-4}\cline{6-7}
+Both sides & \multirow{3}{*}{\(-\)Infinite} & \(\displaystyle\lim_{x\to a}f(x)=-\infty\) & \multirow{3}{*}{\(M<0\)} & & \(0<\abs{x-a}<\delta\) & \multirow{3}{*}{\(f(x)<M\)} \\
+\cline{1-1}\cline{3-3}\cline{6-6}
+Right hand & & \(\displaystyle\lim_{x\to a^+}f(x)=-\infty\) & & & \(0<x-a<\delta\) & \\
+\cline{1-1}\cline{3-3}\cline{6-6}
+Left hand & & \(\displaystyle\lim_{x\to a^-}f(x)=-\infty\) & & & \(0<a-x<\delta\) & \\
+\hline
+\multirow{3}{*}{Infinity} & Finite & \(\displaystyle\lim_{x\to \infty}f(x)=L\) & \(\epsilon>0\) & \multirow{3}{*}{a number \(N\)} & \multirow{3}{*}{\(x>N\)} & \(\abs{f(x)-L}<\epsilon\) \\
+\cline{2-4}\cline{7-7}
+& Infinite & \(\displaystyle\lim_{x\to \infty}f(x)=\infty\) & \(M>0\) & & & \(f(x)>M\) \\
+\cline{2-4}\cline{7-7}
+& \(-\)Infinite & \(\displaystyle\lim_{x\to \infty}f(x)=-\infty\) & \(M<0\) & & & \(f(x)<M\) \\
+\hline
+\multirow{3}{*}{\(-\)Infinity} & Finite & \(\displaystyle\lim_{x\to -\infty}f(x)=L\) & \(\epsilon>0\) & \multirow{3}{*}{a number \(N\)} & \multirow{3}{*}{\(x<N\)} & \(\abs{f(x)-L}<\epsilon\) \\
+\cline{2-4}\cline{7-7}
+& Infinite & \(\displaystyle\lim_{x\to -\infty}f(x)=\infty\) & \(M>0\) & & & \(f(x)>M\) \\
+\cline{2-4}\cline{7-7}
+& \(-\)Infinite & \(\displaystyle\lim_{x\to -\infty}f(x)=-\infty\) & \(M<0\) & & & \(f(x)<M\) \\
+\hline
+\end{tabular}
+
+\subsection{Limit Laws}
+Let \(a,\,c\in\mathbb{R}\) and \(\displaystyle\lim_{x\to a}f(x),\,\lim_{x\to a}g(x)\in\mathbb{R}\), then,
+
+\subsubsection{Constant Function}
+\[\lim_{x\to a} c = c\]
+
+\subsubsection{Identity Function}
+\[\lim_{x\to a} x = a\]
+
+\subsubsection{Constant Multiple Rule}
+\[\lim_{x\to a} (c\cdot f(x)) = c\cdot\lim_{x\to a}f(x)\]
+
+\subsubsection{Sum Rule}
+\[\lim_{x\to a}(f(x)+g(x)) = \lim_{x\to a}f(x)+\lim_{x\to a}g(x)\]
+
+\subsubsection{Difference Rule}
+\[\lim_{x\to a}(f(x)-g(x)) = \lim_{x\to a}f(x)-\lim_{x\to a}g(x)\]
+
+\subsubsection{Product Rule}
+\[\lim_{x\to a}(f(x)\cdot g(x)) = \lim_{x\to a}f(x)\cdot \lim_{x\to a}g(x)\]
+
+\subsubsection{Quotient Rule}
+If \(\displaystyle\lim_{x\to a}g(x)\ne0\), then,
+\[\lim_{x\to a}\frac{f(x)}{g(x)} = \frac{\lim \limits_{x\to a}f(x)}{\lim \limits_{x\to a}g(x)}\]
+
+\subsubsection{Power Rule}
+\[\lim_{x\to a}[f(x)]^n = \left(\lim_{x\to a}f(x)\right)^n\text{, where }n\in\mathbb{Z}\]
+
+\subsubsection{Root Rule}
+If \(n\) is odd or \(\left(\text{n is even and }\displaystyle\lim_{x\to a}f(x)\geq0\right)\), then,
+\[\lim_{x\to a}\sqrt[n]{f(x)} = \sqrt[n]{\lim_{x\to a}f(x)}\]
+
+\subsection{Intuitive Conclusion on Limits}
+If \(f(x)=g(x)\) for all \(x\) in an open interval containing \(a\), except at \(a\), then
+\[\text{If }\lim_{x\to a}f(x)=L\text{, then }\lim_{x\to a}g(x)=L\]
+
+\subsection{Inequality on Limits}
+\subsubsection{Lemma}
+If \(f(x)\geq0\) for all \(x\) in an open interval containing \(a\), except at \(a\), then
+\[\text{If }\lim_{x \to a} f(x)=L\text{, then }L\geq 0\]
+
+\subsubsection{Theorem}
+If \(f(x)\geq g(x)\) for all \(x\) in an open interval containing \(a\), except at \(a\), then if
+\begin{enumerate}
+	\item \(\lim\limits_{x \to a}f(x)=L\) and \(\lim\limits_{x \to a}g(x)=M\), then
+	\begin{enumerate}
+		\item \(L\geq M\)
+	\end{enumerate}
+\end{enumerate}
+
+\subsection{Squeeze Theorem}
+If \(f(x)\leq g(x)\leq h(x)\) for all \(x\) in an open interval containing \(a\), except at \(a\), then
+\[\text{If }\lim_{x\to a}f(x)=\lim_{x\to a}h(x)=L\text{, then} \lim_{x\to a}g(x)=L\]
+
+\subsection{Other Lemmas}
+If \(\lim \limits_{x \to a} f(x)\) exists and is positive, then:
+\[f(x)>0 \text{ for all } x \text{ in an open interval containing } a \text{, except at } a\]
+If \(\lim \limits_{x \to a} f(x)\) exists and is negative, then:
+\[f(x)<0 \text{ for all } x \text{ in an open interval containing } a \text{, except at } a\]
+
+\subsection{Other Limits}
+\[\lim \limits_{h \to 0} \frac{\sin h}{h} = 1\]
+\[\lim \limits_{h \to 0} \frac{\cos h - 1}{h} = 0\]
+\end{document}

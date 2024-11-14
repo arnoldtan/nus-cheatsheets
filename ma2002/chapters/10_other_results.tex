@@ -1,0 +1,88 @@
+\documentclass[../ma2002_notes.tex]{subfiles}
+\begin{document}
+\section{Other Results}
+\subsection{Geometry}
+\subsubsection{Slope of Perpendicular Lines}
+Given a pair of perpendicular lines \(\ell_1\) and \(\ell_2\) with slopes \(m_1\) and \(m_2\) respectively, then
+\[m_1\cdot m_2=-1\]
+
+\subsubsection{Circle}
+The equation of a circle with radius \(r\) and centre \((a,b)\) is
+\[(x-a)^2+(y-b)^2=r^2\]
+
+\subsubsection{Ellipse}
+The equation of an ellipse with width \(2a\), height \(2b\), and center \((x_0,y_0)\) is
+\[\frac{(x-x_0)^2}{a^2}+\frac{(y-y_0)^2}{b^2}=1\]
+
+\subsubsection{Hyperbola}
+The equation of a hyperbola is
+\[\frac{x^2}{a^2}-\frac{y^2}{b^2}=1\]
+
+\subsubsection{Astroid}
+The equation of an astroid with radius of the fixed circle \(a\) is
+\[x^{2/3}+y^{2/3}=a^{2/3}\]
+
+\subsubsection{Sphere}
+\paragraph{Volume}
+The volume \(V\) of a sphere with radius \(r\) is
+\[V=\frac{4}{3}\pi r^3\]
+
+\paragraph{Surface Area}
+The surface area \(A\) of a sphere with radius \(r\) is
+\[A=4\pi r^2\]
+
+\subsubsection{Right Cylinder}
+\paragraph{Volume}
+The volumne \(V\) of a right cylinder with base area \(A\) and height \(H\) is
+\[V=AH\]
+
+\subsubsection{Cone}
+\paragraph{Volume}
+The volume \(V\) of a cone with base area \(A\) and height \(H\) is
+\[V=\frac{1}{3}AH\]
+
+\subsubsection{Right Circular Cone}
+\paragraph{Volume}
+The volume \(V\) of a right circular cone with radius \(r\) and height \(h\) is
+\[V=\frac{1}{3}\pi r^2h\]
+
+\paragraph{Surface Area}
+A right circular cone with radius \(r\) and height \(h\) has slant height \(l=\sqrt{r^2+h^2}\). Its surface area \(A\) is
+\[A=\pi r^2+\pi rl\]
+
+\subsection{Triangle Inequality}
+For any \(a,\,b\in\mathbb{R}\),
+\[\abs{a}-\abs{b}\leq\abs{a+b}\leq\abs{a}+\abs{b}\]
+
+\subsection{Trigonometric Identities}
+\subsubsection{Sum and Difference Formula}
+\[\sin(A\pm B) = \sin A \cos B \pm \cos A \sin B\]
+\[\cos(A\pm B) = \cos A \cos B \mp \sin A \sin B \]
+
+\subsubsection{Double-Angle Formulae}
+\begin{align*}
+	&\sin(2\theta)=2\sin\theta\cos\theta=\frac{2\tan\theta}{1+\tan^2\theta}\\
+	&\cos(2\theta)=\cos^2\theta-\sin^2\theta=2\cos^2\theta-1=1-2\sin^2\theta=\frac{1-\tan^2\theta}{1+\tan^2\theta}\\
+	&\tan(2\theta)=\frac{2\tan\theta}{1-\tan^2\theta}\\
+	&\cot(2\theta)=\frac{\cot^2\theta-1}{2\cot\theta}\\
+	&\sec(2\theta)=\frac{\sec^2\theta}{2-\sec^2\theta}\\
+	&\csc(2\theta)=\frac{\sec\theta\csc\theta}{2}
+\end{align*}
+
+\subsubsection{Others}
+\(\frac{\sin x}{x} < 1\) and \(\abs{\sin x} \leq \abs{x}\) \\ \\
+For \(x \in (0, \frac{\pi}{2})\):
+\[x < \tan x\]
+
+\subsection{Algebraic Identities}
+\subsubsection{Difference of Cubes Formula}
+\[b^3-c^3=(b-c)(b^2+bc+c^2)\]
+
+\subsubsection{Difference of Nth Power Formula}
+\[b^n-c^n=(b-c)(b^{n-1}+b^{n-2}c+b^{n-3}c^2+\ldots+bc^{n-2}+c^{n-1})\]
+
+\subsection{Binomial Theorem}
+For \(n\in\mathbb{Z},n\geq0\),
+\[(x+y)^n=\sum_{k=0}^{n}\binom{n}{k}x^{n-k}y^k\]
+where \(\displaystyle\binom{n}{k}=\frac{n!}{k!(n-k)!}\)
+\end{document}

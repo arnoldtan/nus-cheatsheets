@@ -1,0 +1,287 @@
+\documentclass[../ma2002_notes.tex]{subfiles}
+\begin{document}
+\section{Applications of Derivatives}
+\subsection{Extreme Values}
+Let \(f\) be a function with domain \(D\)
+\subsubsection{Absolute Maximum}
+\(f\) has an \textbf{absolute/global maximum} value at \(c\in D\) if
+\[\forall x\in D\quad f(c)\geq f(x)\]
+\subsubsection{Absolute Minimum}
+\(f\) has an \textbf{absolute/global minimum} value at \(c\in D\) if
+\[\forall x\in D\quad f(c)\leq f(x)\]
+
+\subsection{Local Extreme Values}
+Let \(f\) be a function with domain \(D\)
+\subsubsection{Local Maximum}
+\(f\) has an \textbf{relative/local maximum} value at \(c\in D\) if
+\[\text{For all }x\text{ in an open interval containing }c,\,f(c)\geq f(x)\]
+\subsubsection{Local Minimum}
+\(f\) has an \textbf{relative/local minimum} value at \(c\in D\) if
+\[\text{For all }x\text{ in an open interval containing }c,\,f(c)\leq f(x)\]
+
+\subsection{Extreme Value Theorem}
+If \(f\) is continuous on a finite closed interval \([a,b]\). Then
+\[f\text{ attains the extreme values on }[a,b]\]
+Precisely, there exist \(c,d\in[a,b]\) such that
+\[\forall x\in[a,b]\quad f(c)\leq f(x)\leq f(d)\]
+
+\subsection{Extreme Value Problem}
+If \(f\) is continuous on a finite closed interval \([a,b]\)
+\begin{enumerate}
+	\item Evaluate the values of \(f\) at endpoints: \(f(a)\) and \(f(b)\)
+	\item Find local extreme values of \(f\) on \((a,b)\)
+	\item Compare the values obtained in Steps 1 and 2:
+	\begin{enumerate}
+		\item The largest value is the absolute maxmimum value
+		\item The smallest value is the absolute minimum value
+	\end{enumerate}
+\end{enumerate}
+
+\subsection{Fermat's Theorem}
+Let \(f\) be a function such that
+\begin{enumerate}
+	\item \(f\) has a local extreme value at \(c\), and
+	\item \(f\) is differentiable at \(c\)
+\end{enumerate}
+Then \(f'(c)=0\)
+
+\subsubsection{Remarks}
+Equivalently, if \(f\) has a local extreme value at \(c\), then either
+\begin{enumerate}
+	\item \(f\) is not differentiable at \(c\), or
+	\item \(f'(c)=0\)
+\end{enumerate}
+
+\subsection{Critical Point}
+Let \(c\) be an interior point of the domain of \(f\). \(c\) is a critical point of \(f\) if either
+\begin{enumerate}
+	\item \(f'(c)\) does not exist, or
+	\item \(f'(c)=0\)
+\end{enumerate}
+
+\subsection{Stationary Point}
+\(c\) is a stationary point of \(f\) if \(f'(c)=0\)
+
+\subsection{Closed Interval Method}
+Let \(f\) be continuous on \([a,b]\)
+\begin{enumerate}
+	\item Evaluate the values of \(f\) at endpoints: \(f(a)\) and \(f(b)\)
+	\item Evaluate the values of \(f\) at critical points on \((a,b)\)
+	\item Compare the values obtained in Steps 1 and 2:
+	\begin{enumerate}
+		\item The largest value is the absolute maxmimum value
+		\item The smallest value is the absolute minimum value
+	\end{enumerate}
+\end{enumerate}
+
+\subsection{Rolle's Theorem}
+If \(f\) is a function such that
+\begin{enumerate}
+	\item it is continuous on \([a,b]\)
+	\item it is differentiable on \((a,b)\), and
+	\item \(f(a)=f(b)\)
+\end{enumerate}
+Then there exists a number \(c\in(a,b)\) such that \(f'(c)=0\)
+
+\subsection{Mean Value Theorem}
+If \(f\) is a function such that
+\begin{enumerate}
+	\item it is continuous on \([a,b]\)
+	\item it is differentiable on \((a,b)\)
+\end{enumerate}
+Then there exists a number \(c\in(a,b)\) such that
+\[f'(c)=\frac{f(b)-f(a)}{b-a}\]
+
+\subsection{Derivative Zero Implies Constant Function}
+If \(f\) is a function such that
+\begin{enumerate}
+	\item it is continuous on an interval \(I\)
+	\item it is differentiable on \(I'=\) the interior of \(I\), and
+	\item \(\forall x\in I'\quad f'(x)=0\)
+\end{enumerate}
+Then there exists a constant \(C\in\mathbb{R}\) such that
+\[\forall x\in I\quad f(x)=C\]
+
+\subsection{Functions with Same Derivative Differ By A Constant}
+If \(f\) and \(g\) are functions such that
+\begin{enumerate}
+	\item they are continuous on an interval \(I\)
+	\item they are differentiable on \(I'=\) the interior of \(I\), and
+	\item \(\forall x\in I'\quad f'(x)=g'(x)\)
+\end{enumerate}
+Then there exists a constant \(C\in\mathbb{R}\) such that
+\[\forall x\in I\quad f(x)=g(x)+C\]
+
+\subsection{Increasing Function}
+A function \(f\) is increasing on a set \(I\) if
+\[\text{For any } a,b\in I\quad a<b\implies f(a)<f(b)\]
+
+\subsection{Decreasing Function}
+A function \(f\) is decreasing on a set \(I\) if
+\[\text{For any } a,b\in I\quad a<b\implies f(a)>f(b)\]
+
+\subsection{Increasing Test}
+If \(f\) is a function such that
+\begin{enumerate}
+	\item it is continuous on an interval \(I\)
+	\item it is differentiable on \(I'=\) the interior of \(I\), and
+	\item \(\forall x\in I'\quad f'(x)>0\)
+\end{enumerate}
+Then \(f\) is increasing on \(I\)
+
+\subsection{Decreasing Test}
+If \(f\) is a function such that
+\begin{enumerate}
+	\item it is continuous on an interval \(I\)
+	\item it is differentiable on \(I'=\) the interior of \(I\), and
+	\item \(\forall x\in I'\quad f'(x)<0\)
+\end{enumerate}
+Then \(f\) is decreasing on \(I\)
+
+\subsection{Increasing Differentiable Functions}
+If \(f\) is differentiable on an open interval \(I\) and if \(f\) is increasing on \(I\), then
+\[\forall x\in I\quad f'(x)\geq0\]
+
+\subsection{Decreasing Differentiable Functions}
+If \(f\) is differentiable on an open interval \(I\) and if \(f\) is decreasing on \(I\), then
+\[\forall x\in I\quad f'(x)\leq0\]
+
+\subsection{First Derivative Test}
+If \(f\) is a function such that
+\begin{enumerate}
+	\item it is continuous at a critical point \(c\), and
+	\item it is differentiable on an open interval containing \(c\), except at \(c\)
+\end{enumerate}
+Then if
+\begin{enumerate}
+	\item \(f'\) changes from negative to positive at \(c\)
+	\begin{enumerate}
+		\item then \(f\) has a local minimum value at \(c\)
+	\end{enumerate}
+	\item \(f'\) changes from positive to negative at \(c\)
+	\begin{enumerate}
+		\item then \(f\) has a local maximum value at \(c\)
+	\end{enumerate}
+	\item \(f'\) does not change sign at \(c\)
+	\begin{enumerate}
+		\item then \(f\) does not have a local extreme value at \(c\)
+	\end{enumerate}
+\end{enumerate}
+
+\subsection{Second Derivative Test}
+If \(f'(c)=0\), then if
+\begin{enumerate}
+	\item \(f''(c)>0\), then \(f\) has a local minimum value at \(c\)
+	\item \(f''(c)<0\), then \(f\) has a local maximum value at \(c\)
+\end{enumerate}
+
+\subsection{Concavity}
+\subsubsection{Concave Up}
+If \(f\) is differentiable on an open interval \(I\). \(f\) is \textbf{concave up} if
+\begin{enumerate}
+	\item the graph of \(f\) lies above all its tangent lines on \(I\)
+\end{enumerate}
+More precisely,
+\[\text{For all }a,b\in I,a\ne b\quad f(b)-f(a)>f'(a)(b-a)\]
+
+\subsubsection{Concave Down}
+If \(f\) is differentiable on an open interval \(I\). \(f\) is \textbf{concave down} if
+\begin{enumerate}
+	\item the graph of \(f\) lies below all its tangent lines on \(I\)
+\end{enumerate}
+More precisely,
+\[\text{For all }a,b\in I,a\ne b\quad f(b)-f(a)<f'(a)(b-a)\]
+
+\subsection{First Derivative and Concavity}
+If \(f\) is a differentiable function on an open interval I
+
+\subsubsection{Concave Up}
+\[f'\text{ is increasing on I}\iff f\text{ is concave up on }I\]
+
+\subsubsection{Concave Down}
+\[f'\text{ is decreasing on I}\iff f\text{ is concave down on }I\]
+
+\subsection{Concavity Test}
+If \(f\) is twice differentiable on an open interval \(I\)
+
+\subsubsection{Concave Up}
+\[(\forall x\in I\quad f''(x)>0)\implies f\text{ is concave up on }I\]
+
+\subsubsection{Concave Down}
+\[(\forall x\in I\quad f''(x)<0)\implies f\text{ is concave down on }I\]
+
+\subsection{Inflection Point}
+\(f\) has an \textbf{inflection point} at \(c\) if
+\begin{enumerate}
+	\item\(f\) is continuous at \(c\), and
+	\item\(f\) changes concavity at \(c\)
+\end{enumerate}
+
+\subsection{Twice Differentiable Inflection Point}
+If a function \(f\)
+\begin{enumerate}
+	\item has an inflection point at \(c\), and
+	\item is twice differentiable at \(c\)
+\end{enumerate}
+Then \(f''(c)=0\)
+
+\subsection{L'H\^{o}pital's Rule (Baby Version)}
+If \(f\) and \(g\) are functions differentiable at \(a\) such that
+\begin{itemize}
+	\item\(f(a)=g(a)=0\) and \(g'(a)\ne0\)
+\end{itemize}
+Then \(\lim\limits_{x\to a}\frac{f(x)}{g(x)}=\frac{f'(a)}{g'(a)}\)
+
+\subsection{Cauchy's Mean Value Theorem}
+If \(f\) and \(g\) are functions such that
+\begin{enumerate}
+	\item they are continuous on \([a,b]\)
+	\item they are diferentiable on \((a,b)\), and
+	\item\(\forall x\in(a,b)\quad g'(x)\ne0\)
+\end{enumerate}
+Then there exists \(c\in(a,b)\) such that
+\[\frac{f'(c)}{g'(c)}=\frac{f(b)-f(a)}{g(b)-g(a)}\]
+
+\subsection{L'H\^{o}pital's Rule (0/0 Version)}
+If \(f\) and \(g\) are functions such that
+\begin{enumerate}
+	\item\(\lim\limits_{x\to a}f(x)=\lim\limits_{x\to a}g(x)=0\), and
+	\item\(\lim\limits_{x\to a}\frac{f'(x)}{g'(x)}\) exists or equals \(\pm\infty\)
+	\begin{enumerate}
+		\item\(\frac{f'(x)}{g'(x)}\) is defined on an open interval \(I\) containing \(a\), except at \(a\)
+		\begin{enumerate}
+			\item\(f\) and \(g\) are differentiable on \(I\setminus\{a\}\)
+			\item\(\forall x\in I\setminus\{a\}\quad g'(x)\ne0\)
+		\end{enumerate}
+	\end{enumerate}
+\end{enumerate}
+Then \(\lim\limits_{x\to a}\frac{f(x)}{g(x)}=\lim\limits_{x\to a}\frac{f'(x)}{g'(x)}\)
+
+\subsubsection{Remarks}
+\begin{enumerate}
+	\item\(a\) may be finite or infinite
+	\item\(x\to a\) may be replaced with one-sided limits
+\end{enumerate}
+
+\subsection{L'H\^{o}pital's Rule ($\infty$/$\infty$ Version)}
+If \(f\) and \(g\) are functions such that
+\begin{enumerate}
+	\item\(\lim\limits_{x\to a}\abs{f(x)}=\lim\limits_{x\to a}\abs{g(x)}=\infty\), and
+	\item\(\lim\limits_{x\to a}\frac{f'(x)}{g'(x)}\) exists or equals \(\pm\infty\)
+	\begin{enumerate}
+		\item\(\frac{f'(x)}{g'(x)}\) is defined on an open interval \(I\) containing \(a\), except at \(a\)
+		\begin{enumerate}
+			\item\(f\) and \(g\) are differentiable on \(I\setminus\{a\}\)
+			\item\(\forall x\in I\setminus\{a\}\quad g'(x)\ne0\)
+		\end{enumerate}
+	\end{enumerate}
+\end{enumerate}
+Then \(\lim\limits_{x\to a}\frac{f(x)}{g(x)}=\lim\limits_{x\to a}\frac{f'(x)}{g'(x)}\)
+
+\subsubsection{Remarks}
+\begin{enumerate}
+	\item\(a\) may be finite or infinite
+	\item\(x\to a\) may be replaced with one-sided limits
+	\item The condition \(\lim\limits_{x\to a}\abs{f(x)}\) is unnecessary
+\end{enumerate}
+\end{document}

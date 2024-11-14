@@ -1,0 +1,80 @@
+\documentclass[../ma2002_notes.tex]{subfiles}
+\begin{document}
+\section{Applications of Definite Integrals}
+\subsection{Area Under Function}
+Let \(f\) be a nonnegative function continuous on \([a,b]\). Then the area of the region between \(y=f(x)\) and the \(x\)-axis on \([a,b]\) is
+\[\int_a^bf(x)\,dx\]
+
+\subsection{Area Between Two Functions}
+Let \(f\) and \(g\) be functions such that
+\begin{enumerate}
+	\item they are continuous on \([a,b]\), and
+	\item\(\forall x\in[a,b]\quad f\geq g\)
+\end{enumerate}
+Then the area of the region between \(y=f(x)\) and \(y=g(x)\) on \([a,b]\) is
+\[\int_a^b[f(x)-g(x)]\,dx\]
+
+\subsection{Area of Plane Region}
+If \(R\) is a plane region in the \(xy\)-coordinate system.
+\begin{enumerate}
+	\item If \(R\) is placed along the \(x\)-axis on \([a,b]\), then
+	\begin{enumerate}
+		\item Cut \(R\) using vertical line segment at \(x\in[a,b]\), then
+		\begin{itemize}
+			\item Length \(\ell(x)\) = upper endpoint \(-\) lower endpoint
+		\end{itemize}
+		\item Area of \(R\) = \(\int_a^b\ell(x)\,dx\)
+	\end{enumerate}
+	\item If \(R\) is placed along the \(y\)-axis on \([c,d]\), then
+	\begin{enumerate}
+		\item Cut \(R\) using horizontal line segment at \(y\in[c,d]\), then
+		\begin{itemize}
+			\item Length \(L(y)\) = right endpoint \(-\) left endpoint
+		\end{itemize}
+		\item Area of \(R\) = \(\int_c^dL(y)\,dy\)
+	\end{enumerate}
+\end{enumerate}
+
+\subsection{Volume of Solid}
+If a solid is placed along the \(x\)-axis on \([a,b]\), then
+\begin{enumerate}
+	\item Cut the solid using planes perpendicular to the \(x\)-axis at \(x\in[a,b]\), then
+	\begin{itemize}
+		\item Area \(A(x)=\) area of cross-section at \(x\)
+	\end{itemize}
+	\item The volume of the solid \(=\int_a^bA(x)\,dx\)
+\end{enumerate}
+If a solid is placed along the \(y\)-axis on \([c,d]\), then
+\begin{enumerate}
+	\item Cut the solid using planes perpendicular to the \(y\)-axis at \(y\in[c,d]\), then
+	\begin{itemize}
+		\item Area \(A(y)=\) area of cross-section at \(y\)
+	\end{itemize}
+	\item The volume of the solid \(=\int_c^dA(y)\,dy\)
+\end{enumerate}
+
+\subsection{Disk Method}
+Let \(f\) be a continuous function. The volume of the solid formed by rotating the region between \(y=f(x)\) and the \(x\)-axis on \([a,b]\) about the \(x\)-axis is
+\[\pi\int_a^b[f(x)]^2\,dx\]
+
+\subsection{Washer Method}
+Let \(f\) and \(g\) be continuous functions such that \(\forall x\in[a,b]\quad f(x)\geq g(x)\geq0\). The volume of the solid formed by rotating the region between \(y=f(x)\) and \(y=g(x)\) on \([a,b]\) about the \(x\)-axis is
+\[\pi\int_a^b([f(x)]^2-[g(x)]^2)\,dx\]
+
+\subsection{Cylindrical Shell Method}
+Let \(f\) be continuous and non-negative on \([a,b]\), where either \(a\geq0\) or \(b\leq0\). The volume of the solid formed by rotating the region between \(y=f(x)\) and the \(x-axis\) on \([a,b]\) about the \(y\)-axis is
+\begin{align*}
+\begin{cases}
+	\displaystyle2\pi\int_a^bxf(x)\,dx & a\geq0\\
+	\displaystyle-2\pi\int_a^bxf(x)\,dx & b\leq0
+\end{cases}
+\end{align*}
+
+\subsection{Arc Length}
+If \(f\) is continuous on \([a,b]\). The \textbf{arc length} of the curve \(y=f(x)\) on \([a,b]\) is defined by
+\[\int_a^b\sqrt{1+[f'(x)]^2}\,dx\]
+
+\subsection{Surface Area of Revolution}
+If \(f\) is nonnegative and continuous on \([a,b]\). The area of the surface formed by rotating the curve \(y=f(x)\) on \([a,b]\) about the \(x\)-axis is
+\[2\pi\int_a^bf(x)\sqrt{1+[f'(x)]^2}\,dx=2\pi\int_a^by\sqrt{1+\left(\frac{dy}{dx}\right)^2}\,dx\]
+\end{document}	

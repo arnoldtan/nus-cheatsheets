@@ -1,0 +1,237 @@
+\documentclass[../ma2002_notes.tex]{subfiles}
+\begin{document}
+\section{Inverse Functions and Transcendental Functions}
+\subsection{One-to-One Functions}
+\textbf{Definition.} Let \(f\) be a function with domain \(D\). \(f\) is \textbf{one-to-one} if for any \(a,b\in D\),
+\[a\ne b\implies f(a)\ne f(b)\]
+Equivalently, for any \(a,b\in D\),
+\[f(a)=f(b)\implies a=b\]
+
+\subsection{Inverse Function}
+\textbf{Definition.} Let \(f\) be a one-to-one function with domain \(A\) and range \(B\)
+\begin{itemize}
+	\item Then \(\forall y\in B\), there is a unique \(x\in A\) such that \(f(x)=y\)
+\end{itemize}
+The \textbf{inverse function} of \(f\), denoted by \(f^{-1}\), is defined by
+\begin{itemize}
+	\item For any \(x\in A\) and \(y\in B\quad f^{-1}(y)=x\iff y=f(x)\)
+	\begin{enumerate}
+		\item\(f^{-1}\) has domain \(B\) and range \(A\)
+	\end{enumerate}
+\end{itemize}
+
+\subsection{Inverse of Inverse Function}
+\[(f^{-1})^{-1}=f\]
+
+\subsection{Composite of Function and its Inverse is an Identity Function}
+If for any \(x\in A\) and \(y\in B\quad y=f(x)\iff x=f^{-1}(y)\), then
+\begin{align*}
+	&\forall x\in A\quad f^{-1}(f(x))=x\\
+	&\forall y\in B\quad f(f^{-1}(y))=y
+\end{align*}
+
+\subsection{Equation for Inverse Functions}
+Let \(f\) be a one-to-one function. Then \(f\) has an inverse function, say \(f^{-1}\). To find an equation for \(f^{-1}\),
+\begin{enumerate}
+	\item Let \(y=f(x)\)
+	\item Solve for \(x\) in terms of \(y\):\(\quad x=f^{-1}(y)\)
+	\item Interchange \(x\) and \(y\):\(\quad y=f^{-1}(x)\)
+\end{enumerate}
+
+\subsection{Geometric Meaning of Interchanging $x$ and $y$}
+\begin{enumerate}
+	\item In the Cartesian plane \(\mathbb{R}^2\), interchanging \(x\) and \(y\) has the same effect as reflecting the graph w.r.t. the straight line \(y=x\)
+	\item Thus, the graph of \(f\) and \(f^{-1}\) are symmetric w.r.t. the line \(y=x\)
+\end{enumerate}
+
+\subsection{Continuous Functions are one-to-one iff monotonic}
+\textbf{Theorem.} Let \(f\) be a function continuous on an interval \(I\), then
+\begin{itemize}
+	\item\(f\) is one-to-one \(\iff f\) is monotonic
+	\begin{itemize}
+		\item Monotonic means either increasing or decreasing
+	\end{itemize}
+\end{itemize}
+
+\subsection{Inverse of Continuous Function is Continuous}
+If \(f\) is a function one-to-one and continuous on an interval \(I\). Then the inverse function \(f^{-1}\) is also continuous
+
+\subsection{Inverse of Differentiable Function is Differentiable}
+If \(f\) is a function one-to-one and continuous on an interval \(I\). If \(f\) is differentiable at an interior point \(a\) of \(I\), \(f'(a)\ne0\), and \(b=f(a)\), then
+\[(f^{-1})'(b)=\frac{1}{f'(a)}\]
+
+\subsection{Inverse Trigonometric Functions}
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+Function & Domain & Range & Derivative\\
+\hline
+\(\sin^{-1}x\) & \([-1,1]\) & \([-\frac{\pi}{2},\frac{\pi}{2}]\) & \(\displaystyle\frac{d}{dx}\sin^{-1}x=\frac{1}{\sqrt{1-x^2}}\)\\[10pt]
+\hline
+\(\cos^{-1}x\) & \([-1,1]\) & \([0,\pi]\) & \(\displaystyle\frac{d}{dx}\cos^{-1}x=-\frac{1}{\sqrt{1-x^2}}\)\\[10pt]
+\hline
+\(\tan^{-1}x\) & \(\mathbb{R}\) & \((-\frac{\pi}{2},\frac{\pi}{2})\) & \(\displaystyle\frac{d}{dx}\tan^{-1}x=\frac{1}{1+x^2}\)\\[10pt]
+\hline
+\(\cot^{-1}x\) & \(\mathbb{R}\) & \((0,\pi)\) & \(\displaystyle\frac{d}{dx}\cot^{-1}x=-\frac{1}{1+x^2}\)\\[10pt]
+\hline
+\(\sec^{-1}x\) & \((-\infty,-1]\cup[1,\infty)\) & \([0,\frac{\pi}{2})\cup[\pi,\frac{3\pi}{2})\) & \(\displaystyle\frac{d}{dx}\sec^{-1}x=\frac{1}{x\sqrt{x^2-1}}\)\\[10pt]
+\hline
+\(\csc^{-1}x\) & \((-\infty,-1]\cup[1,\infty)\) & \((0,\frac{\pi}{2}]\cup(\pi,\frac{3\pi}{2}]\) & \(\displaystyle\frac{d}{dx}\csc^{-1}x=-\frac{1}{x\sqrt{x^2-1}}\)\\[10pt]
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Inverse Trigonometric Identities}
+\begin{align*}
+	&\forall x\in[-1,1]\quad\sin^{-1}x+\cos^{-1}x=\frac{\pi}{2}\\
+	&\forall x\in\mathbb{R}\quad\tan^{-1}x+\cot^{-1}x=\frac{\pi}{2}\\
+	&\sec^{-1}x+\csc^{-1}x=\begin{cases}
+		\frac{\pi}{2} & x\geq1\\
+		\frac{5\pi}{2} & x\leq-1\\
+	\end{cases}
+\end{align*}
+
+\subsection{Logarithmic Function}
+\textbf{Definition.} The \textbf{natural logarithmic function} is defined by
+\[\text{For }x>0\quad\ln x=\int_1^x\frac{1}{t}\,dt\]
+
+\subsection{Properties of $\ln x$}
+\begin{itemize}
+	\item\(\ln1=0\)
+	\item\(\ln x\) is continuous and differentiable on \(\mathbb{R}^+\)
+	\item\(\forall x>0\quad\frac{d}{dx}\ln x=\frac{1}{x}\) and \(\frac{d^2}{dx^2}\ln x=-\frac{1}{x^2}\)
+	\begin{itemize}
+		\item\(\ln x\) is increasing and concave down on \(\mathbb{R}^+\)
+	\end{itemize}
+	\item\(\lim\limits_{x\to0^+}\ln x=-\infty\), \(\lim\limits_{x\to\infty}\ln x=\infty\), and range of \(\ln x\) is \(\mathbb{R}\)
+\end{itemize}
+
+\subsection{Logarithmic Laws}
+\begin{align*}
+	&\text{For }x>0,\ a>0\quad\ln(ax)=\ln a+\ln x\\
+	&\text{For }x>0,\ r\in\mathbb{Q}\quad\ln(x^r)=r\ln x
+\end{align*}
+
+\subsection{Integral of $\frac{1}{x}$}
+\textbf{Theorem.} \(\forall x\ne0\)
+\[\frac{d}{dx}\ln\abs{x}=\frac{1}{x}\]
+
+\subsection{Integral of Rational Trigonometric Functions}
+\begin{align*}
+	&\int\sec x\,dx=\ln\abs{\sec x+\tan x}+C\\
+	&\int\csc x\,dx=-\ln\abs{\csc x+\cot x}+C\\
+	&\int\tan x\,dx=-\ln\abs{\cos x}+C\\
+	&\int\cot x\,dx=\ln\abs{\sin x}+C
+\end{align*}
+
+\subsection{Logarithmic Differentiation}
+If \(y=[f_1(x)]^{r_1}\times\ldots\times[f_n(x)]^{r_n}\), where
+\begin{enumerate}
+	\item\(r_1,\ldots,r_n\in\mathbb{Q}\), and
+	\item\(f_1,\ldots,f_n\) are non-zero differentiable functions
+\end{enumerate}
+Then \textbf{logarithmic differentiation} may be applied as follows:
+\begin{enumerate}
+	\item Take the absolute value:
+	\begin{itemize}
+		\item\(\abs{y}=\abs{f_1(x)}^{r_1}\times\ldots\times\abs{f_n(x)}^{r_n}\)
+	\end{itemize}
+	\item Take natural logarithm:
+	\begin{itemize}
+		\item\(\ln\abs{y}=r_1\ln\abs{f_1(x)}+\ldots+r_n\ln\abs{f_n(x)}\)
+	\end{itemize}
+	\item Differentiate w.r.t. \(x\):
+	\begin{itemize}
+		\item\(\displaystyle\frac{1}{y}\frac{dy}{dx}=\frac{r_1f_1'(x)}{f_1(x)}+\ldots+\frac{r_nf_n'(x)}{f_n(x)}\)
+	\end{itemize}
+\end{enumerate}
+
+\subsubsection{Remarks}
+Logarithmic differentiation is not applicable if \(y=0\)
+
+\subsection{Euler's Number $e$}
+\textbf{Definition.} The \textbf{Euler's number} \(\pmb{e}\) is the number such that \(\ln e=1\)
+
+\subsection{Exponential Function $\exp x$}
+\textbf{Definition.} Let \(\exp x=e^x\) be the inverse function of \(\ln x\). Then \(\exp x\) has domain \(\mathbb{R}\) and range \(\mathbb{R}^+\)
+
+\subsection{Properties of $\exp x$}
+\begin{enumerate}
+	\item\(\lim\limits_{x\to-\infty}\exp x=0\) and \(\lim\limits_{x\to\infty}\exp x=\infty\)
+\end{enumerate}
+
+\subsection{Derivative of $\exp x$}
+\[\frac{d}{dx}\exp x=\exp x\]
+
+\subsection{Exponential Function $a^x$}
+\textbf{Definition.} The exponential function of base \(a>0\) is defined by
+\[\forall x\in\mathbb{R}\quad a^x=\exp(x\ln a)\]
+
+\subsection{Properties of $a^x$}
+For all \(a>0\) and \(x,y\in\mathbb{R}\)
+\begin{align*}
+	&\ln(a^x)=x\ln a\\
+	&a^xa^y=a^{x+y}\\
+	&a^{-x}=1/a^x\\
+	&(a^x)^y=a^{xy}\\
+	&\frac{d}{dx}a^x=a^x\ln a
+\end{align*}
+
+\subsection{Real Power Rule}
+\textbf{Theorem.} \(\forall a\in\mathbb{R}\quad\forall x>0\),
+\[\frac{d}{dx}x^a=ax^{a-1}\]
+
+\subsection{Derivative of $x^x$}
+\[\forall x>0\quad\frac{d}{dx}x^x=(\ln x+1)x^x\]
+
+\subsection{Derivative of $f(x)^{g(x)}$}
+Derivative of \(f(x)^{g(x)}\) can be found by logarithmic differentiation
+
+\subsection{$e$ as a limit}
+\textbf{Theorem.}
+\[e=\lim_{x\to0}(1+x)^{1/x}\]
+
+\subsection{Limits of $f(x)^{g(x)}$}
+To find \(\lim\limits_{x\to a}f(x)^{g(x)}\), where \(f(x)>0\),
+\begin{enumerate}
+	\item Express \(f(x)^{g(x)}=\exp[g(x)\ln f(x)]\)
+	\item Interchange \(\lim\) operator and \(\exp\) function
+\end{enumerate}
+
+\subsection{Hyperbolic Trigonometric Functions}
+\subsubsection{Hyperbolic Sine Function}
+\textbf{Definition.} The \textbf{hyperbolic sine function} is defined by
+\[\sinh x=\frac{\exp x-\exp(-x)}{2}\]
+\(\sinh x\) is increasing on its domain \(\mathbb{R}\) and has range \(\mathbb{R}\)
+
+\subsubsection{Hyperbolic Cosine Function}
+\textbf{Definition.} The \textbf{hyperbolic cosine function} is defined by
+\[\cosh x=\frac{\exp x+\exp(-x)}{2}\]
+\(\sinh x\) has domain \(\mathbb{R}\), it is increasing on \([0,\infty)\)
+
+\subsection{Hyperbolic Trigonometric Identities}
+\begin{align*}
+	&\cosh^2t-\sinh^2t=1\\
+	&\sinh(x+y)=\sinh x\cosh y+\cosh x\sinh y\\
+	&\cosh(x+y)=\cosh x\cosh y+\sinh x\sinh y
+\end{align*}
+
+\subsection{Derivatives of Hyperbolic Trigonometric Functions}
+\begin{align*}
+	&\frac{d}{dx}\sinh x=\cosh x\\
+	&\frac{d}{dx}\cosh x=\sinh x
+\end{align*}
+
+\subsection{Inverse Hyperbolic Trigonometric Functions}
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+Function & Domain & Range & Derivative\\
+\hline
+\(\sinh^{-1}x\) & \(\mathbb{R}\) & \(\mathbb{R}\) & \(\displaystyle\frac{d}{dx}\sinh^{-1}x=\frac{1}{\sqrt{1+x^2}}\)\\[10pt]
+\hline
+\(\cosh^{-1}x\) & \([1,\infty)\) & \([0,\infty)\) & \(\displaystyle\frac{d}{dx}\sinh^{-1}x=\frac{1}{\sqrt{x^2-1}}\)\\[10pt]
+\hline
+\end{tabular}
+\end{center}
+\end{document}
