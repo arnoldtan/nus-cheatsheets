@@ -1,0 +1,230 @@
+\documentclass[../../dsa1101_notes.Rtex]{subfiles}\usepackage[]{graphicx}\usepackage[]{color}
+% maxwidth is the original width if it is less than linewidth
+% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+\subsection{Decision Tree}
+\subsubsection{Graph}
+\begin{enumerate}
+	\item A graph consists of nodes (circles) and edges (lines) connecting the nodes.
+	\item A walk is a sequence of edges which joins a sequence of nodes
+	\item A trail is a walk where all edges are distinct
+	\item A cycle is a trail in which the only repeated nodes are the first and last nodes
+	\item An acyclic graph has no cycles
+\end{enumerate}
+
+\subsubsection{Tree}
+\begin{enumerate}
+	\item A tree is an acyclic graph.
+	\item A rooted tree has a root node.
+	\item Depth of node in a rooted tree = distance of node from root node
+	\begin{enumerate}
+	    \item depth of root node = 0
+	\end{enumerate}
+\end{enumerate}
+
+\subsubsection{Decision Tree}
+\begin{enumerate}
+    \item Is a rooted tree
+\end{enumerate}
+
+\subsubsection{Entropy}
+Given a outcome variable \(Y\), with possible outcomes \(y_1, y_2, \ldots, y_n\) which occur with purity / probability \(P(y_1), P(y_2), \ldots, P(y_n)\), the entropy of Y is defined as:
+\[D(Y)=-\sum_{i=1}^n P(y_i)\log_2 P(y_i)\]
+
+\subsubsection{Conditional Entropy}
+Given a feature variable \(X\), with split outcome \(x_1, x_2\) which occur with probability \(P(x_1), P(x_2)\), the conditional entropy of Y given X is defined as:
+\[D(Y \vert X) = \sum_{i=1}^2 P(x_i) D(Y \vert X=x_i)\]
+
+\subsubsection{Decision Tree Algorithm: Entropy}
+\begin{enumerate}
+    \item Start at root node
+    \item Check for termination conditions, if any, e.g.:
+    \begin{enumerate}
+        \item Minimum purity threshold reached
+        \item Tree cannot be further split with the preset minimum purity threshold.
+        \item Any other stopping criterion is satisfied (such as the maximum depth of the tree).
+    \end{enumerate}
+    \item Calculate entropy for current node (base entropy)
+    \item For each feature variable, for each split outcome, calculate conditional entropy.
+    \item Choose the feature variable and split outcome with the highest entropy reduction = base entropy - conditional entropy. Branch the current node by this choice.
+    \item Repeat Step 2-5 for each of the two branched nodes.
+\end{enumerate}
+
+\subsubsection{Gini Index}
+Given a outcome variable \(Y\), with possible outcomes \(y_1, y_2, \ldots, y_n\) which occur with probability \(P(y_1), P(y_2), \ldots, P(y_n)\), the Gini index of Y is defined as:
+\[G(Y)=\sum_{i=1}^n P(y_i)(1-P(y_i))\]
+
+\subsubsection{Conditional Gini Index}
+Given a feature variable \(X\), with split outcome \(x_1, x_2\) which occur with probability \(P(x_1), P(x_2)\), the conditional Gini index of Y given X is defined as:
+\[G(Y \vert X) = \sum_{i=1}^2 P(x_i) G(Y \vert X=x_i)\]
+
+\subsubsection{Decision Tree Algorithm: Gini Index}
+\begin{enumerate}
+    \item Same as Decision Tree Algorithm for Entropy but replace Entropy with Gini Index.
+\end{enumerate}
+
+\subsubsection{Complexity Parameter $C_p$}
+\begin{enumerate}
+  \item Smaller values of \(C_p\) correspond to decision trees of larger sizes
+  \item Larger values of \(C_p\) correspond to decision trees of smaller sizes
+\end{enumerate}
+
+\subsubsection{Prediction Surface}
+\begin{enumerate}
+    \item Rectangular surfaces
+    \item Can only be axis-aligned
+\end{enumerate}
+
+\subsubsection{R Implementation}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{library}\hlstd{(rpart)}
+\hlkwd{library}\hlstd{(rpart.plot)}
+\hlstd{data} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(}
+  \hlkwc{id} \hlstd{=} \hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,}
+  \hlkwc{gender} \hlstd{=} \hlkwd{c}\hlstd{(}\hlstr{'M'}\hlstd{,} \hlstr{'M'}\hlstd{,} \hlstr{'F'}\hlstd{,} \hlstr{'M'}\hlstd{,} \hlstr{'F'}\hlstd{),}
+  \hlkwc{age} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{21}\hlstd{,} \hlnum{33}\hlstd{,} \hlnum{40}\hlstd{,} \hlnum{60}\hlstd{,} \hlnum{45}\hlstd{),}
+  \hlkwc{smoker} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{TRUE}\hlstd{,} \hlnum{FALSE}\hlstd{,} \hlnum{TRUE}\hlstd{,} \hlnum{TRUE}\hlstd{,} \hlnum{FALSE}\hlstd{),}
+  \hlkwc{bmi} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{22}\hlstd{,} \hlnum{25}\hlstd{,} \hlnum{28}\hlstd{,} \hlnum{24}\hlstd{,} \hlnum{26}\hlstd{),}
+  \hlkwc{diabetes} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{TRUE}\hlstd{,} \hlnum{FALSE}\hlstd{,} \hlnum{TRUE}\hlstd{,} \hlnum{FALSE}\hlstd{,} \hlnum{FALSE}\hlstd{),}
+  \hlkwc{stringsAsFactors} \hlstd{=} \hlnum{TRUE}
+\hlstd{)}
+\hlstd{data}
+\end{alltt}
+\begin{verbatim}
+##   id gender age smoker bmi diabetes
+## 1  1      M  21   TRUE  22     TRUE
+## 2  2      M  33  FALSE  25    FALSE
+## 3  3      F  40   TRUE  28     TRUE
+## 4  4      M  60   TRUE  24    FALSE
+## 5  5      F  45  FALSE  26    FALSE
+\end{verbatim}
+\begin{alltt}
+\hlstd{fit} \hlkwb{<-} \hlkwd{rpart}\hlstd{(}
+  \hlstd{diabetes} \hlopt{~} \hlstd{gender} \hlopt{+} \hlstd{age} \hlopt{+} \hlstd{smoker} \hlopt{+} \hlstd{bmi,}
+  \hlkwc{method} \hlstd{=} \hlstr{'class'}\hlstd{,}
+  \hlkwc{data} \hlstd{= data,}
+  \hlkwc{control} \hlstd{=} \hlkwd{rpart.control}\hlstd{(}\hlkwc{minsplit}\hlstd{=}\hlnum{1}\hlstd{),}
+  \hlkwc{parms} \hlstd{=} \hlkwd{list}\hlstd{(}\hlkwc{split} \hlstd{=} \hlstr{'information'}\hlstd{)}
+\hlstd{)}
+
+\hlkwd{rpart.plot}\hlstd{(fit,} \hlkwc{type} \hlstd{=} \hlnum{4}\hlstd{,} \hlkwc{extra} \hlstd{=} \hlnum{2}\hlstd{,} \hlkwc{clip.right.labs} \hlstd{=} \hlnum{FALSE}\hlstd{,} \hlkwc{varlen} \hlstd{=} \hlnum{0}\hlstd{,}
+           \hlkwc{faclen} \hlstd{=} \hlnum{0}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-1-1} 
+\end{knitrout}
+
+\subsubsection{Calculation Intensive Exam Questions \& Solutions}
+\paragraph{Entropy involving $n$ outcomes}\mbox{}\\
+\textbf{Adapted from Midterm Q2.} Let \(X\) be the outcome variable with \(n=2\) possible outcomes, which occur with purity c(0.5, 0.5). Calculate the entropy of \(X\).\\
+\textbf{Solution.}
+\begin{enumerate}
+  \item Copy paste the following code
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{entropy} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{prob}\hlstd{) \{}
+  \hlstd{sum} \hlkwb{<-} \hlnum{0}
+  \hlkwa{for} \hlstd{(p} \hlkwa{in} \hlstd{prob) \{}
+    \hlstd{sum} \hlkwb{<-} \hlstd{sum} \hlopt{+} \hlstd{p} \hlopt{*} \hlkwd{log2}\hlstd{(p)}
+  \hlstd{\}}
+  \hlkwd{return} \hlstd{(}\hlopt{-}\hlstd{sum)}
+\hlstd{\}}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+\item Calculate entropy
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{entropy}\hlstd{(}\hlkwd{c}\hlstd{(}\hlnum{0.5}\hlstd{,} \hlnum{0.5}\hlstd{))}
+\end{alltt}
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\end{enumerate}
+
+\paragraph{Gini Index involving $n$ outcomes}\mbox{}\\
+\textbf{Adapted from Midterm Q28.} Let \(X\) be the outcome variable with \(n=2\) possible outcomes, which occur with purity c(1490/2201, 1-1490/2201). Calculate the Gini index of \(X\).\\
+\textbf{Solution.}
+\begin{enumerate}
+  \item Copy paste the following code
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{gini_index} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{prob}\hlstd{) \{}
+  \hlstd{sum} \hlkwb{<-} \hlnum{0}
+  \hlkwa{for} \hlstd{(p} \hlkwa{in} \hlstd{prob) \{}
+    \hlstd{sum} \hlkwb{<-} \hlstd{sum} \hlopt{+} \hlstd{p} \hlopt{*} \hlstd{(}\hlnum{1}\hlopt{-}\hlstd{p)}
+  \hlstd{\}}
+  \hlkwd{return} \hlstd{(sum)}
+\hlstd{\}}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+\item Calculate Gini index
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{gini_index}\hlstd{(}\hlkwd{c}\hlstd{(}\hlnum{1490}\hlopt{/}\hlnum{2201}\hlstd{,} \hlnum{1}\hlopt{-}\hlnum{1490}\hlopt{/}\hlnum{2201}\hlstd{))}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.4373668
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\end{enumerate}
+\end{document}

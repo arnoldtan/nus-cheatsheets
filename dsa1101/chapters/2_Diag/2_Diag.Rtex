@@ -1,0 +1,148 @@
+\documentclass[../../dsa1101_notes.Rtex]{subfiles}
+\begin{document}
+\section{Diagnostics of Classifiers}
+\subsection{Confusion Matrix}
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\cline{3-4}
+\multicolumn{2}{c}{} & \multicolumn{2}{|c|}{Predicted Class}\\
+\cline{3-4}
+\multicolumn{2}{c}{} & \multicolumn{1}{|c|}{Positive} & Negative\\
+\hline
+\multirow{2}{3em}{Actual Class} & \multicolumn{1}{c}{Positive} & \multicolumn{1}{|c|}{True Positive (TP)} & False Negative (FN)\\
+\cline{2-4}
+& \multicolumn{1}{c}{Negative} & \multicolumn{1}{|c|}{False Positive (FP)} & True Negative (TN)\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Accuracy}
+\[\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}\]
+
+\subsection{True Positive Rate}
+\[\text{TPR} = \frac{TP}{TP + FN}\]
+
+\subsection{False Positive Rate / Type I Error Rate}
+\[\text{FPR} = \frac{FP}{FP + TN}\]
+
+\subsection{False Negative Rate / Type II Error Rate}
+\[\text{FNR} = \frac{FN}{TP + FN}\]
+
+\subsection{True Negative Rate}
+\[\text{TNR} = \frac{TN}{TN+FP}\]
+
+\subsection{Precision}
+\[\text{Precision} = \frac{TP}{TP + FP}\]
+
+\subsubsection{Remarks}
+\begin{enumerate}
+  \item Precision is useful when costly actions will be followed up on the data predicted to be positive,
+  \item because precision gives the proportion of actual positives among those predicted to be positive
+  \item For example, if an insurance company wants to predict potential customers interested in purchasing insurance, and the cost to try to sell an insurance to a potential customer is non-trivial (e.g. insurance agent has to house visit the customer).
+\end{enumerate}
+
+\subsection{N-Fold Cross Validation}
+\subsubsection{Algorithm}
+\begin{enumerate}
+	\item The entire dataset is randomly split into \(N\) datasets of approximately equal size.
+	\item \(N-1\) of these datasets are treated as the training dataset, while the remaining one is the test dataset. A measure of the model error is obtained.
+	\item This process is repeated across the various combinations of N datasets taken \(N-1\) at a time.
+	\item The observed N models errors are averaged across the N folds
+\end{enumerate}
+
+\subsection{ROC Curve (TPR vs FPR Trade-off)}
+\begin{enumerate}
+    \item Graph of True Positive Rate (TPR) against False Positive Rate (FPR)
+    \item As TPR increases, FPR tend to increase as well
+        \begin{enumerate}
+            \item Increasing TPR may be a double-edged sword
+        \end{enumerate}
+    \item TPR = FPR = 0 means binary classifier classifies everything as negative
+    \item TPR = FPR = 1 means binary classifier classifies everything as positive
+\end{enumerate}
+
+\subsection{Bias-Variance tradeoff}
+\begin{enumerate}
+    \item \(\text{error} = \text{bias}^2 + \text{variance} + \text{irreducible error}\)
+    \item As variance increases, bias decreases, and vice versa
+\end{enumerate}
+
+\subsection{Calculation Intensive Exam Question \& Solution}
+\textbf{Midterm Q6.} Consider the following confusion matrix for a classifier
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\cline{3-4}
+\multicolumn{2}{c}{} & \multicolumn{2}{|c|}{Predicted Class}\\
+\cline{3-4}
+\multicolumn{2}{c}{} & \multicolumn{1}{|c|}{Positive} & Negative\\
+\hline
+\multirow{2}{3em}{Actual Class} & \multicolumn{1}{c}{Positive} & \multicolumn{1}{|c|}{20} & 75\\
+\cline{2-4}
+& \multicolumn{1}{c}{Negative} & \multicolumn{1}{|c|}{140} & 55\\
+\hline
+\end{tabular}
+\end{center}
+The false negative rate (FNR) of the classifier is \rule{1cm}{0.15mm} (round to 3 decimal places).\\
+\textbf{Solution}
+\begin{enumerate}
+  \item Copy paste the following code:
+<<>>=
+gcmfv <- function(tp, fn, fp, tn) {
+  # generates confusion matrix from values
+  return (matrix(c(tp, fn, fp, tn), nrow = 2, ncol = 2, byrow = TRUE))
+}
+
+tp <- function(m) {
+  # true positive from confusion matrix m
+  return (m[1, 1])
+}
+
+fn <- function(m) {
+  # false negative from confusion matrix m
+  return (m[1, 2])
+}
+
+fp <- function(m) {
+  # false positive from confusion matrix m
+  return (m[2, 1])
+}
+
+tn <- function(m) {
+  # true negative from confusion matrix m
+  return (m[2, 2])
+}
+
+accuracy <- function(m) {
+  return ((tp(m)+tn(m))/(tp(m)+tn(m)+fp(m)+fn(m)))
+}
+
+tpr <- function(m) {
+  return (tp(m)/(tp(m)+fn(m)))
+}
+
+fpr <- function(m) {
+  return (fp(m)/(fp(m)+tn(m)))
+}
+
+fnr <- function(m) {
+  return (fn(m)/(fn(m)+tp(m)))
+}
+
+tnr <- function(m) {
+  return (tn(m)/(tn(m)+fp(m)))
+}
+
+precision <- function(m) {
+  return (tp(m)/(tp(m)+fp(m)))
+}
+@
+\item Create Confusion Matrix
+<<>>=
+confusion.matrix <- gcmfv(tp=20, fn=75, fp=140, tn=55)
+@
+\item Get the metric you need
+<<>>=
+fnr(confusion.matrix)
+@
+\end{enumerate}
+\end{document}

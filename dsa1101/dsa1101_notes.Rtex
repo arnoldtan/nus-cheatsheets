@@ -1,0 +1,49 @@
+\documentclass[fleqn, a4paper, 12pt]{article}
+\usepackage{subfiles}
+\usepackage{nopageno}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage{amsmath,mathtools}
+\usepackage[T1]{fontenc}
+\usepackage{multirow}
+
+\DeclareMathOperator{\mean}{mean}
+\DeclareMathOperator{\median}{median}
+\DeclareMathOperator{\var}{var}
+\DeclareMathOperator{\sd}{sd}
+\DeclareMathOperator{\cov}{cov}
+\DeclareMathOperator{\cor}{cor}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+
+\usepackage{array}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\linespread{1.25}
+
+\allowdisplaybreaks
+
+\begin{document}
+\title{DSA1101 Midterm Notes}
+\date{}
+\maketitle
+
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
+\tableofcontents
+
+\subfile{chapters/0_R/0_R.tex}
+\subfile{chapters/1_Statistics/1_Statistics.tex}
+\subfile{chapters/2_Diag/2_Diag.tex}
+
+\section{Supervised Learning}
+\subfile{chapters/3_KNN/3_KNN.tex}
+\subfile{chapters/4_DTree/4_DTree.tex}
+\subfile{chapters/5_NaiveBayes/5_NaiveBayes.tex}
+\subfile{chapters/6_Linear_Logistic_Regression/6_Linear_Logistic_Regression.tex}
+
+\section{Unsupervised Learning}
+
+\section{Big Data Techniques}
+\subsection{MapReduce}
+\end{document}

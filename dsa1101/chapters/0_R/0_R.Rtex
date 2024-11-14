@@ -1,0 +1,141 @@
+\documentclass[../../dsa1101_notes.Rtex]{subfiles}
+\begin{document}
+\section{R}
+\subsection{Data Types}
+\subsubsection{Vectors}
+<<>>=
+  c(1,2,3,4,5)
+1:5
+seq(1,9,2)
+@
+  
+  \subsubsection{Matrices}
+<<>>=
+  matrix(1:6, nrow = 2, ncol = 3, byrow = TRUE)
+@
+  
+  \subsubsection{Data Frames}
+<<>>=
+  data.frame(
+    id = 1:3,
+    name = c('Tom', 'Mary', 'Peter'),
+    age = c(26,30,25),
+    marital_status = c('married','divorced','single'),
+    stringsAsFactors = TRUE
+  )
+@
+  
+  \subsection{Logical Vectors}
+<<>>=
+  random_permutation_one_to_ten <- sample(1:10, 10, replace=FALSE)
+random_permutation_one_to_ten
+random_permutation_one_to_ten > 5
+@
+  
+  \subsection{Logical Operators}
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+A & B & A \textbf{AND} B & A \textbf{OR} B \\
+\hline
+TRUE & TRUE & TRUE & TRUE \\
+\hline
+TRUE & FALSE & FALSE & TRUE \\
+\hline
+FALSE & TRUE & FALSE & TRUE \\
+\hline
+FALSE & FALSE & FALSE & FALSE\\
+\hline
+\end{tabular}
+\qquad
+\begin{tabular}{|c|c|}
+\hline
+A & \textbf{NOT} A \\
+\hline
+TRUE & FALSE \\
+\hline
+FALSE & TRUE \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsubsection{Logical Operators in R}
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Operator & Description \\
+\hline
+\& & Element-wise AND \\
+\hline
+| & Element-wise OR \\
+\hline
+\&\& & First element AND \\
+\hline
+|| & First element OR \\
+\hline
+! & NOT \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Conditionals}
+\subsubsection{Conditional Statements}
+<<>>=
+  x <- 10
+if (x > 20) {
+  print('x is bigger than 20')
+} else if (x > 10) {
+  print('x is bigger than 10')
+} else {
+  print('x is smaller than or equal to 10')
+}
+@
+  
+  \subsection{Reading CSV Files}
+<<>>=
+  read.csv('data.csv', header = TRUE, sep = ',', dec = '.',
+           stringsAsFactors = TRUE)
+@
+  
+  \subsection{Data Visualisation}
+\subsubsection{Scatter Plots}
+<<>>=
+  x <- 1:50
+y <- x^2
+plot(x = x, y = y, xlab = 'x', ylab = 'y=x^2', col = 'red')
+@
+  
+  \subsubsection{Histogram}
+<<>>=
+  n <- 200
+x <- rnorm(n)
+hist(x = x, breaks = ceiling(sqrt(n)), col = 'lightgray')
+@
+  
+  \subsection{Iteration}
+\subsubsection{For Loop}
+<<>>=
+  for (i in 1:5) {
+    print(i)
+  }
+@
+  
+  \subsubsection{While Loop}
+<<>>=
+  i = 1
+while (i <= 5) {
+  print(i)
+  i <- i + 1
+}
+@
+  
+  \subsubsection{Repeat Loop}
+<<>>=
+  i = 1
+repeat {
+  print(i)
+  i <- i + 1
+  if (i == 6) break
+}
+@
+\end{document}

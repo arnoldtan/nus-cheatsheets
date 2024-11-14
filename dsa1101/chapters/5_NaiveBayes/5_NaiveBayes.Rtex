@@ -1,0 +1,65 @@
+\documentclass[../../dsa1101_notes.Rtex]{subfiles}
+\begin{document}
+\subsection{Naive Bayes}
+
+\subsubsection{Probability Laws}
+\paragraph{Bayes' Theorem}
+\[P(Y\vert X)=\frac{P(Y\cap X)}{P(X)}=\frac{P(X\vert Y)\times P(Y)}{P(X)}\]
+
+\paragraph{Law of total probability}
+\[P(A)=P(A\cap B)+P(A\cap \neg B)\]
+
+\subsubsection{Naive Bayes}
+Suppose the categorical outcome variable \(Y\) takes on values in the set \(\{y_1, y_2, \ldots, y_k\}\) and there are \(m\) feature variables \(X_1, X_2, \ldots, X_m\). By Bayes Theorem, for \(j=1,2,\ldots,k\),
+\begin{align*}
+&P(Y=y_j\vert X_1=x_1, X_2=x_2, \ldots, X_m=x_m)\\
+&=\frac{P(X_1=x_1, X_2=x_2, \ldots, X_m=x_m\vert Y=y_j)\times P(Y=y_j)}{P(X_1=x_1, X_2=x_2, \ldots, X_m=x_m)}
+\end{align*}
+
+\paragraph{Assume Conditional Independence}
+\begin{align*}
+&P(X_1=x_1, X_2=x_2, \ldots, X_m=x_m\vert Y=y_j)\\
+&=P(X_1=x_1\vert Y=y_j)P(X_2=x_2\vert Y=y_j)\ldots P(X_m=x_m\vert Y=y_j)\\
+&=\prod_{i=1}^{m}P(X_i=x_i\vert Y=y_j)
+\end{align*}
+
+\paragraph{Ignore Denominator}
+\[P(X_1=x_1, X_2=x_2, \ldots, X_m=x_m)\]
+
+\paragraph{Finally}\mbox{}\\
+For \(j=1,2,\ldots,k\),
+\begin{align*}
+&P(Y=y_j\vert X_1=x_1, X_2=x_2, \ldots, X_m=x_m)\\
+&\propto P(Y=y_j)\times\prod_{i=1}^{m}P(X_i=x_i\vert Y=y_j)
+\end{align*}
+
+\subsubsection{Numerical Underflow}
+To prevent probability scores from becoming too small to be accurately stored in a computer, we can take logarithm on both sides,
+\begin{align*}
+&\log P(Y=y_j\vert X_1=x_1, X_2=x_2, \ldots, X_m=x_m)\\
+&\propto\log P(Y=y_j) + \sum_{i=1}^{m}\log P(X_i=x_i\vert Y=y_j)
+\end{align*}
+
+\subsubsection{R Implementation}
+<<>>=
+library(e1071)
+data <- data.frame(
+  watch_lectures = c(TRUE, TRUE, FALSE, TRUE, FALSE, TRUE),
+  does_tutorials = c(TRUE, FALSE, TRUE, FALSE, FALSE, TRUE),
+  prior_exp = c(FALSE, FALSE, FALSE, TRUE, TRUE, FALSE),
+  grades_for_dsa1101 = c('A-', 'B+', 'C', 'B+', 'B-', 'A'),
+  stringsAsFactors = TRUE
+)
+train <- data[1:4,]
+test <- data[5:6,]
+model <- naiveBayes(grades_for_dsa1101 ~ watch_lectures + does_tutorials
+                    + prior_exp, train, laplace = 0)
+predict(model, test)
+@
+
+\subsubsection{Calculation Intensive Exam Questions \& Solutions}
+\paragraph{Prediction from Table of Data}
+<<>>=
+table_to_naiveBayes <- function(features, feature_categories, )
+@
+\end{document}

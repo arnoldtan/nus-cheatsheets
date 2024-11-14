@@ -1,0 +1,8 @@
+\documentclass[../../dsa1101_notes.Rtex]{subfiles}
+\begin{document}
+\subsection{Linear \& Logistic Regression}
+\subsubsection{Solving Simultaneous Equations}
+\begin{enumerate}
+  \item Use solve function in R
+\end{enumerate}
+\end{document}

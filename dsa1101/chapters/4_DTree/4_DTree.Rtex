@@ -1,0 +1,143 @@
+\documentclass[../../dsa1101_notes.Rtex]{subfiles}
+\begin{document}
+\subsection{Decision Tree}
+\subsubsection{Graph}
+\begin{enumerate}
+	\item A graph consists of nodes (circles) and edges (lines) connecting the nodes.
+	\item A walk is a sequence of edges which joins a sequence of nodes
+	\item A trail is a walk where all edges are distinct
+	\item A cycle is a trail in which the only repeated nodes are the first and last nodes
+	\item An acyclic graph has no cycles
+\end{enumerate}
+
+\subsubsection{Tree}
+\begin{enumerate}
+	\item A tree is an acyclic graph.
+	\item A rooted tree has a root node.
+	\item Depth of node in a rooted tree = distance of node from root node
+	\begin{enumerate}
+	    \item depth of root node = 0
+	\end{enumerate}
+\end{enumerate}
+
+\subsubsection{Decision Tree}
+\begin{enumerate}
+    \item Is a rooted tree
+\end{enumerate}
+
+\subsubsection{Entropy}
+Given a outcome variable \(Y\), with possible outcomes \(y_1, y_2, \ldots, y_n\) which occur with purity / probability \(P(y_1), P(y_2), \ldots, P(y_n)\), the entropy of Y is defined as:
+\[D(Y)=-\sum_{i=1}^n P(y_i)\log_2 P(y_i)\]
+
+\subsubsection{Conditional Entropy}
+Given a feature variable \(X\), with split outcome \(x_1, x_2\) which occur with probability \(P(x_1), P(x_2)\), the conditional entropy of Y given X is defined as:
+\[D(Y \vert X) = \sum_{i=1}^2 P(x_i) D(Y \vert X=x_i)\]
+
+\subsubsection{Decision Tree Algorithm: Entropy}
+\begin{enumerate}
+    \item Start at root node
+    \item Check for termination conditions, if any, e.g.:
+    \begin{enumerate}
+        \item Minimum purity threshold reached
+        \item Tree cannot be further split with the preset minimum purity threshold.
+        \item Any other stopping criterion is satisfied (such as the maximum depth of the tree).
+    \end{enumerate}
+    \item Calculate entropy for current node (base entropy)
+    \item For each feature variable, for each split outcome, calculate conditional entropy.
+    \item Choose the feature variable and split outcome with the highest entropy reduction = base entropy - conditional entropy. Branch the current node by this choice.
+    \item Repeat Step 2-5 for each of the two branched nodes.
+\end{enumerate}
+
+\subsubsection{Gini Index}
+Given a outcome variable \(Y\), with possible outcomes \(y_1, y_2, \ldots, y_n\) which occur with probability \(P(y_1), P(y_2), \ldots, P(y_n)\), the Gini index of Y is defined as:
+\[G(Y)=\sum_{i=1}^n P(y_i)(1-P(y_i))\]
+
+\subsubsection{Conditional Gini Index}
+Given a feature variable \(X\), with split outcome \(x_1, x_2\) which occur with probability \(P(x_1), P(x_2)\), the conditional Gini index of Y given X is defined as:
+\[G(Y \vert X) = \sum_{i=1}^2 P(x_i) G(Y \vert X=x_i)\]
+
+\subsubsection{Decision Tree Algorithm: Gini Index}
+\begin{enumerate}
+    \item Same as Decision Tree Algorithm for Entropy but replace Entropy with Gini Index.
+\end{enumerate}
+
+\subsubsection{Complexity Parameter $C_p$}
+\begin{enumerate}
+  \item Smaller values of \(C_p\) correspond to decision trees of larger sizes
+  \item Larger values of \(C_p\) correspond to decision trees of smaller sizes
+\end{enumerate}
+
+\subsubsection{Prediction Surface}
+\begin{enumerate}
+    \item Rectangular surfaces
+    \item Can only be axis-aligned
+\end{enumerate}
+
+\subsubsection{R Implementation}
+<<>>=
+library(rpart)
+library(rpart.plot)
+data <- data.frame(
+  id = 1:5,
+  gender = c('M', 'M', 'F', 'M', 'F'),
+  age = c(21, 33, 40, 60, 45),
+  smoker = c(TRUE, FALSE, TRUE, TRUE, FALSE),
+  bmi = c(22, 25, 28, 24, 26),
+  diabetes = c(TRUE, FALSE, TRUE, FALSE, FALSE),
+  stringsAsFactors = TRUE
+)
+data
+
+fit <- rpart(
+  diabetes ~ gender + age + smoker + bmi,
+  method = 'class',
+  data = data,
+  control = rpart.control(minsplit=1),
+  parms = list(split = 'information')
+)
+
+rpart.plot(fit, type = 4, extra = 2, clip.right.labs = FALSE, varlen = 0,
+           faclen = 0)
+@
+
+\subsubsection{Calculation Intensive Exam Questions \& Solutions}
+\paragraph{Entropy involving $n$ outcomes}\mbox{}\\
+\textbf{Adapted from Midterm Q2.} Let \(X\) be the outcome variable with \(n=2\) possible outcomes, which occur with purity c(0.5, 0.5). Calculate the entropy of \(X\).\\
+\textbf{Solution.}
+\begin{enumerate}
+  \item Copy paste the following code
+<<>>=
+entropy <- function(prob) {
+  sum <- 0
+  for (p in prob) {
+    sum <- sum + p * log2(p) 
+  }
+  return (-sum)
+}
+@
+\item Calculate entropy
+<<>>=
+entropy(c(0.5, 0.5))
+@
+\end{enumerate}
+
+\paragraph{Gini Index involving $n$ outcomes}\mbox{}\\
+\textbf{Adapted from Midterm Q28.} Let \(X\) be the outcome variable with \(n=2\) possible outcomes, which occur with purity c(1490/2201, 1-1490/2201). Calculate the Gini index of \(X\).\\
+\textbf{Solution.}
+\begin{enumerate}
+  \item Copy paste the following code
+<<>>=
+gini_index <- function(prob) {
+  sum <- 0
+  for (p in prob) {
+    sum <- sum + p * (1-p) 
+  }
+  return (sum)
+}
+@
+\item Calculate Gini index
+<<>>=
+gini_index(c(1490/2201, 1-1490/2201))
+@
+\end{enumerate}
+\end{document}

@@ -1,0 +1,258 @@
+\documentclass[../st2131_notes.tex]{subfiles}
+\begin{document}
+
+\chapter{Random Variables}
+\section{Definition of Random Variable}
+\textbf{Definition.} A \textbf{random variable} \(X\) is a mapping from the \textbf{sample space} to real numbers.
+\[X:S\to\mathbb{R}\]
+
+\subsection{Commonly Used Notation for Random Variable and Their Values}
+\begin{itemize}
+	\item Use \(U,V,X,Y,Z\) upper case letters to denote random variables (for they are functions); and
+	\item Use \(u,v,\ldots\) lower case letters to denote values of random variables (for they are real numbers).
+\end{itemize}
+
+\section{Discrete Random Variables}
+\subsection{Definition of Discrete Random Variable}
+\textbf{Definition.} A random variable \(X\) is said to be \textbf{discrete} if the range of \(X\) is either finite or countably infinite.
+
+\subsection{Probability Mass Function}
+\textbf{Definition.} Suppose that a \textbf{random variable} \(X\) is \textbf{discrete}, taking values \(x_1,x_2,\ldots\), then the \textbf{probability mass function} of \(X\), denoted by \(p_X\) (or simply \(p\) if the context is clear), is defined as
+\[p_X(x)=\begin{cases}
+	P(X=x) & \text{if } x=x_1,x_2,\ldots, \\
+	0 & \text{otherwise}.
+\end{cases}\]
+
+\subsection{Properties of Probability Mass Function}
+\begin{itemize}
+	\item\(p_X(x_i)\geq0\) for \(i=1,2,\ldots\);
+	\item\(p_X(x)=0\) for other values of \(x\);
+	\item Since \(X\) must take on one of the values of \(x_i\),
+	\[\sum_{i=1}^\infty p_X(x_i)=1\]
+\end{itemize}
+
+\subsection{Cumulative Distribution Function}
+\textbf{Definition.} The \textbf{cumulative distribution function} of \(X\), abbreviated to \textbf{distribution function} (d.f.) of \(X\), denoted by \(F_X\) or \(F\) if the context is clear, is defined as
+\[F_X:\mathbb{R}\to\mathbb{R}\]
+where
+\[F_X(x)=P(X\leq x)\quad\text{for }x\in\mathbb{R}\]
+
+\subsubsection{Cumulative Distributive Function of a Discrete Random Variable is a Step Function}
+Suppose that \(X\) is discrete and takes values \(x_1,x_2,x_3,\ldots\) where \(x_1<x_2<x_3<\cdots\). Then \(F\) is a step function, where
+\begin{itemize}
+	\item\(F\) is constant in the interval \([x_{i-1},x_i)\), taking the value \(p(x_1)+p(x_2)+\cdots+p(x_{i-1})\), and then
+	\item take a jump of size \(=p(x_i)\).
+\end{itemize}
+
+\section{Expected Value / Expectation / Mean}
+\textbf{Definition.} If \(X\) is a \textbf{discrete random variable} having a \textbf{probability mass function} \(p_X\), the \textbf{expectation} or the \textbf{expected value} of \(X\), denoted by \(E(X)\) or \(\mu_X\), is defined by
+\[E(X)=\sum_xxp_X(x)\]
+
+\subsection{Remarks}
+\(E(X)\) is also referred to as the \textbf{first moment} or the \textbf{mean} of \(X\).
+
+\subsection{Interpretations of Expectation}
+\(E(X)\), the \textbf{expectation} of a random variable \(X\), may be interpreted as
+\begin{itemize}
+	\item Weighted average of possible values that \(X\) can take on, where the weights are the probability that \(X\) assumes it;
+	\item Frequency point of views (relative frequency); or
+	\item Center of gravity.
+\end{itemize}
+
+\section{Tail Sum Formula for Expectation}
+If \textbf{random variable} \(X\) is \textbf{only nonnegative integer-valued}, i.e. only takes values \(0,1,2,\ldots\), then
+\[E(X)=\sum_{k=1}^\infty P(X\geq k)=\sum_{k=0}^\infty P(X>k)\]
+
+\section{Expectation of a Function of a Random Variable}
+\subsection{Function of a Random Variable is a Random Variable}
+Given a \textbf{discrete random variable} \(X\) and a function \(g:\mathbb{R}\to\mathbb{R}\). Then the function \(g(X)\) is also a \textbf{random variable}.
+
+\subsection{Expectation of a Function of a Random Variable}
+\textbf{Proposition.} If \(X\) is a \textbf{discrete random variable} that takes values \(x_i\), \(i\geq1\), with respective probabilities \(p_X(x_i)\), then for any real value function \(g:\mathbb{R}\to\mathbb{R}\),
+\[E[g(X)]=\sum_{i=1}^\infty g(x_i)p_X(x_i)\]
+
+\subsection{Expectation of a Linear Function of a Random Variable}
+\textbf{Corollary.} Let \(a\) and \(b\) be constants, and \(X\) be a \textbf{random variable}, then
+\[E[aX+b]=aE(X)+b\]
+
+\subsection{Moment of Random Variables}
+\subsubsection{$k^{th}$ Moment of Random Variables}
+Let \(X\) be a \textbf{random variable}. Then for \(k\geq1,k\in\mathbb{N}\),
+\[E(X^k)\]
+is called the \(\pmb{k^{th}}\) \textbf{moment} of \(X\).
+
+\subsubsection{$k^{th}$ Central Moment of Random Variables}
+Let \(X\) be a \textbf{random variable} and \(\mu=E(X)\). Then for \(k\geq1,k\in\mathbb{N}\),
+\[E[(X-\mu)^k]\]
+is called the \(\pmb{k^{th}}\) \textbf{central moment} of \(X\).
+
+\subsubsection{Remarks}
+\begin{itemize}
+	\item The expected value of a random variable \(X\), \(E(X)\), is also referred to as the \textbf{first moment} or the \textbf{mean} of \(X\).
+	\item The first central moment is \(0\).
+	\item The second central moment, namely, \(E[(X-\mu)^2]\) is called the \textbf{variance} of \(X\).
+\end{itemize}
+
+\section{Variance and Standard Deviation}
+\subsection{Definition of Variance}
+\textbf{Definition.} If \(X\) is a \textbf{random variable} with mean \(\mu\), then the \textbf{variance} of \(X\), denoted by \(\Var(X)\), is defined as
+\[\Var(X)=E[(X-\mu)^2]\]
+
+\subsubsection{Interpretation of Variance}
+\(\Var(X)\) is a measure of scattering (or spread) of the value of \(X\) around its \textbf{expected value}, \(\mu\).
+
+\subsection{Alternative Formula for Variance}
+Let \(X\) be a \textbf{random variable}, then
+\[\Var(X)=E(X^2)-[E(X)]^2\]
+
+\subsection{Properties of Variance}
+\begin{itemize}
+	\item\(\Var(X)\geq0\).
+	\item\(\Var(X)=0\iff X\) is a \textbf{degenerate} random variable (i.e., the random variable taking only one value, its expected value, \(\mu\)).
+	\item It follows from the formula that \(E(X^2)\geq[E(X)]^2\geq0\).
+\end{itemize}
+
+\subsection{Definition of Standard Deviation}
+\textbf{Definition.} The \textbf{standard deviation} of a \textbf{random variable} \(X\), denoted by \(\sigma_X\) or \(\SD(X)\), is defined as
+\[\sigma_X=\sqrt{\Var(X)}\]
+
+\subsection{Scaling and Shifting Property of Variance and Standard Deviation}
+Let \(X\) be a \textbf{random variable} and \(a,b\in\mathbb{R}\). Then
+\begin{itemize}
+	\item\(\Var(aX+b)=a^2\Var(X)\)
+	\item\(\SD(aX+b)=\abs{a}\SD(X)\)
+\end{itemize}
+
+\section{Discrete Random Variables Arising from Repeated Trials}
+\subsection{Bernoulli Trials}
+A \textbf{Bernoulli trial}, denoted by Bernoulli\((p)\) trials, is an experiment with only two outcomes:
+\begin{enumerate}
+	\item success with probability \(p\); and
+	\item failure with probability \(q=1-p\).
+\end{enumerate}
+
+\subsection{Bernoulli Random Variable}
+\subsubsection{Definition of Bernoulli Random Variable}
+\textbf{Definition.} If \(X\) is a Bernoulli random variable, denoted by \(X\sim Be(p)\). Only one Bernoulli\((p)\) trial is performed, and
+\[X=\begin{cases}
+	1, & \textbf{if it is a success} \\
+	0, & \textbf{if it is a failure}
+\end{cases}\]
+with
+\begin{itemize}
+	\item\(P(X=0)=1-p\)
+	\item\(P(X=1)=p\)
+\end{itemize}
+
+\subsubsection{Properties of Bernoulli Random Variable}
+Let \(X\sim Be(p)\). Then
+\begin{align*}
+	E(X)&=0(1-p)+1(p)=p \\
+	\Var(X)&=p(1-p)
+\end{align*}
+
+\subsection{Binomial Random Variable}
+\subsubsection{Definition of Binomial Random Variable}
+\textbf{Definition.} If \(X\) is a binomial random variable, denoted by \(X\sim Bin(n,p)\), \(n\) Bernoulli\((p)\) trials are performed (under identical conditions and independently), and
+\[X=\textbf{number of successes}\text{ in }n\text{ Bernoulli}(p)\text{ trials}\]
+Thus, \(X\) takes values \(0,1,2,\ldots,n\) and for \(0\leq k\leq n\),
+\[P(X=k)=\binom{n}{k}p^k(1-p)^{n-k}\]
+
+\subsubsection{Properties of Binomial Random Variable}
+Let \(X\sim Bin(n,p)\). Then
+\begin{align*}
+	E(X)&=np \\
+	\Var(X)&=np(1-p)
+\end{align*}
+
+\subsubsection{Binomial Random Variable is a Sum of Bernoulli Random Variables}
+Let \(X_i\sim Be(p)\) for \(i=1,\ldots,n\), where \(X_1,\ldots,X_n\) are independent. Let
+\[X=X_1+X_2+\cdots+X_n\]
+Then \(X\sim Bin(n,p)\).
+
+\subsection{Geometric Random Variable}
+\subsubsection{Version 1: Include Success}
+\paragraph{Definition of Geometric Random Variable}\,\\
+\textbf{Definition.} If \(X\) is a geometric random variable, denoted by \(X\sim Geom(p)\), Bernoulli\((p)\) trials are performed (under identical conditions and independently) until the first success is obtained.
+\begin{itemize}
+	\item\(X=\) \textbf{number of Bernoulli}\(\bm{(p)}\) \textbf{trials} required to obtain the first success
+	\begin{itemize}
+		\item\textbf{including} the trial leading to the first success.
+	\end{itemize}
+\end{itemize}
+Thus, \(X\) takes values \(1,2,3,\ldots\) and for \(k=1,2,3,\ldots\),
+\[P(X=k)=pq^{k-1}\]
+
+\paragraph{Properties of Geometric Random Variable}\,\\
+Let \(X\sim Geom(p)\). Then
+\begin{align*}
+	E(X)&=\frac{1}{p} \\
+	\Var(X)&=\frac{1-p}{p^2}
+\end{align*}
+
+\subsubsection{Version 2: Exclude Success}
+\paragraph{Definition of Geometric Random Variable}\,\\
+\textbf{Definition.} If \(X'\) is a geometric random variable, denoted by \(X'\sim Geom(p)\), Bernoulli\((p)\) trials are performed (under identical conditions and independently) until the first success is obtained.
+\begin{itemize}
+	\item\(X'=\) \textbf{number of failures} of Bernoulli\((p)\) trials \textbf{before obtaining the first success}.
+\end{itemize}
+Thus, \(X'\) takes values \(0,1,2,\ldots\) and for \(k=0,1,2,\ldots\),
+\[P(X'=k)=pq^k\]
+
+\paragraph{Properties of Geometric Random Variable}\,\\
+Let \(X'\sim Geom(p)\). Then
+\begin{align*}
+	E(X')&=\frac{1-p}{p} \\
+	\Var(X')&=\frac{1-p}{p^2}
+\end{align*}
+
+\subsubsection{Relationship between Version 1 and 2}
+Let \(X\sim Geom(p)\) from Version 1 and \(X'\sim Geom(p)\) from Version 2. Then \(X=X'+1\).
+
+\subsection{Negative Binomial Random Variable}
+\subsubsection{Definition of Negative Binomial Random Variable}
+\textbf{Definition.} If \(X\) is a negative binomial random variable, denoted by \(X\sim NB(r,p)\), Bernoulli\((p)\) trials are performed until the first \(r\) successes are obtained, and
+\begin{itemize}
+	\item\(X=\) \textbf{number of Bernoulli} \(\pmb{(p)}\) \textbf{trials} required to obtain \(\pmb{r}\) \textbf{successes}.
+\end{itemize}
+Thus, \(X\) takes values \(r,r+1,\ldots\) and for \(k=r,r+1,\ldots\),
+\[P(X=k)=\binom{k-1}{r-1}p^rq^{k-r}\]
+
+\subsubsection{Properties of Negative Binomial Random Variable}
+Let \(X\sim NB(r,p)\). Then
+\begin{align*}
+	E(X)&=\frac{r}{p} \\
+	\Var(X)&=\frac{r(1-p)}{p^2}
+\end{align*}
+
+\subsubsection{Geometric Random Variable is a Special Case of Negative Binomial Random Variable}
+Note that \(Geom(p)=NB(1,p)\).
+
+\subsubsection{Negative Binomial Random Variable is the Sum of Geometric Random Variables}
+Let \(X_i\sim Geo(p)\), for \(i=1,2,\ldots,r\). Suppose \(X_1,\ldots,X_r\) are independent. Let
+\[X=X_1+\cdots+X_r\]
+Then \(X\sim NB(r,p)\).
+
+\section{Poisson Random Variable}
+\subsection{Definition of Poisson Random Variable}
+\textbf{Definition.} If \(X\) is a Poisson random variable, denoted by \(X\sim Po(\lambda)\), then
+\begin{itemize}
+	\item\(X\) takes values \(0,1,2,\ldots\)
+\end{itemize}
+For \(k=0,1,2,\ldots\),
+\[P(X=k)=\frac{e^{-\lambda}\lambda^k}{k!}\]
+
+\subsection{Properties of Poisson Random Variable}
+Let \(X\sim Po(\lambda)\). Then
+\begin{align*}
+	E(X)&=\lambda \\
+	\Var(X)&=\lambda
+\end{align*}
+
+\subsection{Poisson Random Variable Approximates Binomial Random Variable for large $n$ and moderate $np$}
+Let \(X\sim Bin(n,p)\) and \(Y\sim Po(\lambda)\) where \(\lambda=np\). Then for large values of \(n\) and moderate values of \(\lambda=np\),
+\[P(X=k)\approx P(Y=k),\quad\forall k=0,1,2,\ldots\]
+
+\subsection{Many Random Variables Approximate Poisson Random Variable}
+Each of the beforementioned random variables, and numerous other random variables, are approximately Poisson, because of Poisson approximation to the binomial.
+\end{document}

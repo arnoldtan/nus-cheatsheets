@@ -1,0 +1,362 @@
+\documentclass[../../dsa1101_notes.Rtex]{subfiles}\usepackage[]{graphicx}\usepackage[]{color}
+% maxwidth is the original width if it is less than linewidth
+% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+\subsection{K-nearest Neigbours}
+\subsubsection{Description}
+\begin{enumerate}
+	\item Given training set of size M, N feature values, and 1 binary outcome (0 or 1), we have a table of feature values \(x_{ij}\) and a vector of outcome \(y_i \text{ for } 1 \leq i \leq M,\ 1 \leq j \leq N\)
+	\item Given any test point \(x^*\), with N feature values \(x^*_j, \text{ for } 1 \leq j \leq N\), calculate euclidean distance of \(x^*\) to each training point \(x_i\), i.e. \(\text{for } 1 \leq i \leq M,\ \text{distance}_i = \sqrt{\sum \limits_{j=1}^N (x_{ij} - x^*_j)^2} \)
+	\item Given chosen value k, the k-nearest neighbours/training points \(x_i\) to \(x^*\), denoted \(N_k(x^*)\), is the set of the first k \(x_i\) in the sequence of \(x_i\) sorted by increasing \(\text{distance}_i\)
+	\item \(\hat{Y}(x^*) = \frac{1}{k} \sum \limits_{x_i \in N_k(x^*)} y_i\)
+	\item The predicted outcome for \(x^* = y^* = \begin{cases}
+		1 & \hat{Y} > \sigma \\
+		0 & \hat{Y} < \sigma \\
+	\end{cases} \text{ where } \sigma\) is the threshold. \(\sigma = 0.5\) in the majority rule.
+\end{enumerate}
+
+\subsubsection{Choice of \(\sigma\)}
+\begin{enumerate}
+    \item As \(\sigma\) increases,
+    \begin{enumerate}
+      \item TP, TPR, FP, and FPR decreases or stays the same
+      \item TN, TNR, FN, and FNR increases or stays the same
+    \end{enumerate}
+    \item As \(\sigma\) decreases,
+    \begin{enumerate}
+      \item TP, TPR, FP, and FPR increases or stays the same
+      \item TN, TNR, FN, and FNR decreases or stays the same
+    \end{enumerate}
+    \item See Diagnostics of Classifiers ROC Curve for more info
+\end{enumerate}
+
+\subsubsection{Choice of k}
+\begin{enumerate}
+    \item when k increases, the variance decreases, but bias increases
+    \item when k decreases, the variance increases, but bias decreases
+    \item See Diagnostics of Classifiers Bias-Variance Tradeoff for more info
+\end{enumerate}
+
+\subsubsection{Prediction Surface}
+\begin{enumerate}
+    \item Boundaries can be curvy
+    \item Can be not axis-aligned
+\end{enumerate}
+
+\subsubsection{Standardising Variables}
+\begin{enumerate}
+    \item Any variable with a larger scale than others will have a larger effect on the Euclidean distance
+    \item To prevent this problem, we can standardise our data so that all our variables will have mean of zero and standard deviation of one with the scale function in R
+\end{enumerate}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{data} \hlkwb{<-} \hlkwd{cbind}\hlstd{(}
+    \hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,}
+    \hlkwd{seq}\hlstd{(}\hlnum{100}\hlstd{,} \hlnum{500}\hlstd{,} \hlnum{100}\hlstd{),}
+    \hlkwd{sample}\hlstd{(}\hlnum{0}\hlopt{:}\hlnum{1}\hlstd{,} \hlnum{5}\hlstd{,} \hlkwc{replace} \hlstd{=} \hlnum{TRUE}\hlstd{)}
+\hlstd{)}
+\hlstd{data}
+\end{alltt}
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    1  100    1
+## [2,]    2  200    0
+## [3,]    3  300    1
+## [4,]    4  400    0
+## [5,]    5  500    1
+\end{verbatim}
+\begin{alltt}
+\hlstd{data[,} \hlnum{1}\hlopt{:}\hlnum{2}\hlstd{]} \hlkwb{=} \hlkwd{scale}\hlstd{(data[,} \hlnum{1}\hlopt{:}\hlnum{2}\hlstd{])}
+\hlstd{data}
+\end{alltt}
+\begin{verbatim}
+##            [,1]       [,2] [,3]
+## [1,] -1.2649111 -1.2649111    1
+## [2,] -0.6324555 -0.6324555    0
+## [3,]  0.0000000  0.0000000    1
+## [4,]  0.6324555  0.6324555    0
+## [5,]  1.2649111  1.2649111    1
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\subsubsection{R Implementation}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{library}\hlstd{(class)}
+\hlstd{data} \hlkwb{<-} \hlkwd{matrix}\hlstd{(}
+    \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{1}\hlstd{,} \hlnum{0}\hlstd{,}
+      \hlnum{1}\hlstd{,} \hlnum{2}\hlstd{,} \hlnum{0}\hlstd{,}
+      \hlnum{2}\hlstd{,} \hlnum{1}\hlstd{,} \hlnum{0}\hlstd{,}
+      \hlnum{2}\hlstd{,} \hlnum{2}\hlstd{,} \hlnum{0}\hlstd{,}
+      \hlnum{2}\hlstd{,} \hlnum{3}\hlstd{,} \hlnum{0}\hlstd{,}
+      \hlnum{8}\hlstd{,} \hlnum{8}\hlstd{,} \hlnum{1}\hlstd{,}
+      \hlnum{9}\hlstd{,} \hlnum{8}\hlstd{,} \hlnum{1}\hlstd{,}
+      \hlnum{8}\hlstd{,} \hlnum{7}\hlstd{,} \hlnum{1}\hlstd{,}
+      \hlnum{9}\hlstd{,} \hlnum{9}\hlstd{,} \hlnum{1}\hlstd{,}
+      \hlnum{9}\hlstd{,} \hlnum{7}\hlstd{,} \hlnum{1}\hlstd{),} \hlkwc{nrow} \hlstd{=} \hlnum{10}\hlstd{,} \hlkwc{byrow} \hlstd{=} \hlnum{TRUE}
+\hlstd{)}
+\hlstd{train} \hlkwb{<-} \hlkwd{sample}\hlstd{(}\hlnum{1}\hlopt{:}\hlnum{10}\hlstd{,} \hlnum{5}\hlstd{,} \hlkwc{replace} \hlstd{=} \hlnum{FALSE}\hlstd{)}
+\hlstd{train.x} \hlkwb{<-} \hlstd{data[train,} \hlnum{1}\hlopt{:}\hlnum{2}\hlstd{]}
+\hlstd{train.y} \hlkwb{<-} \hlstd{data[train,} \hlnum{3}\hlstd{]}
+\hlkwd{cbind}\hlstd{(train.x, train.y)}
+\end{alltt}
+\begin{verbatim}
+##          train.y
+## [1,] 2 3       0
+## [2,] 8 8       1
+## [3,] 1 1       0
+## [4,] 1 2       0
+## [5,] 9 8       1
+\end{verbatim}
+\begin{alltt}
+\hlstd{test.x} \hlkwb{<-} \hlstd{data[}\hlopt{-}\hlstd{train,} \hlnum{1}\hlopt{:}\hlnum{2}\hlstd{]}
+\hlstd{test.y} \hlkwb{<-} \hlstd{data[}\hlopt{-}\hlstd{train,} \hlnum{3}\hlstd{]}
+\hlkwd{cbind}\hlstd{(test.x, test.y)}
+\end{alltt}
+\begin{verbatim}
+##          test.y
+## [1,] 2 1      0
+## [2,] 2 2      0
+## [3,] 8 7      1
+## [4,] 9 9      1
+## [5,] 9 7      1
+\end{verbatim}
+\begin{alltt}
+\hlstd{knn.pred} \hlkwb{<-} \hlkwd{knn}\hlstd{(train.x, test.x, train.y,} \hlkwc{k}\hlstd{=}\hlnum{3}\hlstd{)}
+\hlstd{confusion.matrix} \hlkwb{<-} \hlkwd{table}\hlstd{(test.y, knn.pred)}
+\hlstd{confusion.matrix}
+\end{alltt}
+\begin{verbatim}
+##       knn.pred
+## test.y 0 1
+##      0 2 0
+##      1 0 3
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\subsubsection{Calculation Intensive Exam Questions \& Solutions}
+\paragraph{Euclidean Distances, $\hat{Y}$, and Prediction for 1 Test Data Point}\mbox{}\\
+\textbf{Adapted from Midterm Q17-18.} Suppose we have a training set of 5 data points with binary value outcome = c(1,1,0,1,0), \(x_1\) = c(1,2,1,3,3), and \(x_2\) = c(3,2,1,3,1). Using the 3-nearest neighbors classifier and the majority, what is the \textbf{fitted outcome value} \(\hat{Y}\) and the \textbf{predicted outcome value} of (\(x^*_1\),\(x^*_2\)) = (2,4)?\\
+\textbf{Solution}
+\begin{enumerate}
+  \item Copy paste the following code:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{distance} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{m}\hlstd{,} \hlkwc{t}\hlstd{) \{}
+  \hlcom{# returns numbered table of euclidean distance of t to each}
+  \hlcom{# training point in m}
+  \hlcom{# each column in m is feature variable except last column is}
+  \hlcom{# outcome y}
+  \hlkwa{if} \hlstd{(}\hlkwd{length}\hlstd{(t)} \hlopt{!=} \hlkwd{ncol}\hlstd{(m)}\hlopt{-}\hlnum{1}\hlstd{) \{}
+    \hlkwd{print}\hlstd{(}\hlstr{"test data does not match number of feature variables"}\hlstd{)}
+    \hlstd{return}
+  \hlstd{\}}
+  \hlstd{cd} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{p1}\hlstd{,} \hlkwc{p2}\hlstd{) \{}
+    \hlkwd{return} \hlstd{(}\hlkwd{sqrt}\hlstd{(}\hlkwd{sum}\hlstd{((p1}\hlopt{-}\hlstd{p2)}\hlopt{^}\hlnum{2}\hlstd{)))}
+  \hlstd{\}}
+
+  \hlstd{table} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(}\hlkwc{id} \hlstd{=} \hlnum{1}\hlopt{:}\hlkwd{nrow}\hlstd{(m))}
+  \hlkwd{colnames}\hlstd{(m)} \hlkwb{<-} \hlkwd{c}\hlstd{(}\hlkwd{paste}\hlstd{(}\hlstr{"x_"}\hlstd{,} \hlnum{1}\hlopt{:}\hlstd{(}\hlkwd{ncol}\hlstd{(m)}\hlopt{-}\hlnum{1}\hlstd{),} \hlkwc{sep} \hlstd{=} \hlstr{""}\hlstd{),} \hlstr{"y"}\hlstd{)}
+  \hlstd{table} \hlkwb{<-} \hlkwd{cbind}\hlstd{(table, m)}
+  \hlstd{dist} \hlkwb{<-} \hlkwd{rep}\hlstd{(}\hlnum{1}\hlstd{, times}\hlkwb{<-}\hlkwd{nrow}\hlstd{(m))}
+  \hlkwa{for} \hlstd{(r} \hlkwa{in} \hlnum{1}\hlopt{:}\hlkwd{nrow}\hlstd{(m)) \{}
+    \hlstd{dist[r]} \hlkwb{<-} \hlkwd{cd}\hlstd{(m[r,} \hlnum{1}\hlopt{:}\hlstd{(}\hlkwd{ncol}\hlstd{(m)}\hlopt{-}\hlnum{1}\hlstd{)], t)}
+  \hlstd{\}}
+  \hlstd{table} \hlkwb{<-} \hlkwd{cbind}\hlstd{(table, dist)}
+  \hlkwd{return} \hlstd{(table)}
+\hlstd{\}}
+
+\hlstd{sorts} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{d}\hlstd{) \{}
+  \hlcom{# sorts the table output of distance function in increasing}
+  \hlcom{# euclidean distance}
+  \hlkwd{return} \hlstd{(d[}\hlkwd{order}\hlstd{(d[,} \hlkwd{ncol}\hlstd{(d)]), ])}
+\hlstd{\}}
+
+\hlstd{y_hat} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{s}\hlstd{,} \hlkwc{k}\hlstd{) \{}
+ \hlcom{# calculate y-hat from table output of sorts function given value of k}
+ \hlkwd{return} \hlstd{(}\hlkwd{sum}\hlstd{(s[}\hlnum{1}\hlopt{:}\hlstd{k,} \hlkwd{ncol}\hlstd{(s)}\hlopt{-}\hlnum{1}\hlstd{])}\hlopt{/}\hlstd{k)}
+\hlstd{\}}
+
+\hlstd{predict} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{y}\hlstd{,} \hlkwc{s}\hlstd{) \{}
+ \hlcom{# return predicted class given y-hat y and threshold value s (sigma)}
+ \hlcom{# assumes y !<- s, i.e. no tie}
+ \hlkwd{return} \hlstd{(}\hlkwa{if} \hlstd{(y} \hlopt{>} \hlstd{s)} \hlnum{1} \hlkwa{else} \hlnum{0}\hlstd{)}
+\hlstd{\}}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+\item Calculate Euclidean Distances to (2, 4)
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{dist_matrix} \hlkwb{<-} \hlkwd{distance}\hlstd{(}\hlkwd{matrix}\hlstd{(}
+  \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{2}\hlstd{,}\hlnum{1}\hlstd{,}\hlnum{3}\hlstd{,}\hlnum{3}\hlstd{,}
+    \hlnum{3}\hlstd{,}\hlnum{2}\hlstd{,}\hlnum{1}\hlstd{,}\hlnum{3}\hlstd{,}\hlnum{1}\hlstd{,}
+    \hlnum{1}\hlstd{,}\hlnum{1}\hlstd{,}\hlnum{0}\hlstd{,}\hlnum{1}\hlstd{,}\hlnum{0}\hlstd{),} \hlkwc{nrow} \hlstd{=} \hlnum{5}\hlstd{,} \hlkwc{byrow} \hlstd{=} \hlnum{FALSE}
+\hlstd{),} \hlkwd{c}\hlstd{(}\hlnum{2}\hlstd{,} \hlnum{4}\hlstd{))}
+\hlstd{dist_matrix}
+\end{alltt}
+\begin{verbatim}
+##   id x_1 x_2 y     dist
+## 1  1   1   3 1 1.414214
+## 2  2   2   2 1 2.000000
+## 3  3   1   1 0 3.162278
+## 4  4   3   3 1 1.414214
+## 5  5   3   1 0 3.162278
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\item Sort By Increasing Euclidean Distances
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{sorted_dist_matrix} \hlkwb{<-} \hlkwd{sorts}\hlstd{(dist_matrix)}
+\hlstd{sorted_dist_matrix}
+\end{alltt}
+\begin{verbatim}
+##   id x_1 x_2 y     dist
+## 1  1   1   3 1 1.414214
+## 4  4   3   3 1 1.414214
+## 2  2   2   2 1 2.000000
+## 3  3   1   1 0 3.162278
+## 5  5   3   1 0 3.162278
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\item Calculate \textbf{fitted outcome value} \(\hat{Y}\) based on value of k=3
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{y_hat_value} \hlkwb{<-} \hlkwd{y_hat}\hlstd{(sorted_dist_matrix,} \hlkwc{k}\hlstd{=}\hlnum{3}\hlstd{)}
+\hlstd{y_hat_value}
+\end{alltt}
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\item Calculate \textbf{predicted outcome value} based on majority rule \(\sigma=0.5\)
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{predicted_value} \hlkwb{<-} \hlkwd{predict}\hlstd{(y_hat_value,} \hlkwc{s}\hlstd{=}\hlnum{0.5}\hlstd{)}
+\hlstd{predicted_value}
+\end{alltt}
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\end{enumerate}
+
+\paragraph{$\hat{Y}$ to Confusion Matrix for $n$ Test Data Points}\mbox{}\\
+\textbf{Adapted from Midterm Q14.} Suppose we have k-nearest neighbours classifier for binary outcome \(Y\). The table below shows the actual and fitted outcome for \(n=10\) test data points.
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+Actual \(Y\) & 1 & 1 & 0 & 1 & 1 & 0 & 0 & 0 & 1 & 0\\
+\hline
+\(\hat{Y}\) & 0.9 & 0.8 & 0.8 & 0.6 & 0.5 & 0.5 & 0.5 & 0.3 & 0.2 & 0.1\\
+\hline
+\end{tabular}
+\end{center}
+What is the True Positive Rate (TPR) when we predict \(Y=1\) if \(\sigma>0.7\)\\
+\textbf{Solution}
+\begin{enumerate}
+  \item Copy paste the following code
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{predict} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{y}\hlstd{,} \hlkwc{s}\hlstd{) \{}
+  \hlcom{# return predicted class given y-hat y and threshold value s (sigma)}
+  \hlcom{# assumes y !<- s, i.e. no tie}
+  \hlkwd{return} \hlstd{(}\hlkwd{ifelse}\hlstd{(y} \hlopt{>} \hlstd{s,} \hlnum{1}\hlstd{,} \hlnum{0}\hlstd{))}
+\hlstd{\}}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+  \item Obtain predictions for \(\sigma=0.7\)
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{predictions} \hlkwb{<-} \hlkwd{predict}\hlstd{(}
+  \hlkwd{c}\hlstd{(}\hlnum{0.9}\hlstd{,} \hlnum{0.8}\hlstd{,} \hlnum{0.8}\hlstd{,} \hlnum{0.6}\hlstd{,} \hlnum{0.5}\hlstd{,} \hlnum{0.5}\hlstd{,} \hlnum{0.5}\hlstd{,} \hlnum{0.3}\hlstd{,} \hlnum{0.2}\hlstd{,} \hlnum{0.1}\hlstd{),} \hlkwc{s}\hlstd{=}\hlnum{0.7}
+\hlstd{)}
+\hlstd{predictions}
+\end{alltt}
+\begin{verbatim}
+##  [1] 1 1 1 0 0 0 0 0 0 0
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  \item Generate Confusion Matrix
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{table}\hlstd{(}\hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{1}\hlstd{,} \hlnum{0}\hlstd{,} \hlnum{1}\hlstd{,} \hlnum{1}\hlstd{,} \hlnum{0}\hlstd{,} \hlnum{0}\hlstd{,} \hlnum{0}\hlstd{,} \hlnum{1}\hlstd{,} \hlnum{0}\hlstd{), predictions)}
+\end{alltt}
+\begin{verbatim}
+##    predictions
+##     0 1
+##   0 4 1
+##   1 3 2
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  \item Refer to Section 3.11 for metric calculations
+\end{enumerate}
+\end{document}

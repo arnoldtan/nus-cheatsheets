@@ -1,0 +1,196 @@
+\documentclass[../../dsa1101_notes.Rtex]{subfiles}
+\begin{document}
+\subsection{K-nearest Neigbours}
+\subsubsection{Description}
+\begin{enumerate}
+	\item Given training set of size M, N feature values, and 1 binary outcome (0 or 1), we have a table of feature values \(x_{ij}\) and a vector of outcome \(y_i \text{ for } 1 \leq i \leq M,\ 1 \leq j \leq N\)
+	\item Given any test point \(x^*\), with N feature values \(x^*_j, \text{ for } 1 \leq j \leq N\), calculate euclidean distance of \(x^*\) to each training point \(x_i\), i.e. \(\text{for } 1 \leq i \leq M,\ \text{distance}_i = \sqrt{\sum \limits_{j=1}^N (x_{ij} - x^*_j)^2} \)
+	\item Given chosen value k, the k-nearest neighbours/training points \(x_i\) to \(x^*\), denoted \(N_k(x^*)\), is the set of the first k \(x_i\) in the sequence of \(x_i\) sorted by increasing \(\text{distance}_i\)
+	\item \(\hat{Y}(x^*) = \frac{1}{k} \sum \limits_{x_i \in N_k(x^*)} y_i\)
+	\item The predicted outcome for \(x^* = y^* = \begin{cases}
+		1 & \hat{Y} > \sigma \\
+		0 & \hat{Y} < \sigma \\
+	\end{cases} \text{ where } \sigma\) is the threshold. \(\sigma = 0.5\) in the majority rule.
+\end{enumerate}
+
+\subsubsection{Choice of \(\sigma\)}
+\begin{enumerate}
+    \item As \(\sigma\) increases,
+    \begin{enumerate}
+      \item TP, TPR, FP, and FPR decreases or stays the same
+      \item TN, TNR, FN, and FNR increases or stays the same
+    \end{enumerate}
+    \item As \(\sigma\) decreases,
+    \begin{enumerate}
+      \item TP, TPR, FP, and FPR increases or stays the same
+      \item TN, TNR, FN, and FNR decreases or stays the same
+    \end{enumerate}
+    \item See Diagnostics of Classifiers ROC Curve for more info
+\end{enumerate}
+
+\subsubsection{Choice of k}
+\begin{enumerate}
+    \item when k increases, the variance decreases, but bias increases
+    \item when k decreases, the variance increases, but bias decreases
+    \item See Diagnostics of Classifiers Bias-Variance Tradeoff for more info
+\end{enumerate}
+
+\subsubsection{Prediction Surface}
+\begin{enumerate}
+    \item Boundaries can be curvy
+    \item Can be not axis-aligned
+\end{enumerate}
+
+\subsubsection{Standardising Variables}
+\begin{enumerate}
+    \item Any variable with a larger scale than others will have a larger effect on the Euclidean distance
+    \item To prevent this problem, we can standardise our data so that all our variables will have mean of zero and standard deviation of one with the scale function in R
+\end{enumerate}
+<<>>=
+data <- cbind(
+    1:5,
+    seq(100, 500, 100),
+    sample(0:1, 5, replace = TRUE)
+)
+data
+data[, 1:2] = scale(data[, 1:2])
+data
+@
+
+\subsubsection{R Implementation}
+<<>>=
+library(class)
+data <- matrix(
+    c(1, 1, 0,
+      1, 2, 0,
+      2, 1, 0,
+      2, 2, 0,
+      2, 3, 0,
+      8, 8, 1,
+      9, 8, 1,
+      8, 7, 1,
+      9, 9, 1,
+      9, 7, 1), nrow = 10, byrow = TRUE
+)
+train <- sample(1:10, 5, replace = FALSE)
+train.x <- data[train, 1:2]
+train.y <- data[train, 3]
+cbind(train.x, train.y)
+test.x <- data[-train, 1:2]
+test.y <- data[-train, 3]
+cbind(test.x, test.y)
+knn.pred <- knn(train.x, test.x, train.y, k=3)
+confusion.matrix <- table(test.y, knn.pred)
+confusion.matrix
+@
+
+\subsubsection{Calculation Intensive Exam Questions \& Solutions}
+\paragraph{Euclidean Distances, $\hat{Y}$, and Prediction for 1 Test Data Point}\mbox{}\\
+\textbf{Adapted from Midterm Q17-18.} Suppose we have a training set of 5 data points with binary value outcome = c(1,1,0,1,0), \(x_1\) = c(1,2,1,3,3), and \(x_2\) = c(3,2,1,3,1). Using the 3-nearest neighbors classifier and the majority, what is the \textbf{fitted outcome value} \(\hat{Y}\) and the \textbf{predicted outcome value} of (\(x^*_1\),\(x^*_2\)) = (2,4)?\\
+\textbf{Solution}
+\begin{enumerate}
+  \item Copy paste the following code:
+<<>>=
+distance <- function(m, t) {
+  # returns numbered table of euclidean distance of t to each
+  # training point in m
+  # each column in m is feature variable except last column is
+  # outcome y
+  if (length(t) != ncol(m)-1) {
+    print("test data does not match number of feature variables")
+    return
+  }
+  cd <- function(p1, p2) {
+    return (sqrt(sum((p1-p2)^2)))
+  }
+ 
+  table <- data.frame(id = 1:nrow(m))
+  colnames(m) <- c(paste("x_", 1:(ncol(m)-1), sep = ""), "y")
+  table <- cbind(table, m)
+  dist <- rep(1, times<-nrow(m))
+  for (r in 1:nrow(m)) {
+    dist[r] <- cd(m[r, 1:(ncol(m)-1)], t)
+  }
+  table <- cbind(table, dist)
+  return (table)
+}
+
+sorts <- function(d) {
+  # sorts the table output of distance function in increasing
+  # euclidean distance
+  return (d[order(d[, ncol(d)]), ])
+}
+
+y_hat <- function(s, k) {
+ # calculate y-hat from table output of sorts function given value of k
+ return (sum(s[1:k, ncol(s)-1])/k)
+}
+
+predict <- function(y, s) {
+ # return predicted class given y-hat y and threshold value s (sigma)
+ # assumes y !<- s, i.e. no tie
+ return (if (y > s) 1 else 0)
+}
+@
+\item Calculate Euclidean Distances to (2, 4)
+<<>>=
+dist_matrix <- distance(matrix(
+  c(1,2,1,3,3,
+    3,2,1,3,1,
+    1,1,0,1,0), nrow = 5, byrow = FALSE
+), c(2, 4))
+dist_matrix
+@
+\item Sort By Increasing Euclidean Distances
+<<>>=
+sorted_dist_matrix <- sorts(dist_matrix)
+sorted_dist_matrix
+@
+\item Calculate \textbf{fitted outcome value} \(\hat{Y}\) based on value of k=3
+<<>>=
+y_hat_value <- y_hat(sorted_dist_matrix, k=3)
+y_hat_value
+@
+\item Calculate \textbf{predicted outcome value} based on majority rule \(\sigma=0.5\)
+<<>>=
+predicted_value <- predict(y_hat_value, s=0.5)
+predicted_value
+@
+\end{enumerate}
+
+\paragraph{$\hat{Y}$ to Confusion Matrix for $n$ Test Data Points}\mbox{}\\
+\textbf{Adapted from Midterm Q14.} Suppose we have k-nearest neighbours classifier for binary outcome \(Y\). The table below shows the actual and fitted outcome for \(n=10\) test data points.
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+Actual \(Y\) & 1 & 1 & 0 & 1 & 1 & 0 & 0 & 0 & 1 & 0\\
+\hline
+\(\hat{Y}\) & 0.9 & 0.8 & 0.8 & 0.6 & 0.5 & 0.5 & 0.5 & 0.3 & 0.2 & 0.1\\
+\hline
+\end{tabular}
+\end{center}
+What is the True Positive Rate (TPR) when we predict \(Y=1\) if \(\sigma>0.7\)\\
+\textbf{Solution}
+\begin{enumerate}
+  \item Copy paste the following code
+<<>>=
+predict <- function(y, s) {
+  # return predicted class given y-hat y and threshold value s (sigma)
+  # assumes y !<- s, i.e. no tie
+  return (ifelse(y > s, 1, 0))
+}
+@
+  \item Obtain predictions for \(\sigma=0.7\)
+<<>>=
+predictions <- predict(
+  c(0.9, 0.8, 0.8, 0.6, 0.5, 0.5, 0.5, 0.3, 0.2, 0.1), s=0.7
+)
+predictions
+@
+  \item Generate Confusion Matrix
+<<>>=
+table(c(1, 1, 0, 1, 1, 0, 0, 0, 1, 0), predictions)
+@
+  \item Refer to Section 3.11 for metric calculations
+\end{enumerate}
+\end{document}

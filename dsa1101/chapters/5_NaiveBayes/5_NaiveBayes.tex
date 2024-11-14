@@ -1,0 +1,130 @@
+\documentclass[../../dsa1101_notes.Rtex]{subfiles}\usepackage[]{graphicx}\usepackage[]{color}
+% maxwidth is the original width if it is less than linewidth
+% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+\subsection{Naive Bayes}
+
+\subsubsection{Probability Laws}
+\paragraph{Bayes' Theorem}
+\[P(Y\vert X)=\frac{P(Y\cap X)}{P(X)}=\frac{P(X\vert Y)\times P(Y)}{P(X)}\]
+
+\paragraph{Law of total probability}
+\[P(A)=P(A\cap B)+P(A\cap \neg B)\]
+
+\subsubsection{Naive Bayes}
+Suppose the categorical outcome variable \(Y\) takes on values in the set \(\{y_1, y_2, \ldots, y_k\}\) and there are \(m\) feature variables \(X_1, X_2, \ldots, X_m\). By Bayes Theorem, for \(j=1,2,\ldots,k\),
+\begin{align*}
+&P(Y=y_j\vert X_1=x_1, X_2=x_2, \ldots, X_m=x_m)\\
+&=\frac{P(X_1=x_1, X_2=x_2, \ldots, X_m=x_m\vert Y=y_j)\times P(Y=y_j)}{P(X_1=x_1, X_2=x_2, \ldots, X_m=x_m)}
+\end{align*}
+
+\paragraph{Assume Conditional Independence}
+\begin{align*}
+&P(X_1=x_1, X_2=x_2, \ldots, X_m=x_m\vert Y=y_j)\\
+&=P(X_1=x_1\vert Y=y_j)P(X_2=x_2\vert Y=y_j)\ldots P(X_m=x_m\vert Y=y_j)\\
+&=\prod_{i=1}^{m}P(X_i=x_i\vert Y=y_j)
+\end{align*}
+
+\paragraph{Ignore Denominator}
+\[P(X_1=x_1, X_2=x_2, \ldots, X_m=x_m)\]
+
+\paragraph{Finally}\mbox{}\\
+For \(j=1,2,\ldots,k\),
+\begin{align*}
+&P(Y=y_j\vert X_1=x_1, X_2=x_2, \ldots, X_m=x_m)\\
+&\propto P(Y=y_j)\times\prod_{i=1}^{m}P(X_i=x_i\vert Y=y_j)
+\end{align*}
+
+\subsubsection{Numerical Underflow}
+To prevent probability scores from becoming too small to be accurately stored in a computer, we can take logarithm on both sides,
+\begin{align*}
+&\log P(Y=y_j\vert X_1=x_1, X_2=x_2, \ldots, X_m=x_m)\\
+&\propto\log P(Y=y_j) + \sum_{i=1}^{m}\log P(X_i=x_i\vert Y=y_j)
+\end{align*}
+
+\subsubsection{R Implementation}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{library}\hlstd{(e1071)}
+\hlstd{data} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(}
+  \hlkwc{watch_lectures} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{TRUE}\hlstd{,} \hlnum{TRUE}\hlstd{,} \hlnum{FALSE}\hlstd{,} \hlnum{TRUE}\hlstd{,} \hlnum{FALSE}\hlstd{,} \hlnum{TRUE}\hlstd{),}
+  \hlkwc{does_tutorials} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{TRUE}\hlstd{,} \hlnum{FALSE}\hlstd{,} \hlnum{TRUE}\hlstd{,} \hlnum{FALSE}\hlstd{,} \hlnum{FALSE}\hlstd{,} \hlnum{TRUE}\hlstd{),}
+  \hlkwc{prior_exp} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{FALSE}\hlstd{,} \hlnum{FALSE}\hlstd{,} \hlnum{FALSE}\hlstd{,} \hlnum{TRUE}\hlstd{,} \hlnum{TRUE}\hlstd{,} \hlnum{FALSE}\hlstd{),}
+  \hlkwc{grades_for_dsa1101} \hlstd{=} \hlkwd{c}\hlstd{(}\hlstr{'A-'}\hlstd{,} \hlstr{'B+'}\hlstd{,} \hlstr{'C'}\hlstd{,} \hlstr{'B+'}\hlstd{,} \hlstr{'B-'}\hlstd{,} \hlstr{'A'}\hlstd{),}
+  \hlkwc{stringsAsFactors} \hlstd{=} \hlnum{TRUE}
+\hlstd{)}
+\hlstd{train} \hlkwb{<-} \hlstd{data[}\hlnum{1}\hlopt{:}\hlnum{4}\hlstd{,]}
+\hlstd{test} \hlkwb{<-} \hlstd{data[}\hlnum{5}\hlopt{:}\hlnum{6}\hlstd{,]}
+\hlstd{model} \hlkwb{<-} \hlkwd{naiveBayes}\hlstd{(grades_for_dsa1101} \hlopt{~} \hlstd{watch_lectures} \hlopt{+} \hlstd{does_tutorials}
+                    \hlopt{+} \hlstd{prior_exp, train,} \hlkwc{laplace} \hlstd{=} \hlnum{0}\hlstd{)}
+\hlkwd{predict}\hlstd{(model, test)}
+\end{alltt}
+\begin{verbatim}
+## [1] B+ A-
+## Levels: A A- B- B+ C
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\subsubsection{Calculation Intensive Exam Questions \& Solutions}
+\paragraph{Prediction from Table of Data}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+table_to_naiveBayes <- \hlkwd{function}(features, feature_categories, )
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: <text>:1:63: unexpected ')'\\\#\# 1: table\_to\_naiveBayes <- function(features, feature\_categories, )\\\#\# \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textasciicircum{}}}\end{kframe}
+\end{knitrout}
+\end{document}

@@ -1,0 +1,127 @@
+\documentclass[../st2131_notes.tex]{subfiles}
+\begin{document}
+
+\chapter{Axioms of Probability}
+\section{Sample Space}
+\textbf{Definition.} The \textbf{sample space} is the set of all possible outcomes of an experiment, usually denoted by \(S\).
+
+\subsection{Remarks}
+The \textbf{sample space} depends on the outcomes of interest.
+
+\section{Event}
+\textbf{Definition.} Any subset \(A\) of the \textbf{sample space} is an \textbf{event}.
+
+\section{Basic Set Identities}
+For any sets \(E,F,G,E_i\) for \(i\in\mathbb{N},1\leq i\leq n\), the following identities are true:
+\begin{itemize}
+	\item Commutative Laws
+	\begin{itemize}
+		\item\(EF=FE\)
+		\item\(E\cup F=F\cup E\)
+	\end{itemize}
+	\item Associative Laws
+	\begin{itemize}
+		\item\((EF)G=E(FG)\)
+		\item\((E\cup F)\cup G=E\cup(F\cup G)\)
+	\end{itemize}
+	\item Distributive Laws
+	\begin{itemize}
+		\item\((E\cup F)G=(EG)\cup(FG)\)
+		\item\((EF)\cup G=(E\cup G)(F\cup G)\)
+	\end{itemize}
+	\item De Morgan's Laws
+	\begin{itemize}
+		\item\(\left(\bigcup\limits_{i=1}^n E_i\right)^c=\bigcap\limits_{i=1}^nE_i^c\)
+		\item\(\left(\bigcap\limits_{i=1}^n E_i\right)^c=\bigcup\limits_{i=1}^nE_i^c\)
+	\end{itemize}
+\end{itemize}
+
+\section{Subset Notation}
+\textbf{Definition.} For this course, for any two sets \(A\) and \(B\), \(A\subset B\) if every element of \(A\) is also an element of \(B\).
+
+\section{Definitions of Probability}
+\subsection{Classical Approach}
+Assume all the sample points are \textbf{equally likely} to occur. Then
+\[P(E)=\frac{\abs{E}}{\abs{S}}\]
+where \(\abs{E}\) is the number of sample points in event \(E\) and \(\abs{S}\) is the number of sample points in \(S\).
+
+\subsection{Relative Frequency Approach}
+\[P(E)=\lim_{n\to\infty}\frac{n(E)}{n}\]
+where \(n(E)\) is the number of times in \(n\) repetitions of the experiment that \(E\) occurs.
+
+\subsection{Subjective Approach}
+Probability is considered as a measure of belief.
+
+\section{Mutually Exclusive Events}
+A sequence of events \(E_1,E_2,\ldots\) is \textbf{mutually exclusive} if \(E_i\cap E_j=\varnothing\) when \(i\ne j\).
+
+\section{Axioms of Probability}
+Consider an \textbf{experiment} whose \textbf{sample space} is \(S\). For each event \(E\) of the \textbf{sample space}, we assume that a number \(P(E)\) is defined and satisfies the following three axioms:
+\begin{enumerate}
+	\item For any event \(E\),
+	\[0\leq P(E)\leq 1\]
+	\item \(P(S)=1\)
+	\item For any sequence of \textbf{mutually exclusive} events \(E_1,E_2,\ldots\),
+	\[P\left(\bigcup_{i=1}^\infty E_i\right)=\sum_{i=1}^\infty P(E_i)\]
+\end{enumerate}
+
+\subsection{Remarks}
+\begin{itemize}
+	\item We call \(P(E)\), the probability of the event \(E\).
+	\item Axiom 3 states that, for any sequence of mutually exclusive events, the probability of at least one of these events occurring is just the sum of their respective probabilities.
+\end{itemize}
+
+\section{Probability of the Empty Set is Zero}
+\textbf{Proposition.} \(P(\varnothing)=0\).
+
+\section{Probability is Finitely Additive}
+\textbf{Proposition.} For any finite sequence of \textbf{mutually exclusive} events \(E_1,E_2,\ldots,E_n\),
+\[P\left(\bigcup_{i=1}^n E_i\right)=\sum_{i=1}^n P(E_i)\]
+
+\section{The Complement Rule}
+\textbf{Proposition.} Let \(E\) be an event, then
+\[P(E^c)=1-P(E)\]
+
+\section{Probability is Monotonic}
+\textbf{Proposition.} If \(A\) and \(B\) are events such that \(A\subset B\), then
+\[P(A)\leq P(B)\]
+
+\section{The Sum Rule}
+\textbf{Proposition.} Let \(A\) and \(B\) be any two events, then
+\[P(A\cup B)=P(A)+P(B)-P(A\cap B)\]
+
+\section{Inclusion/Exclusion Principle}
+\textbf{Proposition.} Let \(E_1,E_2,\ldots,E_n\) be any events, then
+\begin{align*}
+P(E_1\cup E_2\cup\ldots\cup E_n)=&\sum_{i=1}^nP(E_i)-\sum_{1\leq i_1<i_2\leq n}P(E_{i_1}\cap E_{i_2})+\ldots \\
+&(-1)^{r+1}\sum_{1\leq i_1<\ldots<i_r\leq n}P(E_{i_1}\cap\ldots\cap E_{i_r})+\ldots\\
+&+(-1)^{n+1}P(E_1\cap\ldots\cap E_n)
+\end{align*}
+
+\section{Sample Spaces Having Equally Likely Outcomes}
+Given a \textbf{sample space} \(S=\{s_1,s_2,\ldots,s_N\}\), where \(N=\abs{S}\) denotes the number of outcomes of \(S\) and the outcomes are assumed to be equally likely to occur. Then for \(1\leq i\leq n\),
+\[P(\{s_i\})=\frac{1}{\abs{S}}\]
+Furthermore, if event \(A\) has \(\abs{A}\) outcomes, then
+\[P(A)=\frac{\abs{A}}{\abs{S}}\]
+
+\section{Probability as a Continuous Set Function}
+\subsection{Increasing Sequence of Events}
+\textbf{Definition.} A sequence of events \(\{E_n\},n\geq1\) is an \textbf{increasing} sequence if
+\[E_1\subset E_2\subset\ldots\subset E_n\subset E_{n+1}\subset\ldots\]
+
+\subsection{Decreasing Sequence of Events}
+\textbf{Definition.} A sequence of events \(\{E_n\},n\geq1\) is a \textbf{decreasing} sequence if
+\[E_1\supset E_2\supset\ldots\supset E_n\supset E_{n+1}\supset\ldots\]
+
+\subsection{Limit of Increasing Sequence of Events}
+\textbf{Definition.} If \(\{E_n\},n\geq1\) is an \textbf{increasing} sequence of events, then we define a new event, denoted by \(\lim\limits_{n\to\infty}E_n\) as
+\[\lim_{n\to\infty}E_n=\bigcup_{i=1}^\infty E_i\]
+
+\subsection{Limit of Decreasing Sequence of Events}
+\textbf{Definition.} If \(\{E_n\},n\geq1\) is an \textbf{decreasing} sequence of events, then we define a new event, denoted by \(\lim\limits_{n\to\infty}E_n\) as
+\[\lim_{n\to\infty}E_n=\bigcap_{i=1}^\infty E_i\]
+
+\subsection{Probability of the Limit of a Monotonic Sequence of Events}
+\textbf{Proposition.} If \(\{E_n\},n\geq1\) is either an \textbf{increasing} or \textbf{decreasing} sequence of events, then
+\[P\left(\lim_{n\to\infty}E_n\right)=P\left(\bigcap_{i=1}^\infty E_i\right)=\lim_{n\to\infty}P(E_n)\]
+\end{document}

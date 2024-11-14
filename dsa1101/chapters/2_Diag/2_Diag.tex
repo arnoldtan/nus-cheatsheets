@@ -1,0 +1,214 @@
+\documentclass[../../dsa1101_notes.Rtex]{subfiles}\usepackage[]{graphicx}\usepackage[]{color}
+% maxwidth is the original width if it is less than linewidth
+% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+\section{Diagnostics of Classifiers}
+\subsection{Confusion Matrix}
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\cline{3-4}
+\multicolumn{2}{c}{} & \multicolumn{2}{|c|}{Predicted Class}\\
+\cline{3-4}
+\multicolumn{2}{c}{} & \multicolumn{1}{|c|}{Positive} & Negative\\
+\hline
+\multirow{2}{3em}{Actual Class} & \multicolumn{1}{c}{Positive} & \multicolumn{1}{|c|}{True Positive (TP)} & False Negative (FN)\\
+\cline{2-4}
+& \multicolumn{1}{c}{Negative} & \multicolumn{1}{|c|}{False Positive (FP)} & True Negative (TN)\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Accuracy}
+\[\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}\]
+
+\subsection{True Positive Rate}
+\[\text{TPR} = \frac{TP}{TP + FN}\]
+
+\subsection{False Positive Rate / Type I Error Rate}
+\[\text{FPR} = \frac{FP}{FP + TN}\]
+
+\subsection{False Negative Rate / Type II Error Rate}
+\[\text{FNR} = \frac{FN}{TP + FN}\]
+
+\subsection{True Negative Rate}
+\[\text{TNR} = \frac{TN}{TN+FP}\]
+
+\subsection{Precision}
+\[\text{Precision} = \frac{TP}{TP + FP}\]
+
+\subsubsection{Remarks}
+\begin{enumerate}
+  \item Precision is useful when costly actions will be followed up on the data predicted to be positive,
+  \item because precision gives the proportion of actual positives among those predicted to be positive
+  \item For example, if an insurance company wants to predict potential customers interested in purchasing insurance, and the cost to try to sell an insurance to a potential customer is non-trivial (e.g. insurance agent has to house visit the customer).
+\end{enumerate}
+
+\subsection{N-Fold Cross Validation}
+\subsubsection{Algorithm}
+\begin{enumerate}
+	\item The entire dataset is randomly split into \(N\) datasets of approximately equal size.
+	\item \(N-1\) of these datasets are treated as the training dataset, while the remaining one is the test dataset. A measure of the model error is obtained.
+	\item This process is repeated across the various combinations of N datasets taken \(N-1\) at a time.
+	\item The observed N models errors are averaged across the N folds
+\end{enumerate}
+
+\subsection{ROC Curve (TPR vs FPR Trade-off)}
+\begin{enumerate}
+    \item Graph of True Positive Rate (TPR) against False Positive Rate (FPR)
+    \item As TPR increases, FPR tend to increase as well
+        \begin{enumerate}
+            \item Increasing TPR may be a double-edged sword
+        \end{enumerate}
+    \item TPR = FPR = 0 means binary classifier classifies everything as negative
+    \item TPR = FPR = 1 means binary classifier classifies everything as positive
+\end{enumerate}
+
+\subsection{Bias-Variance tradeoff}
+\begin{enumerate}
+    \item \(\text{error} = \text{bias}^2 + \text{variance} + \text{irreducible error}\)
+    \item As variance increases, bias decreases, and vice versa
+\end{enumerate}
+
+\subsection{Calculation Intensive Exam Question \& Solution}
+\textbf{Midterm Q6.} Consider the following confusion matrix for a classifier
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\cline{3-4}
+\multicolumn{2}{c}{} & \multicolumn{2}{|c|}{Predicted Class}\\
+\cline{3-4}
+\multicolumn{2}{c}{} & \multicolumn{1}{|c|}{Positive} & Negative\\
+\hline
+\multirow{2}{3em}{Actual Class} & \multicolumn{1}{c}{Positive} & \multicolumn{1}{|c|}{20} & 75\\
+\cline{2-4}
+& \multicolumn{1}{c}{Negative} & \multicolumn{1}{|c|}{140} & 55\\
+\hline
+\end{tabular}
+\end{center}
+The false negative rate (FNR) of the classifier is \rule{1cm}{0.15mm} (round to 3 decimal places).\\
+\textbf{Solution}
+\begin{enumerate}
+  \item Copy paste the following code:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{gcmfv} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{tp}\hlstd{,} \hlkwc{fn}\hlstd{,} \hlkwc{fp}\hlstd{,} \hlkwc{tn}\hlstd{) \{}
+  \hlcom{# generates confusion matrix from values}
+  \hlkwd{return} \hlstd{(}\hlkwd{matrix}\hlstd{(}\hlkwd{c}\hlstd{(tp, fn, fp, tn),} \hlkwc{nrow} \hlstd{=} \hlnum{2}\hlstd{,} \hlkwc{ncol} \hlstd{=} \hlnum{2}\hlstd{,} \hlkwc{byrow} \hlstd{=} \hlnum{TRUE}\hlstd{))}
+\hlstd{\}}
+
+\hlstd{tp} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{m}\hlstd{) \{}
+  \hlcom{# true positive from confusion matrix m}
+  \hlkwd{return} \hlstd{(m[}\hlnum{1}\hlstd{,} \hlnum{1}\hlstd{])}
+\hlstd{\}}
+
+\hlstd{fn} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{m}\hlstd{) \{}
+  \hlcom{# false negative from confusion matrix m}
+  \hlkwd{return} \hlstd{(m[}\hlnum{1}\hlstd{,} \hlnum{2}\hlstd{])}
+\hlstd{\}}
+
+\hlstd{fp} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{m}\hlstd{) \{}
+  \hlcom{# false positive from confusion matrix m}
+  \hlkwd{return} \hlstd{(m[}\hlnum{2}\hlstd{,} \hlnum{1}\hlstd{])}
+\hlstd{\}}
+
+\hlstd{tn} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{m}\hlstd{) \{}
+  \hlcom{# true negative from confusion matrix m}
+  \hlkwd{return} \hlstd{(m[}\hlnum{2}\hlstd{,} \hlnum{2}\hlstd{])}
+\hlstd{\}}
+
+\hlstd{accuracy} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{m}\hlstd{) \{}
+  \hlkwd{return} \hlstd{((}\hlkwd{tp}\hlstd{(m)}\hlopt{+}\hlkwd{tn}\hlstd{(m))}\hlopt{/}\hlstd{(}\hlkwd{tp}\hlstd{(m)}\hlopt{+}\hlkwd{tn}\hlstd{(m)}\hlopt{+}\hlkwd{fp}\hlstd{(m)}\hlopt{+}\hlkwd{fn}\hlstd{(m)))}
+\hlstd{\}}
+
+\hlstd{tpr} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{m}\hlstd{) \{}
+  \hlkwd{return} \hlstd{(}\hlkwd{tp}\hlstd{(m)}\hlopt{/}\hlstd{(}\hlkwd{tp}\hlstd{(m)}\hlopt{+}\hlkwd{fn}\hlstd{(m)))}
+\hlstd{\}}
+
+\hlstd{fpr} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{m}\hlstd{) \{}
+  \hlkwd{return} \hlstd{(}\hlkwd{fp}\hlstd{(m)}\hlopt{/}\hlstd{(}\hlkwd{fp}\hlstd{(m)}\hlopt{+}\hlkwd{tn}\hlstd{(m)))}
+\hlstd{\}}
+
+\hlstd{fnr} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{m}\hlstd{) \{}
+  \hlkwd{return} \hlstd{(}\hlkwd{fn}\hlstd{(m)}\hlopt{/}\hlstd{(}\hlkwd{fn}\hlstd{(m)}\hlopt{+}\hlkwd{tp}\hlstd{(m)))}
+\hlstd{\}}
+
+\hlstd{tnr} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{m}\hlstd{) \{}
+  \hlkwd{return} \hlstd{(}\hlkwd{tn}\hlstd{(m)}\hlopt{/}\hlstd{(}\hlkwd{tn}\hlstd{(m)}\hlopt{+}\hlkwd{fp}\hlstd{(m)))}
+\hlstd{\}}
+
+\hlstd{precision} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{m}\hlstd{) \{}
+  \hlkwd{return} \hlstd{(}\hlkwd{tp}\hlstd{(m)}\hlopt{/}\hlstd{(}\hlkwd{tp}\hlstd{(m)}\hlopt{+}\hlkwd{fp}\hlstd{(m)))}
+\hlstd{\}}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+\item Create Confusion Matrix
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{confusion.matrix} \hlkwb{<-} \hlkwd{gcmfv}\hlstd{(}\hlkwc{tp}\hlstd{=}\hlnum{20}\hlstd{,} \hlkwc{fn}\hlstd{=}\hlnum{75}\hlstd{,} \hlkwc{fp}\hlstd{=}\hlnum{140}\hlstd{,} \hlkwc{tn}\hlstd{=}\hlnum{55}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+\item Get the metric you need
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{fnr}\hlstd{(confusion.matrix)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.7894737
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\end{enumerate}
+\end{document}

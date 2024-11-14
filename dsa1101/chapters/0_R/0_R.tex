@@ -1,0 +1,300 @@
+\documentclass[../../dsa1101_notes.Rtex]{subfiles}\usepackage[]{graphicx}\usepackage[]{color}
+% maxwidth is the original width if it is less than linewidth
+% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+\section{R}
+\subsection{Data Types}
+\subsubsection{Vectors}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+  \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{2}\hlstd{,}\hlnum{3}\hlstd{,}\hlnum{4}\hlstd{,}\hlnum{5}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] 1 2 3 4 5
+\end{verbatim}
+\begin{alltt}
+\hlnum{1}\hlopt{:}\hlnum{5}
+\end{alltt}
+\begin{verbatim}
+## [1] 1 2 3 4 5
+\end{verbatim}
+\begin{alltt}
+\hlkwd{seq}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{9}\hlstd{,}\hlnum{2}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] 1 3 5 7 9
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  
+  \subsubsection{Matrices}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+  \hlkwd{matrix}\hlstd{(}\hlnum{1}\hlopt{:}\hlnum{6}\hlstd{,} \hlkwc{nrow} \hlstd{=} \hlnum{2}\hlstd{,} \hlkwc{ncol} \hlstd{=} \hlnum{3}\hlstd{,} \hlkwc{byrow} \hlstd{=} \hlnum{TRUE}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    4    5    6
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  
+  \subsubsection{Data Frames}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+  \hlkwd{data.frame}\hlstd{(}
+    \hlkwc{id} \hlstd{=} \hlnum{1}\hlopt{:}\hlnum{3}\hlstd{,}
+    \hlkwc{name} \hlstd{=} \hlkwd{c}\hlstd{(}\hlstr{'Tom'}\hlstd{,} \hlstr{'Mary'}\hlstd{,} \hlstr{'Peter'}\hlstd{),}
+    \hlkwc{age} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{26}\hlstd{,}\hlnum{30}\hlstd{,}\hlnum{25}\hlstd{),}
+    \hlkwc{marital_status} \hlstd{=} \hlkwd{c}\hlstd{(}\hlstr{'married'}\hlstd{,}\hlstr{'divorced'}\hlstd{,}\hlstr{'single'}\hlstd{),}
+    \hlkwc{stringsAsFactors} \hlstd{=} \hlnum{TRUE}
+  \hlstd{)}
+\end{alltt}
+\begin{verbatim}
+##   id  name age marital_status
+## 1  1   Tom  26        married
+## 2  2  Mary  30       divorced
+## 3  3 Peter  25         single
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  
+  \subsection{Logical Vectors}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+  \hlstd{random_permutation_one_to_ten} \hlkwb{<-} \hlkwd{sample}\hlstd{(}\hlnum{1}\hlopt{:}\hlnum{10}\hlstd{,} \hlnum{10}\hlstd{,} \hlkwc{replace}\hlstd{=}\hlnum{FALSE}\hlstd{)}
+\hlstd{random_permutation_one_to_ten}
+\end{alltt}
+\begin{verbatim}
+##  [1] 10  1  9  5  6  8  7  3  2  4
+\end{verbatim}
+\begin{alltt}
+\hlstd{random_permutation_one_to_ten} \hlopt{>} \hlnum{5}
+\end{alltt}
+\begin{verbatim}
+##  [1]  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  
+  \subsection{Logical Operators}
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+A & B & A \textbf{AND} B & A \textbf{OR} B \\
+\hline
+TRUE & TRUE & TRUE & TRUE \\
+\hline
+TRUE & FALSE & FALSE & TRUE \\
+\hline
+FALSE & TRUE & FALSE & TRUE \\
+\hline
+FALSE & FALSE & FALSE & FALSE\\
+\hline
+\end{tabular}
+\qquad
+\begin{tabular}{|c|c|}
+\hline
+A & \textbf{NOT} A \\
+\hline
+TRUE & FALSE \\
+\hline
+FALSE & TRUE \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsubsection{Logical Operators in R}
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Operator & Description \\
+\hline
+\& & Element-wise AND \\
+\hline
+| & Element-wise OR \\
+\hline
+\&\& & First element AND \\
+\hline
+|| & First element OR \\
+\hline
+! & NOT \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Conditionals}
+\subsubsection{Conditional Statements}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+  \hlstd{x} \hlkwb{<-} \hlnum{10}
+\hlkwa{if} \hlstd{(x} \hlopt{>} \hlnum{20}\hlstd{) \{}
+  \hlkwd{print}\hlstd{(}\hlstr{'x is bigger than 20'}\hlstd{)}
+\hlstd{\}} \hlkwa{else if} \hlstd{(x} \hlopt{>} \hlnum{10}\hlstd{) \{}
+  \hlkwd{print}\hlstd{(}\hlstr{'x is bigger than 10'}\hlstd{)}
+\hlstd{\}} \hlkwa{else} \hlstd{\{}
+  \hlkwd{print}\hlstd{(}\hlstr{'x is smaller than or equal to 10'}\hlstd{)}
+\hlstd{\}}
+\end{alltt}
+\begin{verbatim}
+## [1] "x is smaller than or equal to 10"
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  
+  \subsection{Reading CSV Files}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+  \hlkwd{read.csv}\hlstd{(}\hlstr{'data.csv'}\hlstd{,} \hlkwc{header} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{sep} \hlstd{=} \hlstr{','}\hlstd{,} \hlkwc{dec} \hlstd{=} \hlstr{'.'}\hlstd{,}
+           \hlkwc{stringsAsFactors} \hlstd{=} \hlnum{TRUE}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+##   id   name age occupation
+## 1  1  James  28    Fireman
+## 2  2 Evelyn  27 Technician
+## 3  3  Laura  34    Teacher
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  
+  \subsection{Data Visualisation}
+\subsubsection{Scatter Plots}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+  \hlstd{x} \hlkwb{<-} \hlnum{1}\hlopt{:}\hlnum{50}
+\hlstd{y} \hlkwb{<-} \hlstd{x}\hlopt{^}\hlnum{2}
+\hlkwd{plot}\hlstd{(}\hlkwc{x} \hlstd{= x,} \hlkwc{y} \hlstd{= y,} \hlkwc{xlab} \hlstd{=} \hlstr{'x'}\hlstd{,} \hlkwc{ylab} \hlstd{=} \hlstr{'y=x^2'}\hlstd{,} \hlkwc{col} \hlstd{=} \hlstr{'red'}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-7-1} 
+\end{knitrout}
+  
+  \subsubsection{Histogram}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+  \hlstd{n} \hlkwb{<-} \hlnum{200}
+\hlstd{x} \hlkwb{<-} \hlkwd{rnorm}\hlstd{(n)}
+\hlkwd{hist}\hlstd{(}\hlkwc{x} \hlstd{= x,} \hlkwc{breaks} \hlstd{=} \hlkwd{ceiling}\hlstd{(}\hlkwd{sqrt}\hlstd{(n)),} \hlkwc{col} \hlstd{=} \hlstr{'lightgray'}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-8-1} 
+\end{knitrout}
+  
+  \subsection{Iteration}
+\subsubsection{For Loop}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+  \hlkwa{for} \hlstd{(i} \hlkwa{in} \hlnum{1}\hlopt{:}\hlnum{5}\hlstd{) \{}
+    \hlkwd{print}\hlstd{(i)}
+  \hlstd{\}}
+\end{alltt}
+\begin{verbatim}
+## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  
+  \subsubsection{While Loop}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+  \hlstd{i} \hlkwb{=} \hlnum{1}
+\hlkwa{while} \hlstd{(i} \hlopt{<=} \hlnum{5}\hlstd{) \{}
+  \hlkwd{print}\hlstd{(i)}
+  \hlstd{i} \hlkwb{<-} \hlstd{i} \hlopt{+} \hlnum{1}
+\hlstd{\}}
+\end{alltt}
+\begin{verbatim}
+## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  
+  \subsubsection{Repeat Loop}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+  \hlstd{i} \hlkwb{=} \hlnum{1}
+\hlkwa{repeat} \hlstd{\{}
+  \hlkwd{print}\hlstd{(i)}
+  \hlstd{i} \hlkwb{<-} \hlstd{i} \hlopt{+} \hlnum{1}
+  \hlkwa{if} \hlstd{(i} \hlopt{==} \hlnum{6}\hlstd{)} \hlkwa{break}
+\hlstd{\}}
+\end{alltt}
+\begin{verbatim}
+## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\end{document}

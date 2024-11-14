@@ -1,0 +1,109 @@
+\documentclass[../st2131_notes.tex]{subfiles}
+\begin{document}
+\chapter{Combinatorial Analysis}
+
+\section{Multiplication Rule}
+\subsection{Basic Principle of Counting}
+Suppose that two experiments are to be performed. If
+\begin{itemize}
+	\item experiment 1 can result in any one of \(m\) possible outcomes; and
+	\item experiment 2 can result in any one of \(n\) possible outcomes;
+\end{itemize}
+then together there are \(mn\) possible outcomes of the two experiments.
+
+\subsection{Generalised Basic Principle of Counting}
+Suppose that \(r\) experiments are to be performed. If
+\begin{itemize}
+	\item experiment 1 results in \(n_1\) possible outcomes;
+	\item experiment 2 results in \(n_2\) possible outcomes;
+	\item \(\ldots\)
+	\item experiment \(r\) results in \(n_r\) possible outcomes;
+\end{itemize}
+then together there are \(n_1n_2\ldots n_r\) possible outcomes of the \(r\) experiments.
+
+\section{Addition Rule}
+Suppose that two experiments, experiment 1 and experiment 2, are mutually exclusive, i.e. either experiment 1 or experiment 2 occurs, but not both. If
+\begin{itemize}
+	\item experiment 1 can result in any one of \(m\) possible outcomes; and
+	\item experiment 2 can result in any one of \(n\) possible outcomes;
+\end{itemize}
+then together there are \(m+n\) possible outcomes.
+
+\section{Factorial}
+\textbf{Definition.} \(n!=n(n-1)(n-2)\ldots3(2)(1)\) with the convention that \(0!=1\).
+
+\section{Permutations}
+\def\arraystretch{1.7}
+\begin{tabular}{|p{2.5cm}|p{2.5cm}|p{6cm}|p{5.2cm}|}
+\hline
+\textbf{Number of Objects} & \textbf{Arrangment} & \textbf{Distinction Between Objects} & \textbf{Number of Permutations} \\
+\hline
+\multirow{4}{*}{\(n\)} & Linear & All Distinct & \(n!\) \\
+\cline{2-4}
+& Linear & \(n_1\) are alike, \(n_2\) are alike, \(\ldots\), \(n_r\) are alike & \(\displaystyle\frac{n!}{n_1!\,n_2!\,\ldots n_r!}\) \\
+\cline{2-4}
+& Circular & All Distinct & \(\displaystyle(n-1)!=\frac{n!}{n}\) \\
+\cline{2-4}
+& Necklace & All Distinct & \(\displaystyle\frac{(n-1)!}{2}\) \\
+\hline
+\end{tabular}
+
+\section{Binomial Coefficient}
+\textbf{Definition.} The \textbf{binominal coefficient} is
+\[_nC_r=\binom{n}{r}=\frac{n!}{r!\,(n-r)!}\]
+If \(n\) is a nonnegative integer, and \(r<0\) or \(r>n\), define
+\[\binom{n}{r}=0\]
+
+\section{Combinations}
+If there are \(n\) distinct objects, of which we choose a group of \(r\) items, then the number of possible groups is given by \(\displaystyle\binom{n}{r}\).
+
+\section{Properties of Binomial Coefficient}
+\subsection{Symmetric Property}
+For \(r=0,1,2,\ldots,n\),
+\[\binom{n}{r}=\binom{n}{n-r}\]
+
+\subsection{Only one way to choose nothing or everything}
+\[\binom{n}{0}=\binom{n}{n}=1\]
+
+\subsection{Recurrence Formula}
+For \(1\leq r\leq n\),
+\[\binom{n}{r}=\binom{n-1}{r-1}+\binom{n-1}{r}\]
+
+\section{Binomial Theorem}
+\textbf{Theorem.} Let \(n\) be a nonnegative integer, then
+\[(x+y)^n=\sum_{k=0}^n\binom{n}{k}x^ky^{n-k}\]
+
+\subsection{Special Case: $x=y=1$}
+\[2^n=\sum_{k=0}^n\binom{n}{k}\]
+
+\subsection{Special Case: $x=-1, y=1$}
+\[0=\sum_{k=0}^n\binom{n}{k}(-1)^k\]
+
+\subsection{Sum of Alternate Binomial Coefficients are Equal}
+It follows from section 1.8.2 that
+\[\binom{n}{0}+\binom{n}{2}+\binom{n}{4}+\ldots=\binom{n}{1}+\binom{n}{3}+\binom{n}{5}+\ldots\]
+
+\section{Multinomial Coefficient}
+\textbf{Definition.} The \textbf{multinominal coefficient} is
+\[\binom{n}{n_1,n_2,\ldots,n_r}=\frac{n!}{n_1!\,n_2!\,\ldots n_r!}\]
+
+\section{Divide $n$ Objects into $r$ Groups}
+The number of ways to divide \(n\) objects into \(r\) distinct groups of size \(n_1,n_2,\ldots,n_r\) such that \(\sum\limits_{i=1}^rn_i=n\) is given by
+\[\binom{n}{n_1}\binom{n-n_1}{n_2}\binom{n-n_1-n_2}{n_3}\ldots\binom{n-n_1-n_2-\ldots-n_{r-1}}{n_r}=\binom{n}{n_1,n_2,\ldots,n_r}\]
+
+\section{Multinomial Theorem}
+Let \(n\) be a nonnegative integer, then
+\[(x_1+x_2+\ldots+x_r)^n=\sum_{n_1+n_2+\ldots+n_r=n}\binom{n}{n_1,n_2,\ldots,n_r}x_1^{n_1}x_2^{n_2}\ldots x_r^{n_r}\]
+
+\section{The Number of Positive Integer Solutions of Equations}
+Given the following equation in \(x_1, x_2, \ldots, x_r\),
+\[x_1+x_2+\ldots+x_r=n\]
+where \(x_1, x_2, \ldots, x_r\), and \(n\) are positive integers. The number of solutions to this equation is
+\[\binom{n-1}{r-1}\]
+
+\section{The Number of Nonnegative Integer Solutions of Equations}
+Given the following equation in \(x_1, x_2, \ldots, x_r\),
+\[x_1+x_2+\ldots+x_r=n\]
+where \(x_1, x_2, \ldots, x_r\), and \(n\) are nonnegative integers. The number of solutions to this equation is
+\[\binom{n+r-1}{r-1}\]
+\end{document}
