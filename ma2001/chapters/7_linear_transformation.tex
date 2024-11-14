@@ -1,0 +1,632 @@
+\documentclass[../ma2001_notes.tex]{subfiles}
+
+\begin{document}
+\chapter{Linear Transformation}
+\section{Linear Transformations from $\mathbb{R}^n$ to $\mathbb{R}^m$}
+\subsection{Definition of Linear Transformation}
+\textbf{Definition.} The mapping \(T:\mathbb{R}^n\to\mathbb{R}^m\) defined by
+\[T\left(\begin{pmatrix}
+	x_1 \\ x_2 \\ \vdots \\ x_n
+\end{pmatrix}\right)=\left(
+\arraycolsep=1.4pt\begin{array}{ccccccc}
+	a_{11}x_1 & + & a_{12}x_2 & + & \cdots & + & a_{1n}x_n \\
+	a_{21}x_1 & + & a_{22}x_2 & + & \cdots & + & a_{2n}x_n \\
+	& \vdots & & \vdots & & \vdots & \\
+	a_{m1}x_1 & + & a_{m2}x_2 & + & \cdots & + & a_{mn}x_n \\
+\end{array}\right)\]
+a \textbf{linear transformation} from \(\mathbb{R}^n\) to \(\mathbb{R}^m\).
+
+\subsubsection{Linear Operator}
+\(T\) is a \textbf{linear operator} on \(\mathbb{R}^n\) if \(m=n\).
+
+\subsection{Linear Transformation As Matrix Form}
+A \textbf{linear transformation} is viewed as the \textbf{matrix form}:
+\[T\left(\begin{pmatrix}
+	x_1 \\ x_2 \\ \vdots \\ x_n
+\end{pmatrix}\right)=\begin{pmatrix}
+	a_{11} & a_{12} & \cdots & a_{1n} \\
+	a_{21} & a_{22} & \cdots & a_{2n} \\
+	\vdots & \vdots & \vdots & \vdots \\
+	a_{m1} & a_{m2} & \cdots & a_{mn} \\
+\end{pmatrix}\begin{pmatrix}
+	x_1 \\ x_2 \\ \vdots \\ x_n
+\end{pmatrix}\]
+\(T:\mathbb{R}^n\to\mathbb{R}^m\) such that \(\forall\bm{x}\in\mathbb{R}^n\quad T(\bm{x})=\bm{Ax}\)
+\begin{itemize}
+	\item\(\bm{A}=(a_{ij})_{m\times n}\) is the \textbf{standard matrix} for \(T\).
+\end{itemize}
+
+\subsection{Examples of Linear Transformation}
+\subsubsection{Identity Transformation}
+\textbf{Definition.} Let \(I:\mathbb{R}^n\to\mathbb{R}^n\) be the \textbf{linear transformation} \(\forall\bm{x}\in\mathbb{R}^n\quad I(\bm{x})=\bm{x}\).
+\begin{itemize}
+	\item It is the
+	\begin{itemize}
+		\item\textbf{identity transformation}; or
+		\item\textbf{identity operator} on \(\mathbb{R}^n\).
+	\end{itemize}
+	\item\(I(\bm{x})=\bm{x}=\bm{I}_n\bm{x}\Rightarrow\bm{I}_n\) is the \textbf{standard matrix} for \(I\).
+\end{itemize}
+
+\subsubsection{Zero Transformation}
+\textbf{Definition.} Let \(O:\mathbb{R}^n\to\mathbb{R}^m\) be the \textbf{linear transformation} \(\forall\bm{x}\in\mathbb{R}^n\quad O(\bm{x})=\bm{0}\).
+\begin{itemize}
+	\item It is the \textbf{zero transformation}.
+	\item\(O(\bm{x})=\bm{0}=\bm{0}_{m\times n}\bm{x}\Rightarrow\bm{0}_{m\times n}\) is the \textbf{standard matrix} for \(O\).
+\end{itemize}
+
+\subsection{Standard Matrix of a Linear Transformation is Unique}
+\textbf{Theorem.} The \textbf{standard matrix} of a \textbf{linear transformation} is unique.
+
+\subsection{To Prove that a Mapping is a Linear Transformation}
+To show that \(T:\mathbb{R}^n\to\mathbb{R}^m\) is a \textbf{linear transformation}, it suffices to find a \textbf{matrix} \(\bm{A}\) so that \(\forall\bm{x}\in\mathbb{R}^n\quad T(\bm{x})=\bm{Ax}\).
+
+\subsection{Linearity of Linear Transformations}
+\textbf{Theorem.} Let \(T:\mathbb{R}^n\to\mathbb{R}^m\) be a \textbf{linear transformation}. Then
+\begin{itemize}
+	\item\(T(\bm{0})=\bm{0}\)
+	\item\(\forall c\in\mathbb{R},\forall\bm{v}\in\mathbb{R}^n,\quad T(c\bm{v})=cT(\bm{v})\)
+	\item\(\forall\bm{u},\bm{v}\in\mathbb{R}^n,\quad T(\bm{u}+\bm{v})=T(\bm{u})+T(\bm{v})\)
+	\item\(\forall c_1,\ldots,c_k\in\mathbb{R},\forall\bm{v}_1,\ldots,\bm{v}_k\in\mathbb{R}^n,\quad T(c_1\bm{v}_1+\cdots+c_k\bm{v}_k)=c_1T(\bm{v}_1)+\cdots+c_kT(\bm{v}_k)\)
+\end{itemize}
+
+\subsection{To Prove that a Mapping is Not a Linear Transformation}
+To show that a mapping \(T:\mathbb{R}^n\to\mathbb{R}^m\) is \textbf{not} a \textbf{linear transformation},
+\begin{itemize}
+	\item Show that \(T(\bm{0})\ne\bm{0}\); or
+	\item Find \(c\in\mathbb{R},\bm{v}\in\mathbb{R}^n\) such that \(T(c\bm{v})\ne cT(\bm{v})\); or
+	\item Find \(\bm{u},\bm{v}\in\mathbb{R}^n\) such that \(T(\bm{u}+\bm{v})\ne T(\bm{u})+T(\bm{v})\).
+\end{itemize}
+
+\subsection{Representation of Linear Transformations}
+\subsubsection{Linear Transformations are Completely Determined by a Basis of $\mathbb{R}^n$ and its Images}
+Suppose that \(T:\mathbb{R}^n\to\mathbb{R}^m\) is a \textbf{linear transformation} and \(S=\{\bm{v}_1,\ldots,\bm{v}_n\}\) is a \textbf{basis} for \(\mathbb{R}^n\). Then \(\forall\bm{v}\in\mathbb{R}^n\quad(\bm{v})_S=(c_1,\ldots,c_n)\), and
+\begin{align*}
+	T(\bm{v})
+	&=T(c_1\bm{v}_1+\cdots+c_n\bm{v}_n) \\
+	&=c_1T(\bm{v}_1)+\cdots+c_nT(\bm{v}_n)
+\end{align*}
+\(T(\bm{v})\) is completely determined by \(T(\bm{v}_1),\ldots,T(\bm{v}_n)\). Let
+\begin{itemize}
+	\item\(\bm{A}\) be the \textbf{standard matrix} for \(T\),
+	\item\(\bm{B}=\begin{pmatrix}
+		T(\bm{v}_1) & \cdots & T(\bm{v}_n)
+	\end{pmatrix}\), and
+	\item\(\bm{P}=\begin{pmatrix}
+		\bm{v}_1 & \cdots & \bm{v}_n
+	\end{pmatrix}\)
+\end{itemize}
+Then \(\bm{A}=\bm{BP}^{-1}\).
+
+\subsubsection{Columns of Standard Matrix are Images of Standard Basis of $\mathbb{R}^n$}
+Let \(T:\mathbb{R}^n\to\mathbb{R}^m\) be a \textbf{linear transformation} and \(\bm{A}\) be the \textbf{standard matrix} for \(T\). Then \(\bm{A}=\begin{pmatrix}
+	T(\bm{e}_1) & \cdots & T(\bm{e}_n)
+\end{pmatrix}\).
+
+\subsection{Linear Combination Preserving Implies Linear Transformation}
+\subsubsection{With \(k\) vectors}
+\textbf{Theorem.} A mapping \(T:\mathbb{R}^n\to\mathbb{R}^m\) is a \textbf{linear transformation}, i.e., \(T(\bm{x})=\bm{Ax}\Leftrightarrow\forall c_1,\ldots,c_k\in\mathbb{R},\forall\bm{v}_1,\ldots,\bm{v}_k\in\mathbb{R}^n,\quad T(c_1\bm{v}_1+\cdots+c_k\bm{v}_k)=c_1T(\bm{v}_1)+\cdots+c_kT(\bm{v}_k)\)
+
+\subsubsection{With Two Vectors}
+\textbf{Theorem.} A mapping \(T:\mathbb{R}^n\to\mathbb{R}^m\) is a \textbf{linear transformation}, i.e., \(T(\bm{x})=\bm{Ax}\Leftrightarrow\forall c,d\in\mathbb{R},\forall\bm{u},\bm{v}\in\mathbb{R}^n,\quad T(c\bm{u}+d\bm{v})=cT(\bm{u})+dT(\bm{v})\).
+
+\subsection{General Definition of Linear Transformations}
+\textbf{Definition.} Let \(V\) and \(W\) be \textbf{vector spaces}. A mapping \(T:V\to W\) is a \textbf{linear transformation} if
+\[\forall\bm{u},\bm{v}\in\mathbb{R}^n,\forall c,d,\in\mathbb{R},\quad T(c\bm{u}+d\bm{v})=cT(\bm{u})+dT(\bm{v})\]
+
+\subsection{Change of Bases}
+\subsubsection{Change Between the Images of Two Bases}
+\textbf{Theorem.} Let \(T:\mathbb{R}^n\to\mathbb{R}^m\) be a \textbf{linear transformation}. Let
+\begin{itemize}
+	\item\(S=\{\bm{u}_1,\ldots,\bm{u}_n\}\) and \(R=\{\bm{v}_1,\ldots,\bm{v}_n\}\) be \textbf{bases} for \(\mathbb{R}^n\),
+	\item\(\bm{B}=\begin{pmatrix}
+	T(\bm{u}_1) & \cdots & T(\bm{u}_n)
+\end{pmatrix}\) and \(\bm{C}=\begin{pmatrix}
+	T(\bm{v}_1) & \cdots & T(\bm{v}_n)
+\end{pmatrix}\), and
+	\item\(\bm{P}\) be the \textbf{transition matrix} from \(S\) to \(R\) and \(\bm{Q}=\bm{P}^{-1}\)
+\end{itemize}
+Then \(\bm{B}=\bm{CP}\) and \(\bm{C}=\bm{BQ}\).
+
+\subsubsection{Change Basis for Linear Operator}
+\textbf{Theorem.} Let \(T:\mathbb{R}^n\to\mathbb{R}^n\) be a \textbf{linear operation} on \(\mathbb{R}^n\) and \(\bm{A}\) be the \textbf{standard matrix}. Let \(S=\{\bm{v}_1,\ldots,\bm{v}_n\}\) be a \textbf{basis} for \(\mathbb{R}^n\) and \(\bm{P}=\begin{pmatrix}
+	\bm{v}_1 & \cdots & \bm{v}_n
+\end{pmatrix}\). Then
+\begin{itemize}
+	\item\([T(\bm{v})]_S=\bm{B}[\bm{v}]_S\), where \(\bm{B}=\bm{P}^{-1}\bm{AP}\)
+	\item\(T\) can be represented by \([\bm{v}]_S\mapsto\bm{B}[\bm{v}]_S\)
+	\item\(\bm{A}\) and \(\bm{B}\) are \textbf{similar}.
+\end{itemize}
+
+\subsection{Composition}
+\subsubsection{Definition of Function Composition}
+\textbf{Definition.} Let \(f:X\to Y\) and \(g:Y\to Z\) be two functions. The \textbf{composition} of \(g\) with \(f\), denoted by \(g\circ f\), is the function \(X\to Z\) such that \(\forall x\in X\quad (g\circ f)(x)=g(f(x))\)
+
+\subsubsection{Function Composition is not Commutative in General}
+Note: In general, \(g\circ f\ne f\circ g\).
+
+\subsubsection{Linear Transformation Composition}
+\textbf{Definition.} Let \(S:\mathbb{R}^n\to\mathbb{R}^m\) and \(T:\mathbb{R}^m\to\mathbb{R}^k\) be \textbf{linear transformations}. The \textbf{composition} of \(T\) with \(S\), denoted by \(T\circ S\), is the mapping \(\mathbb{R}^n\to\mathbb{R}^k\) such that \(\forall\bm{u}\in\mathbb{R}^n,\quad(T\circ S)(\bm{u})=T(S(\bm{u}))\)
+
+\subsubsection{Linear Transformation Composition is not Commutative in General}
+Note: In general, \(T\circ S\ne S\circ T\).
+
+\subsubsection{Composition of Linear Transformations is a Linear Transformation and Formula for its Standard Matrix}
+\textbf{Theorem.} Let \(S:\mathbb{R}^n\to\mathbb{R}^m\) and \(T:\mathbb{R}^m\to\mathbb{R}^k\) be \textbf{linear transformations}. Then
+\begin{itemize}
+	\item\(T\circ S:\mathbb{R}^n\to\mathbb{R}^k\) is a \textbf{linear transformation}
+\end{itemize}
+Let \(\bm{A}\) and \(\bm{B}\) be the \textbf{standard matrices} for \(S\) and \(T\) respectively. Then
+\begin{itemize}
+	\item the \textbf{standard matrix} for \(T\circ S\) is \(\bm{BA}\).
+\end{itemize}
+
+\subsubsection{Properties of Linear Transformation Composition}
+\textbf{Theorem.} Let \(S,T,T_1,T_2,S_1,S_2,U\) be \textbf{linear transformations} and \(c\in\mathbb{R}\). Then
+\begin{itemize}
+	\item\textbf{Identity \& Zero Composition:} \(I\circ S=S\circ I=S\); \(O\circ S=S\circ O=O\)
+	\item\textbf{Constant Multiple:} \(c(T\circ S)=(cT)\circ S=T\circ(cS)\)
+	\item\textbf{Associativity:} \(U\circ(T\circ S)=(U\circ T)\circ S\)
+	\item\textbf{Distributive Over Addition:}
+	\begin{itemize}
+		\item\((T_1+T_2)\circ S=T_1\circ S+T_2\circ S\)
+		\item\(T\circ(S_1+S_2)=T\circ S_1+T\circ S_2\)
+	\end{itemize}
+\end{itemize}
+
+\section{Ranges and Kernels}
+\subsection{Range}
+\subsubsection{Range of Function}
+\textbf{Definition.} Let \(f:X\to Y\) be a \textbf{function}. The \textbf{range} of \(f\), denoted by \(\R(f)\), is the set of all \textbf{images} of \(f\):
+\[\R(f)=\{f(x)\mid x\in X\}\subseteq Y\]
+
+\subsubsection{Range of Linear Transformation}
+\textbf{Definition.} Let \(T:\mathbb{R}^n\to\mathbb{R}^m\) be a \textbf{linear transformation}. The \textbf{range} of \(T\), denoted by \(\R(T)\), is the set of all \textbf{images} of \(T\):
+\[\R(T)=\{T(\bm{v})\mid\bm{v}\in\mathbb{R}^n\}\subseteq\mathbb{R}^m\]
+
+\subsubsection{Representation of Range}
+\paragraph{Range as Subspace Spanned by the Images of Any Basis for $\mathbb{R}^n$}\,\\
+\textbf{Theorem.} Let \(T:\mathbb{R}^n\to\mathbb{R}^m\) be a \textbf{linear transformation} and \(\{\bm{v}_1,\ldots,\bm{v}_n\}\) be any basis for \(\mathbb{R}^n\). Then
+\begin{itemize}
+	\item\(\R(T)=\vspan\{T(\bm{v}_1),\ldots,T(\bm{v}_n)\}\).
+	\item\(\R(T)\) is a \textbf{subspace} of \(\mathbb{R}^m\).
+\end{itemize}
+
+\paragraph{Range as Column Space of Standard Matrix}\,\\
+\textbf{Theorem.} Let \(T:\mathbb{R}^n\to\mathbb{R}^m\) be a \textbf{linear transformation} and \(\bm{A}\) be the \textbf{standard matrix} for \(T\). Then \(\R(T)=\) \textbf{column space} of \(\bm{A}\).
+
+\subsection{Rank of Linear Transformation}
+\textbf{Definition.} Let \(T\) be a \textbf{linear transformation}. The \textbf{rank} of \(T\), denoted by \(\rank(T)\), is defined as
+\[\rank(T)=\dim(\R(T))\]
+Let \(\bm{A}\) be the \textbf{standard matrix} for \(T\). Then
+\[\rank(T)=\dim(\R(T))=\dim(\textbf{column space}\text{ of }\bm{A})=\rank(\bm{A})\]
+
+\subsection{Kernel}
+\subsubsection{Definition of Kernel of Linear Transformation}
+\textbf{Definition.} Let \(T:\mathbb{R}^n\to\mathbb{R}^m\) be a \textbf{linear transformation}. The \textbf{kernel} of \(T\), denoted by \(\Ker(T)\), is
+\[\Ker(T)=\{\bm{v}\in\mathbb{R}^n\mid T(\bm{v})=\bm{0}\}\subseteq\mathbb{R}^n\]
+Recall that \(T(\bm{0})=\bm{0}\Rightarrow\bm{0}\in\Ker(T)\subseteq\mathbb{R}^n\).
+
+\subsubsection{Representation of Kernel}
+\paragraph{Kernel as Nullspace of Standard Matrix and Subspace of $\mathbb{R}^n$}\,\\
+\textbf{Theorem.} Let \(T:\mathbb{R}^n\to\mathbb{R}^m\) be a \textbf{linear transformation} and \(\bm{A}\) be the \textbf{standard matrix} for \(T\). Then \(\Ker(T)=\) (\textbf{nullspace} of \(\bm{A}\)) which is a \textbf{subspace} of \(\mathbb{R}^n\).
+
+\paragraph{Finding General Solution for Kernel}\,\\
+Let \(T:\mathbb{R}^n\to\mathbb{R}^m\) be a \textbf{linear transformation} and \(\bm{A}\) be the \textbf{standard matrix} for \(T\). To find a general solution for \(\Ker(T)\), solve the linear system \(\bm{Ax}=\bm{0}\).
+
+\subsection{Nullity of Linear Transformation}
+\textbf{Definition.} Let \(T\) be a \textbf{linear transformation}. The \textbf{nullity} of \(T\), denoted by \(\nullity(T)\), is defined as
+\[\nullity(T)=\dim(\Ker(T))\]
+Let \(\bm{A}\) be the \textbf{standard matrix} for \(T\). Then
+\[\nullity(T)=\dim(\Ker(T))=\dim(\textbf{nullspace}\text{ of }\bm{A})=\nullity(\bm{A})\]
+
+\subsection{Dimension Theorem for Linear Transformations}
+\textbf{Theorem.} Let \(T:\mathbb{R}^n\to\mathbb{R}^m\) be a \textbf{linear transformation}. Then \(\rank(T)+\nullity(T)=n\).
+
+\subsection{Linear Transformation Between Vector Spaces}
+Let \(T:V\to W\) be a \textbf{linear transformation} between \textbf{vector spaces}.
+
+\subsubsection{Range}
+\textbf{Definition.} \(\R(T)=\{T(\bm{v}\mid\bm{v}\in V\}\) is a \textbf{subspace} of \(W\).
+
+\subsubsection{Rank}
+\textbf{Definition.} \(\rank(T)=\dim(\R(T))\).
+
+\subsubsection{Kernel}
+\textbf{Definition.} \(\Ker(T)=\{\bm{v}\in V\mid T(\bm{v})=\bm{0}\}\) is a \textbf{subspace} of \(V\).
+
+\subsubsection{Nullity}
+\textbf{Definition.} \(\nullity(T)=\dim(\Ker(T))\).
+
+\subsubsection{Dimension Theorem}
+\textbf{Definition.} \(\rank(T)+\nullity(T)=\dim(V)\).
+
+
+\section{Geometric Linear Transformations}
+\subsection{Geometric Interpretation Completely Determined by Effect on a Basis for its Domain}
+Since the images of any \textbf{basis} for \(\mathbb{R}^n\) completely determines a \textbf{linear transformation} \(T:\mathbb{R}^n\to\mathbb{R}^m\), to study the geometric interpretation of a \textbf{linear transformation}, it suffices to check the effect of the \textbf{linear transformation} on a \textbf{basis} for its domain.
+
+\subsection{Scaling}
+\subsubsection{Scaling in $\mathbb{R}^2$}
+Let \(T:\mathbb{R}^2\to\mathbb{R}^2\) be a \textbf{linear transformation} and \(\begin{pmatrix}
+	\lambda_1 & 0 \\ 0 & \lambda_2
+\end{pmatrix}\) be the \textbf{standard matrix} for \(T\), where \(\lambda_1,\lambda_2>0\).
+\[T\left(\begin{pmatrix}
+	x \\ y
+\end{pmatrix}\right)=\begin{pmatrix}
+	\lambda_1 & 0 \\ 0 & \lambda_2
+\end{pmatrix}\begin{pmatrix}
+	x \\ y
+\end{pmatrix}=\begin{pmatrix}
+	\lambda_1x \\ \lambda_2y
+\end{pmatrix}\]
+Then \(T\) is a \textbf{scaling} in \(\mathbb{R}^2\),
+\begin{itemize}
+	\item along the \(x\)-axis by a factor of \(\lambda_1\), and
+	\item along the \(y\)-axis by a factor of \(\lambda_2\).
+\end{itemize}
+
+\paragraph{Dilation \& Contraction}\,\\
+Suppose further that \(\lambda_1=\lambda_2\). Let \(\lambda=\lambda_1=\lambda_2\). Then
+\begin{itemize}
+	\item\(T\) is a \textbf{dilation} if \(\lambda>1\).
+	\item\(T\) is a \textbf{contraction} if \(0<\lambda<1\).
+\end{itemize}
+
+\subsubsection{Scaling in other Axes in $\mathbb{R}^2$}
+Let \(T:\mathbb{R}^2\to\mathbb{R}^2\) be a \textbf{linear transformation} and \(\bm{A}\) be the \textbf{standard matrix}.
+\begin{itemize}
+	\item Suppose \(\bm{A}\) is \textbf{diagonalizable}, say \(\exists\bm{P}\) such that \(\bm{P}^{-1}\bm{AP}=\begin{pmatrix}
+		\lambda_1 & 0 \\ 0 & \lambda_2
+	\end{pmatrix},\lambda_1,\lambda_2>0\)
+	\item Suppose \(\bm{P}=\begin{pmatrix}
+		\bm{v}_1 & \bm{v}_2
+	\end{pmatrix}\). Let \(S=\{\bm{v}_1,\bm{v}_2\}\). Then \(S\) is a \textbf{basis} for \(\mathbb{R}^2\).
+	\item\(\forall\bm{v}\in\mathbb{R}^2,\quad[T(\bm{v})]_S=\begin{pmatrix}
+		\lambda_1 & 0 \\ 0 & \lambda_2
+	\end{pmatrix}[\bm{v}]_S\) (from section 7.1.11.2)
+	\item Then \(T\) can be viewed as a scaling
+	\begin{itemize}
+		\item along the direction of \(\bm{v}_1\) by factor \(\lambda_1\),
+		\item along the direction of \(\bm{v}_2\) by factor \(\lambda_2\),
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{Scaling in $\mathbb{R}^3$}
+Let \(T:\mathbb{R}^3\to\mathbb{R}^3\) be a \textbf{linear transformation} with \textbf{standard matrix} \(\begin{pmatrix}
+	\lambda_1 & 0 & 0 \\
+	0 & \lambda_2 & 0 \\
+	0 & 0 & \lambda_3
+\end{pmatrix}\), where \(\lambda_1,\lambda_2,\lambda_3>0\).
+\[T\left(\begin{pmatrix}
+	x \\ y \\ z
+\end{pmatrix}\right)=\begin{pmatrix}
+	\lambda_1 & 0 & 0 \\
+	0 & \lambda_2 & 0 \\
+	0 & 0 & \lambda_3
+\end{pmatrix}\begin{pmatrix}
+	x \\ y \\ z
+\end{pmatrix}=\begin{pmatrix}
+	\lambda_1x \\ \lambda_2y \\ \lambda_3z
+\end{pmatrix}\]
+Then \(T\) is a \textbf{scaling},
+\begin{itemize}
+	\item along the \(x\)-axis by a factor of \(\lambda_1\),
+	\item along the \(y\)-axis by a factor of \(\lambda_2\),
+	\item along the \(z\)-axis by a factor of \(\lambda_3\).
+\end{itemize}
+
+
+\paragraph{Dilation \& Contraction}\,\\
+Suppose further that \(\lambda_1=\lambda_2=\lambda_3=\lambda\). Then
+\begin{itemize}
+	\item\(T\) is a \textbf{dilation} if \(\lambda>1\).
+	\item\(T\) is a \textbf{contraction} if \(0<\lambda<1\).
+\end{itemize}
+
+\subsubsection{Scaling in other Axes in $\mathbb{R}^3$}
+Let \(T:\mathbb{R}^3\to\mathbb{R}^3\) be a \textbf{linear transformation} with \textbf{standard matrix} \(\bm{A}\).
+\begin{itemize}
+	\item Suppose \(\bm{A}\) is \textbf{diagonalizable}, say \(\exists\bm{P}\) such that \(\bm{P}^{-1}\bm{AP}=\begin{pmatrix}
+	\lambda_1 & 0 & 0 \\
+	0 & \lambda_2 & 0 \\
+	0 & 0 & \lambda_3
+\end{pmatrix},\lambda_1,\lambda_2,\lambda_3>0\)
+	\item Suppose \(\bm{P}=\begin{pmatrix}
+		\bm{v}_1 & \bm{v}_2 & \bm{v}_3
+	\end{pmatrix}\). Let \(S=\{\bm{v}_1,\bm{v}_2,\bm{v}_3\}\). Then \(S\) is a \textbf{basis} for \(\mathbb{R}^3\).
+	\item\(\forall\bm{v}\in\mathbb{R}^3,\quad[T(\bm{v})]_S=\begin{pmatrix}
+	\lambda_1 & 0 & 0 \\
+	0 & \lambda_2 & 0 \\
+	0 & 0 & \lambda_3
+\end{pmatrix}[\bm{v}]_S\) (from section 7.1.11.2)
+	\item Then \(T\) can be viewed as a scaling
+	\begin{itemize}
+		\item along the direction of \(\bm{v}_1\) by factor \(\lambda_1\),
+		\item along the direction of \(\bm{v}_2\) by factor \(\lambda_2\),
+		\item along the direction of \(\bm{v}_3\) by factor \(\lambda_3\).
+	\end{itemize}
+\end{itemize}
+
+\subsection{Reflection}
+\subsubsection{Reflection in $\mathbb{R}^2$}
+\paragraph{Reflection w.r.t. $x$-axis}\,\\
+Let \(T:\mathbb{R}^2\to\mathbb{R}^2\) be a \textbf{linear transformation} with \textbf{standard matrix} \(\begin{pmatrix}
+	1 & 0 \\ 0 & -1
+\end{pmatrix}\)
+\[T\left(\begin{pmatrix}
+	x \\ y
+\end{pmatrix}\right)=\begin{pmatrix}
+	x \\ -y
+\end{pmatrix}\]
+\(T\) is the \textbf{reflection} w.r.t. the \(x\)-axis.
+
+\paragraph{Reflection w.r.t. $y$-axis}\,\\
+Let \(T:\mathbb{R}^2\to\mathbb{R}^2\) be a \textbf{linear transformation} with \textbf{standard matrix} \(\begin{pmatrix}
+	-1 & 0 \\ 0 & 1
+\end{pmatrix}\)
+\[T\left(\begin{pmatrix}
+	x \\ y
+\end{pmatrix}\right)=\begin{pmatrix}
+	-x \\ y
+\end{pmatrix}\]
+\(T\) is the \textbf{reflection} w.r.t. the \(y\)-axis.
+
+\paragraph{Reflection w.r.t. the line $y=x$}\,\\
+Let \(T:\mathbb{R}^2\to\mathbb{R}^2\) be a \textbf{linear transformation} with \textbf{standard matrix} \(\begin{pmatrix}
+	0 & 1 \\ 1 & 0
+\end{pmatrix}\)
+\[T\left(\begin{pmatrix}
+	x \\ y
+\end{pmatrix}\right)=\begin{pmatrix}
+	y \\ x
+\end{pmatrix}\]
+\(T\) is the \textbf{reflection} w.r.t. the line \(y=x\).
+
+\paragraph{Reflection w.r.t. a Line Through the Origin}\,\\
+Let \(T:\mathbb{R}^2\to\mathbb{R}^2\) be a \textbf{linear transformation} with \textbf{standard matrix} \(\begin{pmatrix}
+	\cos(2\theta) & \sin(2\theta) \\ \sin(2\theta) & -\cos(2\theta)
+\end{pmatrix}\)
+\(T\) is the \textbf{reflection} w.r.t. the line \(\ell\) passing through the origin where \(\theta\) is the angle between \(\ell\) and the \(x\)-axis.\\ \\
+\textbf{Orthogonal Matrices of Determinant $-1$}\\
+Every \textbf{orthogonal matrix} of \(\det=-1\) is in this form.
+\\ \\
+\textbf{Representation with Unit Vector Parallel to Line}
+\begin{itemize}
+	\item Let \(\bm{n}=(\cos\theta,\sin\theta)^T\) be a unit vector on \(\ell\).
+	\item\(\bm{p}\) is the projection of \(\bm{v}\) onto \(\vspan\{\bm{n}\}\)
+	\begin{itemize}
+		\item\(\bm{p}=(\bm{v}\cdot\bm{n})\bm{n}\)
+	\end{itemize}
+	\item\(\bm{p}\) is the midpoint of \(\bm{v}\) and \(T(\bm{v})\)
+	\begin{itemize}
+		\item\(T(\bm{v})=2\bm{p}-\bm{v}=2(\bm{v}\cdot\bm{n})\bm{n}-\bm{v}\)
+	\end{itemize}
+\end{itemize}
+\textbf{Representation with Unit Vector Orthogonal to Line}
+\begin{itemize}
+	\item Let \(\bm{n}=(\sin\theta,-\cos\theta)^T\) be a unit vector orthogonal to \(\ell\).
+	\item\(\bm{p}\) is the projection of \(\bm{v}\) onto \(\vspan\{\bm{n}\}\)
+	\begin{itemize}
+		\item\(\bm{p}=(\bm{v}\cdot\bm{n})\bm{n}\)
+	\end{itemize}
+	\item Note that \(T(\bm{v})+2\bm{p}=\bm{v}\)
+	\begin{itemize}
+		\item\(T(\bm{v})=\bm{v}-2\bm{p}=\bm{v}-2(\bm{v}\cdot\bm{n})\bm{n}\)
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{Reflections in $\mathbb{R}^3$}
+\paragraph{Reflections w.r.t. Planes Formed by Coordinate Axes}\,\\
+Let \(T:\mathbb{R}^3\to\mathbb{R}^3\) be a \textbf{linear transformation}.
+\begin{itemize}
+	\item If the \textbf{standard matrix} is \(\begin{pmatrix}
+		1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & -1
+	\end{pmatrix}\),
+	\begin{itemize}
+		\item then \(T\) is the reflection w.r.t. the \(xy\)-plane.
+	\end{itemize}
+	\item If the \textbf{standard matrix} is \(\begin{pmatrix}
+		1 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 1
+	\end{pmatrix}\),
+	\begin{itemize}
+		\item then \(T\) is the reflection w.r.t. the \(xz\)-plane.
+	\end{itemize}
+	\item If the \textbf{standard matrix} is \(\begin{pmatrix}
+		-1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1
+	\end{pmatrix}\),
+	\begin{itemize}
+		\item then \(T\) is the reflection w.r.t. the \(yz\)-plane.
+	\end{itemize}
+\end{itemize}
+
+\paragraph{Reflections w.r.t. Any Plane}\,\\
+Let \(T:\mathbb{R}^3\to\mathbb{R}^3\) be the reflection w.r.t. the plane \(ax+by+cz=0\), where \(a,b,c\) not all zero. Then \(\bm{n}=(a,b,c)^T\) and \(\displaystyle\forall\bm{v}\in\mathbb{R}^3,\quad T(\bm{v})=\bm{v}-\left(2\frac{\bm{v}\cdot\bm{n}}{\norm{\bm{n}}^2}\right)\bm{n}\).
+
+\subsection{Rotation}
+\subsubsection{Rotation in $\mathbb{R}^2$}
+Let \(T:\mathbb{R}^2\to\mathbb{R}^2\) be the \textbf{rotation} about the origin by \(\theta\).
+\begin{itemize}
+	\item Then \(T\) is a \textbf{linear transformation}.
+	\item The \textbf{standard matrix} for \(T\) is \(\begin{pmatrix}
+		\cos\theta & -\sin\theta \\ \sin\theta & \cos\theta
+	\end{pmatrix}\)
+\end{itemize}
+
+\paragraph{Orthogonal Matrices of Determinant $1$}\,\\
+Every \textbf{orthogonal matrix} of \(\det=1\) is in this form.
+
+\subsubsection{Rotation in $\mathbb{R}^3$}
+\begin{itemize}
+	\item Let \(T:\mathbb{R}^3\to\mathbb{R}^3\) be the \textbf{rotation} about the \(z\)-axis anticlockwise by angle \(\theta\).
+	\begin{itemize}
+		\item The \(z\)-coordinate does not change
+		\item It is the rotation about the origin on the plane \(z=z_0\) anticlockwise by \(\theta\).
+		\item\textbf{Standard Matrix}\(\begin{pmatrix}
+			\cos\theta & -\sin\theta & 0 \\
+			\sin\theta & \cos\theta & 0 \\
+			0 & 0 & 1 \\
+		\end{pmatrix}\)
+	\end{itemize}
+	\item Let \(T:\mathbb{R}^3\to\mathbb{R}^3\) be the \textbf{rotation} about the \(x\)-axis anticlockwise by angle \(\theta\).
+	\begin{itemize}
+		\item The \(x\)-coordinate does not change
+		\item It is the rotation about the origin on the plane \(x=x_0\) anticlockwise by \(\theta\).
+		\item\textbf{Standard Matrix}\(\begin{pmatrix}
+			1 & 0 & 0 \\
+			0 & \cos\theta & -\sin\theta \\
+			0 & \sin\theta & \cos\theta \\
+		\end{pmatrix}\)
+	\end{itemize}
+	\item Let \(T:\mathbb{R}^3\to\mathbb{R}^3\) be the \textbf{rotation} about the \(y\)-axis anticlockwise by angle \(\theta\).
+	\begin{itemize}
+		\item The \(y\)-coordinate does not change
+		\item It is the rotation about the origin on the plane \(y=y_0\) anticlockwise by \(\theta\).
+		\item\textbf{Standard Matrix}\(\begin{pmatrix}
+			\cos\theta & 0 & -\sin\theta \\
+			0 & 1 & 0 \\
+			\sin\theta & 0 & \cos\theta \\
+		\end{pmatrix}\)
+	\end{itemize}
+\end{itemize}
+
+\subsection{Reflections and Rotations in $\mathbb{R}^2$}
+\subsubsection{Determinant Determines Rotation vs Reflection}
+Suppose \textbf{standard matrix} \(\bm{A}\) for \(T:\mathbb{R}^2\to\mathbb{R}^2\) is \textbf{orthogonal}.
+\begin{itemize}
+	\item If \(\det(\bm{A})=1\), \(T\) represents a \textbf{rotation} about the origin.
+	\item If \(\det(\bm{A})=-1\), \(T\) represents the \textbf{reflection} w.r.t. a line passing through the origin.
+\end{itemize}
+
+\subsubsection{Reflection about a Line can be Decomposed into Reflection and Rotation}
+Since the \textbf{standard matrix} for \textbf{reflection} about a line \(\ell\) passing through the origin where \(\theta\) is the angle between \(\ell\) and the \(x\)-axis is
+\[\begin{pmatrix}
+	\cos(2\theta) & \sin(2\theta) \\ \sin(2\theta) & -\cos(2\theta)
+\end{pmatrix}=\begin{pmatrix}
+	\cos(2\theta) & -\sin(2\theta) \\ \sin(2\theta) & \cos(2\theta)
+\end{pmatrix}\begin{pmatrix}
+	1 & 0 \\ 0 & -1
+\end{pmatrix}\]
+Reflection w.r.t. \(\ell\) can be decomposed into
+\begin{enumerate}
+	\item Reflection w.r.t. \(x\)-axis
+	\item Rotation about the origin anticlockwise by \(2\theta\).
+\end{enumerate}
+
+\subsection{Shears}
+\subsubsection{Shears in $\mathbb{R}^2$}
+\paragraph{Shear in \(x\)-direction}\,\\
+Let \(T:\mathbb{R}^2\to\mathbb{R}^2\) be defined by
+\[T\left(\begin{pmatrix}
+	x \\ y
+\end{pmatrix}\right)=\begin{pmatrix}
+	x+ky \\ y
+\end{pmatrix}\]
+Then \(T\) is a \textbf{shear} in the \(x\)-direction by a factor \(k\).
+
+\paragraph{Shear in \(y\)-direction}\,\\
+Let \(T:\mathbb{R}^2\to\mathbb{R}^2\) be defined by
+\[T\left(\begin{pmatrix}
+	x \\ y
+\end{pmatrix}\right)=\begin{pmatrix}
+	x \\ kx+y
+\end{pmatrix}\]
+Then \(T\) is a \textbf{shear} in the \(y\)-direction by a factor \(k\).
+
+\subsubsection{Shears in $\mathbb{R}^3$}
+Let \(T:\mathbb{R}^3\to\mathbb{R}^3\) be defined by
+\[T\left(\begin{pmatrix}
+	x \\ y \\ z
+\end{pmatrix}\right)=\begin{pmatrix}
+	x+k_1z \\ y+k_2z \\ z
+\end{pmatrix}\]
+Then \(T\) is a \textbf{shear} in the \(x\)-direction by a factor \(k_1\), and in the \(y\)-direction by factor \(k_2\).
+\begin{itemize}
+ 	\item On \(yz\)-plane \(x=0\), it is a shear in \(y\)-direction by \(k_2\).
+ 	\item On \(xz\)-plane \(y=0\), it is a shear in \(x\)-direction by \(k_1\).
+ 	\item On the plane \(z=1\),
+ 	\begin{itemize}
+ 		\item\(T\left(\begin{pmatrix}
+ 			x \\ y \\ 1
+ 		\end{pmatrix}\right)=\begin{pmatrix}
+ 			x+k_1 \\ y+k_2 \\ 1
+ 		\end{pmatrix}\).
+ 	\end{itemize}
+\end{itemize}
+
+\subsection{Translations}
+Let \(T:\mathbb{R}^2\to\mathbb{R}^2\) be defined by
+\[T\left(\begin{pmatrix}
+	x \\ y
+\end{pmatrix}\right)=\begin{pmatrix}
+	x+a \\ y+b
+\end{pmatrix},a,b\in\mathbb{R}\]
+\begin{itemize}
+	\item\(T\) is a \textbf{translation} by \((a,b)^T\).
+	\item\(T\) is \textbf{not} a \textbf{linear transformation} unless \(a=b=0\).
+\end{itemize}
+
+\subsection{2D Computer Graphic System}
+\subsubsection{Representation of 2D Figures}
+\begin{itemize}
+	\item In 2D computer graphic, a figure is drawn by connecting points \((a_1,b_1),(a_2,b_2),\ldots,(a_n,b_n)\).
+	\item It can be written as an \(2\times n\) matrix:
+	\begin{itemize}
+		\item\(\bm{M}=\begin{pmatrix}
+			a_1 & a_2 & \cdots & a_n \\
+			b_1 & b_2 & \cdots & b_n
+		\end{pmatrix}\).
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{Scaling, Reflection, Rotation, Shearing of 2D Figures}
+\begin{itemize}
+	\item Let \(T\) be a scaling/reflection/rotation/shearing on \(\mathbb{R}^2\)
+	\begin{itemize}
+		\item Then \(T\) is a \textbf{linear transformation} with \textbf{standard matrix} \(\bm{A}\).
+	\end{itemize}
+	\item Let \(\bm{M}=\begin{pmatrix}
+		\bm{v}_1 & \bm{v}_2 & \cdots & \bm{v}_n
+	\end{pmatrix}\) be a 2D figure.
+	\item Then the resulting figure by \(T\) is
+	\begin{itemize}
+		\item\(\begin{pmatrix}
+			T(\bm{v}_1) & \cdots & T(\bm{v}_n)
+		\end{pmatrix}=\begin{pmatrix}
+			\bm{Av}_1 & \cdots & \bm{Av}_n
+		\end{pmatrix}=\bm{A}\begin{pmatrix}
+			\bm{v}_1 & \cdots & \bm{v}_n
+		\end{pmatrix}=\bm{AM}\).
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{Translating 2D Figure with Homogeneous Coordinate System}
+\begin{itemize}
+	\item\textbf{Homogeneous coordinate system} is formed by identifying \(\mathbb{R}^2\) with plane \(z=1\) in \(\mathbb{R}^3\): \(\begin{pmatrix}
+		a \\ b
+	\end{pmatrix}\leftrightarrow\begin{pmatrix}
+		a \\ b \\ 1
+	\end{pmatrix}\)
+	\item A figure \((a_1,b_1),\ldots,(a_n,b_n)\) is identified by \((a_1,b_1,1),\ldots,(a_n,b_n,1)\).
+	\item The associated matrix \(\bm{M}=\begin{pmatrix}
+		a_1 & \cdots & a_n \\
+		b_1 & \cdots & b_n \\
+		1 & \cdots & 1
+	\end{pmatrix}\)
+	\item Suppose we want to do a translation by \((a,b)^T\).
+	\item Define shear \(T\left(\begin{pmatrix}
+		x \\ y \\ z
+	\end{pmatrix}\right)=\begin{pmatrix}
+		x+az \\ y+bz \\ z
+	\end{pmatrix}\) with \textbf{standard matrix} \(\bm{A}=\begin{pmatrix}
+		1 & 0 & a \\
+		0 & 1 & b \\
+		0 & 0 & 1
+	\end{pmatrix}\)
+	\item\(\bm{AM}=\begin{pmatrix}
+		a_1+a & \cdots & a_n+a \\
+		b_1+b & \cdots & b_n+b \\
+		1 & \cdots & 1
+	\end{pmatrix}\) represent the translation by \((a,b)^T\).
+\end{itemize}
+\end{document}

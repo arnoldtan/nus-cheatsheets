@@ -1,0 +1,193 @@
+\documentclass[../ma2001_notes.tex]{subfiles}
+
+\begin{document}
+\chapter{Vector Spaces Associated With Matrices}
+
+\section{Row Spaces and Column Spaces}
+\subsection{Definition of Row Spaces and Column Spaces}
+\textbf{Definition.} Let \(\bm{A}=(a_{ij})_{m\times n}\).
+
+\subsubsection{Row Space}
+For \(1\leq i\leq m\), let
+\begin{align*}
+	\bm{r}_i
+	&=i\text{th row of } \bm{A} \\
+	&=\begin{pmatrix}
+		a_{i1} & \cdots & a_{in}
+	\end{pmatrix}\in\mathbb{R}^n
+\end{align*}
+Then the \textbf{row space} of \(\bm{A}=\vspan\{\bm{r}_1,\ldots,\bm{r}_m\}\) is a \textbf{subspace} of \(\mathbb{R}^n\).
+
+\subsubsection{Column Space}
+For \(1\leq j\leq n\), let
+\begin{align*}
+	\bm{c}_j
+	&=j\text{th column of } \bm{A} \\
+	&=\begin{pmatrix}
+		a_{1j} \\ \vdots \\ a_{mj}
+	\end{pmatrix}\in\mathbb{R}^m
+\end{align*}
+Then the \textbf{column space} of \(\bm{A}=\vspan\{\bm{c}_1,\ldots,\bm{c}_n\}\) is a \textbf{subspace} of \(\mathbb{R}^m\).
+
+\subsection{Row Equivalent Matrices And Their Rows}
+\subsubsection{Row Equivalence Implies Same Row Space}
+\textbf{Theorem.} Suppose \(\bm{A}\) and \(\bm{B}\) are \textbf{row equivalent matrices}. Then \textbf{row space} of \(\bm{A}=\) \textbf{row space} of \(\bm{B}\).
+
+\paragraph{Remark}\,\\
+Let \(\bm{R}\) be a \textbf{row-echelon form} of \(\bm{A}\). Then the \textbf{row space} of \(\bm{A}\) = \textbf{row space} of \(\bm{R}\).
+
+\subsubsection{Nonzero Rows of REF are Linearly Independent}
+\textbf{Theorem.} Let \(\bm{R}\) be a \textbf{row-echelon form} of a matrix \(\bm{A}\). Then the nonzero rows of \(R\) are \textbf{linearly independent}.
+
+\subsubsection{Finding Basis/Dimension For Row Space}
+\textbf{Theorem.} Let \(\bm{R}\) be a \textbf{row-echelon form} of a matrix \(\bm{A}\). Then
+\begin{itemize}
+	\item the nonzero rows of \(\bm{R}\) form a \textbf{basis} for the \textbf{row space} of \(\bm{A}\), and
+	\item\(\dim(\text{row space of }\bm{A})=\) no. of nonzero rows of \(\bm{R}\).
+\end{itemize}
+
+
+\subsection{Row Equivalent Matrices And Their Columns}
+\subsubsection{Row Equivalence Preserve Linear Relations Between Columns}
+\textbf{Theorem.} Let \(\bm{A}\) and \(\bm{B}\) be \textbf{row equivalent matrices}. Then
+\begin{itemize}
+	\item There is a linear relation among a given set of columns of \(\bm{A}\Leftrightarrow\) the same linear relation exists among the corresponding set of columns of \(\bm{B}\).
+	\item A given set of columns of \(\bm{A}\) is \textbf{linearly independent} \(\Leftrightarrow\) the corresponding set of columns of \(\bm{B}\) is \textbf{linearly independent}.
+	\item A given set of columns of \(\bm{A}\) is a \textbf{basis} for the column space of \(\bm{A}\) \(\Leftrightarrow\) the corresponding set of columns of \(\bm{B}\) is a \textbf{basis} for the column space of \(\bm{B}\)
+\end{itemize}
+
+\subsubsection{Pivot Columns of REF is a Basis For Column Space}
+\textbf{Theorem.} Let \(\bm{R}\) be a \textbf{row-echelon form} of a matrix \(\bm{A}\). Then the \textbf{pivot columns} of \(R\) is a \textbf{basis} for the \textbf{column space} of \(\bm{R}\).
+
+\subsubsection{Finding Basis/Dimension For Column Space}
+\textbf{Theorem.} Let \(\bm{R}\) be a \textbf{row-echelon form} of a matrix \(\bm{A}\). The \textbf{pivot columns} of \(\bm{R}\) is a \textbf{basis} for the \textbf{column space} of \(\bm{R}\). Then
+\begin{itemize}
+	\item the corresponding columns of \(\bm{A}\) is a \textbf{basis} for the column space of \(\bm{A}\), and
+	\item\(\dim(\text{column space of }\bm{A})=\) no. of \textbf{pivot columns} of \(\bm{R}\).
+\end{itemize}
+
+\subsection{Finding Basis for Vector Space Spanned By a Set of Vectors}
+To find a \textbf{basis} for a \textbf{vector space} \(\bm{V}=\vspan\{\bm{v}_1,\ldots,\bm{v}_m\}\), choose either one of the methods below:
+
+\subsubsection{Method 1: From New Vectors Using Row Space}
+\begin{enumerate}
+	\item Let each \(\bm{v}_1,\ldots,\bm{v}_m\) be a \textbf{row vector}
+	\item Let matrix \(\bm{A}=\begin{pmatrix}
+		\bm{v}_1 \\ \vdots \\ \bm{v}_m
+	\end{pmatrix}\)
+	\item The problem is now equivalent to finding the \textbf{basis} for the \textbf{row space} of \(\bm{A}\) (refer to section 1.1.2.3).
+\end{enumerate}
+
+\subsubsection{Method 2: Select From Original Vectors Using Column Space}
+\begin{enumerate}
+	\item Let each \(\bm{v}_1,\ldots,\bm{v}_m\) be a \textbf{column vector}
+	\item Let matrix \(\bm{A}=\begin{pmatrix}
+		\bm{v}_1 & \cdots & \bm{v}_m
+	\end{pmatrix}\)
+	\item The problem is now equivalent to finding the \textbf{basis} for the \textbf{column space} of \(\bm{A}\) (refer to section 1.1.3.3).
+\end{enumerate}
+
+\subsection{Consistency of Linear Systems And Column Space of Coefficient Matrix}
+\textbf{Theorem.} Let \(\bm{A}\) be a \(m\times n\) \textbf{matrix}. The \textbf{linear system} \(\bm{Ax}=\bm{b}\) is \textbf{consistent} \(\Leftrightarrow\bm{b}\in\{\bm{Av}\mid\bm{v}\in\mathbb{R}^n\}=\) column space of \(\bm{A}\).
+
+\section{Rank}
+\subsection{The Dimension of Row Space And Column Space Are The Same}
+\textbf{Theorem.} Let \(\bm{A}\) be a \textbf{matrix}. Then
+\[\dim(\text{row space of }\bm{A})=\dim(\text{column space of }\bm{A})\]
+
+\subsection{Definition of Rank}
+\textbf{Definition.} Let \(\bm{A}\) be a \textbf{matrix}. The \textbf{rank} of \(\bm{A}\), denoted by \(\rank(\bm{A})\) is
+\[\rank(\bm{A})=\dim(\text{row space of }\bm{A})=\dim(\text{column space of }\bm{A})\]
+
+\subsection{Properties of Rank}
+\textbf{Theorem.} Let \(\bm{A}\) be a \(m\times n\) \textbf{matrix}. Then
+\begin{itemize}
+	\item\(\rank(\bm{A})=\rank(\bm{A}^T)\)
+	\item\(\rank(\bm{A})=0\Leftrightarrow\bm{A}=\bm{0}\)
+	\item\(\rank(\bm{A})\leq m\) and \(\rank(\bm{A})\leq n\)
+	\begin{itemize}
+		\item\(\rank(\bm{A})\leq\min\{m,n\}\)
+		\item\(\bm{A}\) is \textbf{full rank} if \(\rank(\bm{A})=\min\{m,n\}\)
+	\end{itemize}
+	\item A \textbf{square matrix} \(\bm{A}\) is \textbf{full rank} \(\Leftrightarrow\bm{A}\) is \textbf{invertible}.
+\end{itemize}
+
+\subsection{Rank \& Consistency of Linear System}
+\textbf{Theorem.} Let \(\bm{Ax}=\bm{b}\) be a \textbf{linear system}. Let \(\left(\begin{array}{c|c}
+	\bm{R} & \bm{b}'
+\end{array}\right)\) be the \textbf{row-echelon form} of \(\left(\begin{array}{c|c}
+	\bm{A} & \bm{b}
+\end{array}\right)\). Then
+\begin{align*}
+	\bm{Ax}=\bm{b}\text{ is }\textbf{consistent}
+	&\Leftrightarrow\rank(\bm{A})=\rank\left(\begin{array}{c|c}
+		\bm{A} & \bm{b}
+	\end{array}\right) \\
+	&\Leftrightarrow\rank(\bm{R})=\rank\left(\begin{array}{c|c}
+	\bm{R} & \bm{b}'
+	\end{array}\right)
+\end{align*}
+
+\subsubsection{Remark}
+In general, \(\rank(\bm{A})\leq\rank\left(\begin{array}{c|c}
+	\bm{A} & \bm{b}
+\end{array}\right)\leq\rank(\bm{A})+1\)
+
+\subsection{Row/Column Spaces and Matrix Multiplication}
+\textbf{Theorem.} Let \(\bm{A}\) be a \(m\times n\) \textbf{matrix} and \(\bm{B}\) be a \(n\times p\) \textbf{matrix}. Then
+\begin{itemize}
+	\item column space of \(\bm{AB}\subseteq\) column space of \(\bm{A}\);
+	\item row space of \(\bm{AB}\subseteq\) row space of \(\bm{B}\).
+\end{itemize}
+
+\subsubsection{Ranks and Matrix Multiplication}
+In particular,
+\begin{itemize}
+	\item\(\rank(\bm{AB})\leq\rank(\bm{A})\);
+	\item\(\rank(\bm{AB})\leq\rank(\bm{B})\).
+\end{itemize}
+That is, \(\rank(\bm{AB})\leq\min\{\rank(\bm{A}),\rank(\bm{B})\}\).
+\begin{itemize}
+	\item\(\bm{A}\) is \textbf{invertible} \(\implies\rank(\bm{AB})=\rank(\bm{B})\)
+	\item\(\bm{B}\) is \textbf{invertible} \(\implies\rank(\bm{AB})=\rank(\bm{A})\)
+\end{itemize}
+
+\section{Nullspaces and Nullities}
+\subsection{Definition of Nullspace}
+\textbf{Definition.} Let \(\bm{A}\) be a \(m\times n\) \textbf{matrix}. The \textbf{nullspace} of \(\bm{A}\) is the \textbf{solution space} of \(\bm{Ax}=\bm{0}\), which is
+\[\{\bm{v}\in\mathbb{R}^n\mid\bm{Av}=\bm{0}\}.\]
+
+\subsection{Definition of Nullity}
+\textbf{Definition.} The \textbf{dimension} of the \textbf{nullspace} of a \textbf{matrix} \(\bm{A}\) is the \textbf{nullity} of \(\bm{A}\), denoted by \(\nullity(\bm{A})\).
+
+\subsection{Finding Nullity of a Matrix}
+Let \(\bm{R}\) be a \textbf{row-echelon form} of \(\bm{A}\). Then
+\begin{itemize}
+ 	\item\(\bm{Ax}=\bm{0}\Leftrightarrow\bm{Rx}=\bm{0}\)
+ 	\item\textbf{nullspace} of \(\bm{A}=\) \textbf{nullspace} of \(\bm{R}\)
+ 	\item\(\nullity(\bm{A})=\nullity(\bm{R})=\) no. of \textbf{non-pivot columns} of \(\bm{R}\).
+\end{itemize}
+
+\subsection{Dimension Theorem}
+\textbf{Theorem.} Let \(\bm{A}\) be a \(m\times n\) \textbf{matrix}. Then
+\[\rank(\bm{A})+\nullity(\bm{A})=n\]
+
+\subsection{Solution to Inhomogeneous Linear System and Nullspace}
+\textbf{Theorem.} Suppose \(\bm{Ax}=\bm{b}\) has a \textbf{solution} \(\bm{v}\). Let \(W=\) \textbf{nullspace} of \(\bm{A}\). Then the \textbf{solution set} of \(\bm{Ax}=\bm{b}\) is
+\[\bm{v}+W=\{\bm{v}+\bm{w}\mid\bm{w}\in W\}\]
+Hence
+\[(\text{A general solution of }\bm{Ax}=\bm{b})=(\text{A particular solution of }\bm{Ax}=\bm{b})+(\text{A general solution of }\bm{Ax}=\bm{0})\]
+
+\subsubsection{Condition for Linear System to have Unique Solution}
+\textbf{Theorem.} Suppose that a \textbf{linear system} \(\bm{Ax}=\bm{b}\) is \textbf{consistent}. Then
+\begin{align*}
+	\bm{Ax}=\bm{b}\text{ has a unique }\textbf{solution}
+	&\Leftrightarrow\bm{Ax}=\bm{0}\text{ has only the }\textbf{trivial solution} \\
+	&\Leftrightarrow\textbf{nullspace}\text{ of }\bm{A}\text{ is }\{\bm{0}\} \\
+	&\Leftrightarrow\nullity(\bm{A})=0 \\
+	&\Leftrightarrow\rank(\bm{A})=\text{no. of columns of }\bm{A}
+\end{align*}
+
+\subsubsection{Condition for the Solution Set of a Linear System to be a Vector Space}
+\textbf{Theorem.} The \textbf{solution set} of a \textbf{linear system} \(\bm{Ax}=\bm{b}\) is a \textbf{vector space} \(\Leftrightarrow\bm{b}=\bm{0}\).
+\end{document}

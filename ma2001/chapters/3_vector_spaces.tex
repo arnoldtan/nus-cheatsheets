@@ -1,0 +1,609 @@
+\documentclass[../ma2001_notes.tex]{subfiles}
+
+\begin{document}
+\chapter{Vector Spaces}
+
+\section{Euclidean $n$-Spaces}
+\subsection{Introduction to $n$-vectors}
+\subsubsection{Definition of $n$-vector}
+\textbf{Definition.} An \(\bm{n}\)\textbf{-vector} or \textbf{ordered} \(\bm{n}\)\textbf{-tuple} of real numbers is
+\[\bm{v}=(v_1, v_2, \ldots, v_n)\]
+where \(v_i\in\mathbb{R}\) is the \(\bm{i}\)\textbf{th component} or \(\bm{i}\)\textbf{th coordinate} of \(\bm{v}\).
+
+\subsubsection{Zero Vector}
+\textbf{Definition.} The \(n\)-vector \(\bm{0}=(0,0,\ldots,0)\) is the \textbf{zero vector}.
+
+\subsection{$n$-vector Operations}
+\subsubsection{Equal $n$-vectors}
+\textbf{Definition.} Let \(\bm{u}=(u_1,u_2,\ldots,u_n)\) and \(\bm{v}=(v_1,v_2,\ldots,v_n)\). Then \(\bm{u}\) and \(\bm{v}\) are \textbf{equal} if \(u_i=v_i\) for all \(i=1,\ldots,n\).
+
+\subsubsection{$n$-vector Addition, Subtraction \& Scalar Multiplication}
+\textbf{Definition.} Let \(\bm{u}=(u_1,u_2,\ldots,u_n)\), \(\bm{v}=(v_1,v_2,\ldots,v_n)\), and \(c\in\mathbb{R}\). The following operations are defined:
+\begin{itemize}
+	\item\textbf{Scalar Multiplication:} \(c\bm{v}=(cv_1,cv_2,\ldots,cv_n)\)
+	\item\textbf{Negative:} \(-\bm{v}=(-1)\bm{v}\)
+	\item\textbf{Addition:} \(\bm{u}+\bm{v}=(u_1+v_1,u_2+v_2,\ldots,u_n+v_n)\)
+	\item\textbf{Subtraction:} \(\bm{u}-\bm{v}=(u_1-v_1,u_2-v_2,\ldots,u_n-v_n)\)
+\end{itemize}
+
+\subsection{Properties of $n$-vectors}
+\textbf{Theorem.} Let \(\bm{u},\bm{v},\bm{w}\) be \(n\)-vectors and \(c,d\in\mathbb{R}\). Then
+\begin{itemize}
+	\item\(\bm{u}-\bm{v}=\bm{u}+(-\bm{v})\)
+	\item Commutative Law for Vector Addition:
+	\begin{itemize}
+		\item\(\bm{u}+\bm{v}=\bm{v}+\bm{u}\)
+	\end{itemize}
+	\item Associative Law for Vector Addition:
+	\begin{itemize}
+		\item\((\bm{u}+\bm{v})+\bm{w}=\bm{u}+(\bm{v}+\bm{w})\)
+	\end{itemize}
+	\item Additive Identity and Additive Inverse:
+	\begin{itemize}
+		\item\(\bm{v}+\bm{0}=\bm{v}\) and \(\bm{v}+(-\bm{v})=\bm{0}\)
+	\end{itemize}
+	\item Distributive Law for Scalar Multiplication over Addition:
+	\begin{itemize}
+		\item\(c(\bm{u}+\bm{v})=c\bm{u}+c\bm{v}\)
+		\item\((c+d)\bm{v}=c\bm{v}+d\bm{v}\)
+	\end{itemize}
+	\item\(c(d\bm{v})=(cd)\bm{v}=d(c\bm{v})\)
+	\begin{itemize}
+		\item In particular, \(-c\bm{v}=(-c)\bm{v}=c(-\bm{v})\) and \(-(-\bm{v})=\bm{v}\)
+	\end{itemize}
+	\item\(1\bm{v}=\bm{v}\)
+\end{itemize}
+
+\subsection{$n$-vectors as Matrices}
+An \(n\)-vector \((v_1,v_2,\ldots,v_n)\) can be viewed as
+\begin{itemize}
+	\item a \textbf{row matrix} (\textbf{row vector}) \(\begin{pmatrix}
+		v_1 & v_2 & \ldots & v_n
+	\end{pmatrix}\), or
+	\item a \textbf{column matrix} (\textbf{column vector}) \(\begin{pmatrix}
+		v_1 \\ v_2 \\ \vdots \\ v_n
+	\end{pmatrix}\)
+\end{itemize}
+
+\subsection{Vectors in $xy$-Plane}
+\subsubsection{Vectors as Points on the $xy$-Plane}
+Every point \(P\) on the \(xy\)-plane is represented by a vector \(\bm{v}=(a,b)\) where
+\begin{itemize}
+	\item\(a\) is the \(x\)-coordinate and \(b\) is the \(y\)-coordinate; and
+	\item\(\bm{v}\) is the arrow from the origin \(O\) to the point \(P\), denoted by \(\overrightarrow{OP}\)
+\end{itemize}
+
+\subsubsection{Vectors as Change from Initial Point to End Point}
+A vector \((a,b)\) represents the change from the \textbf{initial point} \((x_1,y_1)\) to the \textbf{end point} \((x_2, y_2)\) where \(a=x_2-x_1, b=y_2-y_1\).
+
+\subsubsection{Length of Vectors}
+\textbf{Definition.} Let \(\bm{v}=(v_1,v_2)\) be a vector in \(xy\)-plane. Its \textbf{length} is
+\[\norm{\bm{v}}=\sqrt{v_1^2+v_2^2}\]
+
+\subsubsection{Properties of Length of Vectors}
+\textbf{Theorem.}
+\begin{itemize}
+	\item\(\norm{c\bm{v}}=\abs{c}\norm{\bm{v}}\)
+	\item\(\bm{v}=\bm{0}\iff\norm{v}=0\)
+\end{itemize}
+
+\subsubsection{Geometrical Interpretation of Scalar Multiplication}
+Let \(\bm{v}=(v_1,v_2)\) and \(c\in\mathbb{R}\). Then
+\begin{itemize}
+	\item\(c\bm{v}\) is a vector \textbf{parallel} to \(\bm{v}\) such that
+	\begin{itemize}
+		\item its \textbf{length} is \(\abs{c}\) times the \textbf{length} of \(\bm{v}\)
+	\end{itemize}
+	\begin{enumerate}
+		\item\(c=0\implies c\bm{v}=0\bm{v}=\bm{0}\) is the \textbf{zero vector}.
+		\item\(c>0\implies c\bm{v}\) has the same direction as \(\bm{v}\)
+		\item\(c<0\implies c\bm{v}\) has the opposite direction of \(\bm{v}\)
+	\end{enumerate}
+\end{itemize}
+
+\subsubsection{Geometrical Interpretation of Vector Addition}
+Let \(\bm{u}=(u_1,u_2)\) and \(\bm{v}=(v_1,v_2)\). Then \(\bm{u}+\bm{v}\) is the vector obtained as follows:
+\begin{enumerate}
+	\item Parallel shift \(\bm{v}\) so that its initial point is the same as the end of \(\bm{u}\).
+	\item Then \(\bm{u}+\bm{v}\) is the vector from the intial point of \(\bm{u}\) to the end point of \(\bm{v}\).
+\end{enumerate}
+
+\subsubsection{Geometrical Interpretation of Vector Subtraction}
+Let \(\bm{u}=(u_1,u_2)\) and \(\bm{v}=(v_1,v_2)\). Then \(\bm{u}-\bm{v}\) is the vector obtained as follows:
+\begin{enumerate}
+	\item Parallel shift \(\bm{v}\) so that \(\bm{u}\) and \(\bm{v}\) have the same initial point.
+	\item Then \(\bm{u}-\bm{v}\) is the vector from the end point of \(\bm{v}\) to the end point of \(\bm{u}\).
+\end{enumerate}
+
+\subsection{Vectors in $xyz$-Space}
+\subsubsection{Vectors as Points on the $xyz$-Space}
+Every point \(P\) on the \(xyz\)-space is represented by a vector \(\bm{v}=(a,b,c)\) where
+\begin{itemize}
+	\item\(a\) is the \(x\)-coordinate, \(b\) is the \(y\)-coordinate, and \(c\) is the \(z\)-coordinate; and
+	\item\(\bm{v}\) is the arrow from the origin \(O\) to the point \(P\), denoted by \(\overrightarrow{OP}\)
+\end{itemize}
+
+\subsection{Euclidean Spaces}
+\textbf{Definition.} The \textbf{Euclidean} \(\bm{n}\)\textbf{-space} (or simply \(\bm{n}\)\textbf{-space}) is the set of all \(n\)-vectors of real numbers, denoted by \(\mathbb{R}^n\) where
+\[\mathbb{R}^n=\{(v_1,v_2,\ldots,v_n)\mid v_1,v_2,\ldots,v_n\in\mathbb{R}\}\]
+\(\bm{v}\in\mathbb{R}^n\iff\bm{v}\) is of the form \(\bm{v}=(v_1,v_2,\ldots,v_n)\) for real numbers \(v_1,v_2,\ldots,v_n\) \\
+\begin{itemize}
+	\item In particular,
+	\begin{itemize}
+		\item\(n=1\implies\mathbb{R}=\mathbb{R}^1\) is the real line. 
+		\item\(n=2\implies\mathbb{R}^2\) is the \(xy\)-plane. 
+		\item\(n=3\implies\mathbb{R}^3\) is the \(xyz\)-space. 
+	\end{itemize}
+	\item Given a \textbf{linear system} \(\bm{Ax}=\bm{b}\) in \(m\) equations and \(n\) variables
+	\begin{itemize}
+		\item\(\bm{x}\) as be viewed as an \(n\)-vector, i.e. \(\bm{x}\in\mathbb{R}^n\)
+		\item Then the \textbf{solution set} of \(\bm{Ax}=\bm{b}\) is a subset of \(\mathbb{R}^n\)
+	\end{itemize}
+\end{itemize}
+
+\subsection{Implicit and Explicit Forms of Linear Systems}
+\subsubsection{Definition of Implicit and Explicit Forms}
+\textbf{Definition.}
+\begin{itemize}
+	\item A \textbf{linear system} is given in the \textbf{implicit form} as follows:
+	\[\left\{
+	\arraycolsep=1.4pt
+	\begin{array}{ccccccccc}
+		a_{11}x_1 & + & a_{12}x_2 & + & \ldots & + & a_{1n}x_n & = & b_1, \\
+		a_{21}x_1 & + & a_{22}x_2 & + & \ldots & + & a_{2n}x_n & = & b_2, \\
+		& \vdots & & & & & & \vdots & \\
+		a_{m1}x_1 & + & a_{m2}x_2 & + & \ldots & + & a_{mn}x_n & = & b_m,
+	\end{array}\right.
+	\]
+	\item Its general solution is in the \textbf{explicit form}.
+\end{itemize}
+
+\subsubsection{Lines in $\mathbb{R}^2$}
+\paragraph{Vector Equation for line in $\mathbb{R}^2$}\,\\
+A \textbf{straight line} in \(\mathbb{R}^2\) is determined by a point \((x_0,y_0)\) on the line, and its direction vector \((a,b)\ne\bm{0}\).
+\begin{itemize}
+	\item A point on the line is of the form \((x_0,y_0)+t(a,b)\), where \(t\in\mathbb{R}\)
+\end{itemize}
+
+
+\paragraph{Implicit to Explicit Form}\,\\
+Refer to Chapter 1.1.5 on how to convert implicit form to explicit form.
+
+\paragraph{Explicit to Implicit Form}\,\\
+Given an explicit form of a line in \(\mathbb{R}^2\):
+\[\{(x_0+at, y_0+bt)\mid t\in\mathbb{R}\}\]
+where \(x_0,y_0,a,b\) are real constants. An implicit form may be obtained as follows:
+\begin{enumerate}
+	\item Let \(x=x_0+at\), and \(y=y_0+bt\)
+	\item Then \(\displaystyle t=\frac{x-x_0}{a}\) and \(\displaystyle t=\frac{y-y_0}{b}\implies\frac{x-x_0}{a}=\frac{y-y_0}{b}\)
+	\item Cross multiply to get \(bx-bx_0=ay-ay_0\implies bx-ay=bx_0-ay_0\)
+	\item Hence, the implicit form is \(\{(x,y)\mid bx-ay=bx_0-ay_0\}\)
+\end{enumerate}
+
+\subsubsection{Planes in $\mathbb{R}^3$}
+\paragraph{Vector Equation for plane in $\mathbb{R}^3$}\,\\
+A \textbf{plane} in \(\mathbb{R}^3\) is determined by a point \((x_0,y_0,z_0)\) on the plane, and two non-parallel vectors parallel to the plane \((a_1,b_1,c_1)\) and \((a_2,b_2,c_2)\).
+\begin{itemize}
+	\item A point on the plane is of the form \((x_0,y_0,z_0)+s(a_1,b_1,c_1)+t(a_2,b_2,c_2)\), where \(s,t\in\mathbb{R}\)
+\end{itemize}
+
+\paragraph{Implicit to Explicit Form}\,\\
+Refer to Chapter 1.1.5 on how to convert implicit form to explicit form.
+
+\paragraph{Explicit to Implicit Form}\,\\
+Given an explicit form of a plane in \(\mathbb{R}^3\):
+\[\{(x_0+a_1s+a_2t, y_0+b_1s+b_2t, z_0+c_1s+c_2t)\mid t\in\mathbb{R}\}\]
+where \(x_0,y_0,z_0,a_i,b_i,c_i\) are real constants. An implicit form may be obtained as follows:
+\begin{enumerate}
+	\item Let \(x=x_0+a_1s+a_2t\), \(y=y_0+b_1s+b_2t\), and \(z=z_0+c_1s+c_2t\)
+	\item Then we obtain the following \textbf{linear system} in \(s,t\):
+	\[\left\{
+	\arraycolsep=1.4pt
+	\begin{array}{ccccc}
+		a_1s & + & a_2t & = & x-x_0 \\
+		b_1s & + & b_2t & = & y-y_0 \\
+		c_1s & + & c_2t & = & z-z_0 
+	\end{array}\right.
+	\]
+	\item Perform \textbf{Gaussian Elimination} to its corresponding \textbf{augmented matrix}.
+	\item The \((3,3)\)-entry of its \textbf{row-echelon form} is a function \(f\) in variables \(x,y,z\)
+	\item Since the system is \textbf{consistent}, \(f(x,y,z)=0\).
+	\item Hence, the implicit form is \(\{(x,y,z)\mid f(x,y,z)=0\}\)
+\end{enumerate}
+
+\subsubsection{Lines in $\mathbb{R}^3$}
+\paragraph{Vector Equation for line in $\mathbb{R}^3$}\,\\
+A \textbf{straight line} in \(\mathbb{R}^3\) is determined by a point \((x_0,y_0,z_0)\) on the line, and its direction vector \((a,b,c)\ne\bm{0}\).
+\begin{itemize}
+	\item A point on the line is of the form \((x_0,y_0,z_0)+t(a,b,c)\), where \(t\in\mathbb{R}\)
+\end{itemize}
+
+\paragraph{Implicit to Explicit Form}\,\\
+Solve the \textbf{linear system} of two equations (each representing a plane) in three variables to convert implicit form to explicit form.
+
+\paragraph{Explicit to Implicit Form}\,\\
+Given an explicit form of a line in \(\mathbb{R}^3\):
+\[\{(x_0+at, y_0+bt, z_0+ct)\mid t\in\mathbb{R}\}\]
+where \(x_0,y_0,z_0,a,b,c\) are real constants. An implicit form may be obtained as follows:
+\begin{enumerate}
+	\item Let \(x=x_0+at\), \(y=y_0+bt\), and \(z=z_0+ct\)
+	\item Find the relation between \(x\) and \(y\), say \(f(x,y)=0\)
+	\item Find the relation between \(x\) and \(z\), say \(g(x,z)=0\)
+	\item Then, the implicit form is \(\{(x,y,z)\mid f(x,y)=0\ \&\ g(x,z)=0\}\)
+\end{enumerate}
+
+\section{Linear Combinations and Linear Spans}
+\subsection{Definition of Linear Combination}
+\textbf{Definition.} Let \(\bm{v}_1,\bm{v}_2,\ldots,\bm{v}_k\) be vectors in \(\mathbb{R}^n\). A \textbf{linear combination} of \(\bm{v}_1,\bm{v}_2,\ldots,\bm{v}_k\) has the form
+\[c_1\bm{v}_1+c_2\bm{v}_2+\ldots+c_k\bm{v}_k\]
+where \(c_1,c_2,\ldots,c_k\in\mathbb{R}\) \\
+\textbf{Remarks.} In particular, \(\bm{0}\) is a \textbf{linear combination} of \(\bm{v}_1,\bm{v}_2,\ldots,\bm{v}_k\):
+\[\bm{0}=0\bm{v}_1+0\bm{v}_2+\ldots+0\bm{v}_k\]
+
+\subsection{Definition of Linear Span}
+\textbf{Definition.} Let \(S=\{\bm{v}_1,\bm{v}_2,\ldots,\bm{v}_k\}\) be a subset of \(\mathbb{R}^n\). The \textbf{set of all linear combinations} of \(\bm{v}_1,\bm{v}_2,\ldots,\bm{v}_k\) is
+\[\{c_1\bm{v}_1+c_2\bm{v}_2+\ldots+c_k\bm{v}_k\mid c_1,c_2,\ldots,c_k\in\mathbb{R}\}\]
+and is called the \textbf{linear span} of \(S\) (or \(\bm{v}_1,\bm{v}_2,\ldots,\bm{v}_k\)), denoted by \(\vspan(S)\) or \(\vspan\{\bm{v}_1,\bm{v}_2,\ldots,\bm{v}_k\}\) respectively. \\
+\textbf{Remarks.} \(\bm{v}\) is a linear combination of \(\bm{v}_1,\bm{v}_2,\ldots,\bm{v}_k\iff\bm{v}\in\vspan\{\bm{v}_1,\bm{v}_2,\ldots,\bm{v}_k\}\)
+
+\subsection[\texorpdfstring{Criterion for $\vspan(S)=\mathbb{R}^n$}{Criterion for Span Equals to Euclidean n-Space}]{Criterion for $\vspan(S)=\mathbb{R}^n$}
+
+\subsubsection{When $k\geq n$}
+Let \(S=\{\bm{v}_1,\bm{v}_2,\ldots,\bm{v}_k\}\subseteq\mathbb{R}^n\). The following steps allow us to check whether \(\vspan(S)=\mathbb{R}^n\):
+\begin{enumerate}
+	\item View each \(\bm{v}_j\) as a column vector
+	\item Let \(\bm{A}=\begin{pmatrix}
+		\bm{v}_1 & \bm{v}_2 & \ldots & \bm{v}_k
+	\end{pmatrix}\)
+	\item Find a \textbf{row-echelon form} \(\bm{R}\) of \(\bm{A}\)
+	\begin{itemize}
+		\item If \(\bm{R}\) has a zero row, then \(\vspan(S)\ne\mathbb{R}^n\)
+		\item If \(\bm{R}\) has no zero row, then \(\vspan(S)=\mathbb{R}^n\)
+	\end{itemize}
+\end{enumerate}
+
+\subsubsection{When $k<n$}
+\textbf{Theorem.} Let \(S=\{\bm{v}_1,\bm{v}_2,\ldots,\bm{v}_k\}\subseteq\mathbb{R}^n\). \(k<n\implies\vspan(S)\ne\mathbb{R}^n\)
+
+\subsection{Properties of Linear Spans}
+\subsubsection{Linear Spans Always Contains Zero Vector}
+\textbf{Theorem.} Let \(S=\{\bm{u}_1,\bm{u}_2,\ldots,\bm{u}_k\}\subseteq\mathbb{R}^n\). Then
+\begin{itemize}
+	\item\(\bm{0}\in\vspan(S)\), where \(\bm{0}\) is the zero vector in \(\mathbb{R}^n\)
+	\begin{itemize}
+		\item Hence, \(\vspan(S)\ne\varnothing\)
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{Linear Spans Are Closed Under Linear Combination}
+\textbf{Theorem.} Let \(S=\{\bm{u}_1,\bm{u}_2,\ldots,\bm{u}_k\}\subseteq\mathbb{R}^n\), \(\bm{v}_1,\bm{v}_2,\ldots,\bm{v}_r\in\vspan(S)\), and \(c_1,c_2,\ldots,c_r\in\mathbb{R}\). Then
+\[c_1\bm{v}_1+c_2\bm{v}_2+\ldots+c_r\bm{v}_r\in\vspan(S)\]
+In particular,
+\begin{itemize}
+	\item\(\vspan(S)\) is \textbf{closed} under scalar multiplication.
+	\begin{itemize}
+		\item\(\bm{v}\in\vspan(S)\) and \(c\in\mathbb{R}\implies c\bm{v}\in\vspan(S)\)
+	\end{itemize}
+	\item\(\vspan(S)\) is \textbf{closed} under addition.
+	\begin{itemize}
+		\item\(\bm{u}\in\vspan(S)\) and \(\bm{v}\in\vspan(S)\implies\bm{u}+\bm{v}\in\vspan(S)\)
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{When a Span is a Subset of Another Span}
+\textbf{Theorem.} Given two subsets of \(\mathbb{R}^n\):
+\[S_1=\{\bm{u}_1,\bm{u}_2,\ldots,\bm{u}_k\},S_2=\{\bm{v}_1,\bm{v}_2,\ldots,\bm{v}_m\}\]
+Then
+\[\vspan(S_1)\subseteq\vspan(S_2)\iff\text{ Every }\bm{u}_i\text{ is a linear combination of }\bm{v}_1,\bm{v}_2,\ldots,\bm{v}_m\]
+
+\subsubsection{Linear Spans with Redundant Vectors}
+\textbf{Theorem.} Let \(\bm{v}_1,\bm{v}_2,\ldots,\bm{v}_{k-1},\bm{v}_k\in\mathbb{R}^n\). Then
+\[\bm{v}_k\text{ is a linear combination of }\bm{v}_1,\bm{v}_2,\ldots,\bm{v}_{k-1}\implies\vspan\{\bm{v}_1,\bm{v}_2,\ldots,\bm{v}_{k-1}\}=\vspan\{\bm{v}_1,\bm{v}_2,\ldots,\bm{v}_{k-1},\bm{v}_k\}\]
+
+\subsection{Criterion for Vector Belongs to Span}
+Let \(S=\{\bm{v}_1,\bm{v}_2,\ldots,\bm{v}_k\}\subseteq\mathbb{R}^n\). The following steps allow us to check whether a vector \(\bm{v}\in\vspan(S)\):
+\begin{enumerate}
+	\item View each \(\bm{v}_j\) as a \textbf{column vector}.
+	\item Let \(\bm{A}=\begin{pmatrix}
+		\bm{v}_1 & \bm{v}_2 & \ldots & \bm{v}_k
+	\end{pmatrix}\)
+	\item Check if the \textbf{linear system} \(\bm{Ax}=\bm{v}\) is consistent.
+	\begin{itemize}
+		\item If \(\bm{Ax}=\bm{v}\) is consistent, then \(\bm{v}\in\vspan(S)\)
+		\item If \(\bm{Ax}=\bm{v}\) is inconsistent, then \(\bm{v}\notin\vspan(S)\)
+	\end{itemize}
+\end{enumerate}
+
+\section{Subspaces}
+\subsection{Definition of Subspaces}
+\textbf{Definition.} Let \(V\) be a subset of \(\mathbb{R}^n\). Then \(V\) is called a \textbf{subspace} of \(\mathbb{R}^n\) if there exist \(\bm{v}_1,\bm{v}_2,\ldots,\bm{v}_k\in\mathbb{R}^n\) such that:
+\[V=\vspan\{\bm{v}_1,\bm{v}_2,\ldots,\bm{v}_k\}\]
+More precisely,
+\begin{itemize}
+	\item\(V\) is the \textbf{subspace spanned} by \(S=\{\bm{v}_1,\bm{v}_2,\ldots,\bm{v}_k\}\);
+	\item\(S=\{\bm{v}_1,\bm{v}_2,\ldots,\bm{v}_k\}\) \textbf{spans} the subspace \(V\).
+\end{itemize}
+
+\subsection{Zero Space}
+Let \(\bm{0}\in\mathbb{R}^n\) be the zero vector. Then
+\[\{\bm{0}\}=\vspan\{\bm{0}\}\text{ is a subspace of }\mathbb{R}^n\text{ called the }\textbf{zero space}\]
+
+\subsection{Euclidean n-Space is a Subspace}
+Let \(\bm{e}_i\) denote the \(n\)-vector whose \(i\)th coordinate is \(1\) and elsewhere \(0\). Then
+\[\mathbb{R}^n=\vspan\{\bm{e}_1,\bm{e}_2,\ldots,\bm{e}_n\}\text{ is a subspace of }\mathbb{R}^n\]
+
+\subsection{Showing That a Subset is a Subspace}
+To show that a subset \(V\) of \(\mathbb{R}^n\) is a subspace:
+\begin{enumerate}
+	\item Find \(\bm{v}_1,\bm{v}_2,\ldots,\bm{v}_k\in\mathbb{R}^n\) such that
+	\begin{itemize}
+		\item\(V\) is the set containing all vectors of the form:
+		\[\bm{v}=c_1\bm{v}_1+c_2\bm{v}_2+\ldots+c_k\bm{v}_k\]
+		where \(c_1,c_2,\ldots,c_k\in\mathbb{R}\)
+	\end{itemize}
+\end{enumerate}
+
+\subsection{Showing That a Subset is Not a Subspace}
+A subset \(V\) of \(\mathbb{R}^n\) is not a subspace if any of the following fails:
+\begin{itemize}
+	\item\(\bm{0}\in V\)
+	\item\(c\in\mathbb{R}\ \&\ \bm{v}\in V\implies c\bm{v}\in V\)
+	\item\(\bm{u}\in V\ \& \ \bm{v}\in V\implies\bm{u}+\bm{v}\in V\)
+\end{itemize}
+
+\subsection{Subspaces of $\mathbb{R}^1,\mathbb{R}^2,\mathbb{R}^3$}
+\subsubsection{Subspaces of $\mathbb{R}^1=\mathbb{R}$}
+Let the nonzero vector \(\bm{v}=v\in\mathbb{R}\). The following are the \textbf{subspaces} of \(\mathbb{R}^1\):
+\begin{itemize}
+	\item\(\{0\}\),
+	\item\(\mathbb{R}=\vspan\{\bm{v}\}\).
+\end{itemize}
+
+\subsubsection{Subspaces of $\mathbb{R}^2$}
+Let the nonzero vectors \(\bm{u}=(u_1,u_2)\in\mathbb{R}^2,\bm{v}=(v_1,v_2)\in\mathbb{R}^2\). The following are the \textbf{subspaces} of \(\mathbb{R}^2\):
+\begin{itemize}
+	\item\(\{\bm{0}\}=\{(0,0)\}\),
+	\item\(\vspan\{\bm{v}\}\) (straight line passing through the origin),
+	\item\(\mathbb{R}^2=\vspan\{\bm{u},\bm{v}\}\) if \(\bm{u}\) and \(\bm{v}\) are not parallel.
+\end{itemize}
+
+\subsubsection{Subspaces of $\mathbb{R}^3$}
+Let the nonzero vectors \(\bm{u}=(u_1,u_2,u_3)\in\mathbb{R}^3,\bm{v}=(v_1,v_2,v_3)\in\mathbb{R}^3\). The following are the \textbf{subspaces} of \(\mathbb{R}^3\):
+\begin{itemize}
+	\item\(\{\bm{0}\}=\{(0,0,0)\}\),
+	\item\(\vspan\{\bm{v}\}\) (straight line passing through the origin or intersection of two planes containing the origin),
+	\item\(\vspan\{\bm{u},\bm{v}\}\) if \(\bm{u}\) and \(\bm{v}\) are not parallel (a plane containing the origin),
+	\item\(\mathbb{R}^3\)
+\end{itemize}
+
+\subsection{Solution Set of Homogeneous Linear System is a Subspace of $\mathbb{R}^n$}
+\textbf{Theorem.} The \textbf{solution set} of a \textbf{homogeneous linear system} of \(n\) variables is a \textbf{subspace} of \(\mathbb{R}^n\).
+
+\subsection{Solution Space}
+\textbf{Definition.} The \textbf{solution set} of a \textbf{homogeneous linear system} is called the \textbf{solution space} of the system.
+
+\subsection{A Subspace of $\mathbb{R}^n$ is Always The Solution Space of a Homogeneous Linear System}
+\textbf{Theorem.} The \textbf{subspace} of \(\mathbb{R}^n\) is always the \textbf{solution space} of a \textbf{homogeneous linear system}.
+
+\section{Vector Spaces}
+\subsection{Definition of Vector Space}
+\textbf{Definition.} A set \(V\) is a \textbf{vector space} if \(V\) is a \textbf{subspace} of \(\mathbb{R}^n\) for some \(n\in\mathbb{N}\).
+
+\subsection{Expanded Definition of Subspace}
+\textbf{Definition.} If \(W\) and \(V\) are \textbf{vector spaces} such that \(W\subseteq V\), then \(W\) is a \textbf{subspace} of \(V\).
+
+\section{Linear Independence}
+\subsection{Definition of Linear Independence}
+\textbf{Definition.} Let \(S=\{\bm{v}_1,\bm{v}_2,\ldots,\bm{v}_k\}\subseteq\mathbb{R}^n\). If the equation \(c_1\bm{v}_1+c_2\bm{v}_2+\cdots+c_k\bm{v}_k=\bm{0}\) has a \textbf{non-trivial solution}, then
+\begin{itemize}
+	\item\(S\) is a \textbf{linearly dependent set},
+	\item\(\bm{v}_1,\bm{v}_2,\ldots,\bm{v}_k\) are \textbf{linearly dependent}.
+\end{itemize}
+If the equation has \textbf{only the trivial solution}, then
+\begin{itemize}
+	\item\(S\) is a \textbf{linearly independent set},
+	\item\(\bm{v}_1,\bm{v}_2,\ldots,\bm{v}_k\) are \textbf{linearly independent}.
+\end{itemize}
+
+\subsection{Linear Independence of Subset/Superset}
+\textbf{Theorem.} Let \(S_1,S_2\) be finite subsets of \(\mathbb{R}^n\) such that \(S_1\subseteq S_2\). Then
+
+\subsubsection{Superset Preserves Linear Dependence}
+\(S_1\) linearly dependent\(\implies\)\(S_2\) linearly dependent.
+
+\subsubsection{Subset Preserves Linear Independence}
+\(S_2\) linearly independent\(\implies\)\(S_1\) linearly independent.
+
+\subsection{Linear Independence of Sets Containing Zero Vector}
+\textbf{Theorem.} \(\bm{0}\in S\subseteq\mathbb{R}^n\implies S\) is \textbf{linearly dependent}.
+
+\subsection{Linear Independence of Sets Containing Only One Vector}
+\textbf{Theorem.} Let \(\bm{v}\in\mathbb{R}^n\). Then \(\{\bm{v}\}\) is \textbf{linearly independent}\(\iff\bm{v}\ne\bm{0}\).
+
+\subsection{Linear Independence and Linear Combinations}
+\textbf{Theorem.} Let \(S=\{\bm{v}_1,\bm{v}_2,\ldots,\bm{v}_k\}\subseteq\mathbb{R}^n,k\geq2\). Then \(S\) is \textbf{linearly dependent}\(\iff\)there exists \(\bm{v}_i\) such that \(\bm{v}_i\in\vspan\{\bm{v}_1,\ldots,\bm{v}_{i-1},\bm{v}_{i+1},\ldots,\bm{v}_k\}\).
+
+\subsection{Cardinality Upper Bound for Linear Independence}
+\textbf{Theorem.} Let \(S\subseteq\mathbb{R}^n\). \(\abs{S}>n\implies\)S is \textbf{linearly dependent}.
+
+\subsection{Adding Vectors to a Linearly Independent Set}
+\textbf{Theorem.} Suppose \(S\subseteq\mathbb{R}^n\) is \textbf{linearly independent}, \(\bm{v}\in\mathbb{R}^n\), and \(\bm{v}\notin\vspan(S)\). Then \(S\cup\{\bm{v}\}\) is \textbf{linearly independent}.
+
+\section{Bases}
+\subsection{Definition of Bases}
+\textbf{Definition.} Let \(S\) be a finite subset of a \textbf{vector space} \(V\). Then \(S\) is a \textbf{basis} (plural \textbf{bases}) for \(V\) if
+\begin{itemize}
+	\item\(S\) is \textbf{linearly independent}, and
+	\item\(\vspan(S)=V\).
+\end{itemize}
+
+\subsubsection{Remarks}
+\begin{itemize}
+	\item A \textbf{basis} for a \textbf{vector space} \(V\) contains
+	\begin{itemize}
+		\item the smallest possible number of vectors that spans \(V\), and
+		\item the largest possible number of vectors that are linearly independent
+	\end{itemize}
+	\item For convenience, the \textbf{basis} for \(\{\bm{0}\}\) is defined to be \(\varnothing\).
+	\item Other than \(\{\bm{0}\}\), any \textbf{vector space} has infinitely many different \textbf{bases}.
+\end{itemize}
+
+\subsection{Basis and Unique Linear Combination}
+\textbf{Theorem.} Let \(S\) be a finite subset of a \textbf{vector space} \(V\). Then the following are equivalent
+\begin{itemize}
+	\item\(S\) is a \textbf{basis} for \(V\).
+	\item Every \(\bm{v}\in V\) can be \textbf{uniquely} expressed (there is exactly one \(c_1,\ldots,c_k\in\mathbb{R}\)) as
+	\begin{itemize}
+		\item\(\bm{v}=c_1\bm{v}_1+\cdots+c_k\bm{v}_k\)
+	\end{itemize}
+\end{itemize}
+
+\subsection{Coordinate Vector}
+\textbf{Definition.} Let \(S\) be a finite subset of a \textbf{vector space} \(V\).
+\begin{itemize}
+	\item For every \(\bm{v}\in V\), there exist unique \(c_1,\ldots,c_k\in\mathbb{R}\) such that
+	\begin{itemize}
+		\item\(\bm{v}=c_1\bm{v}_1+\cdots+c_k\bm{v}_k\)
+	\end{itemize}
+	\item\(c_1,\ldots,c_k\) are the \textbf{coordinates} of \(\bm{v}\) \textbf{relative} to \(S\).
+	\item\((c_1,\ldots,c_k)\) is the \textbf{coordinate vector} of \(\bm{v}\) \textbf{relative} to the basis \(S\), denoted by \((\bm{v})_S\).
+\end{itemize}
+
+\subsubsection{Remark}
+The order of \(\bm{v}_1,\ldots,\bm{v}_k\) is fixed.
+
+\subsection{Standard Basis}
+\textbf{Definition.} Let \(E=\{\bm{e}_1,\ldots,\bm{e}_n\}\subseteq\mathbb{R}^n\) where
+\begin{itemize}
+	\item\(\bm{e}_1=(1,0,\ldots,0),\bm{e}_2=(0,1,\ldots,0),\ldots,\bm{e}_n=(0,0,\ldots,1)\)
+\end{itemize}
+\(E\) is the \textbf{standard basis} for \(\mathbb{R}^n\).
+\begin{itemize}
+	\item For any \(\bm{v}=(v_1,\ldots,v_n)\in\mathbb{R}^n\),
+	\begin{itemize}
+		\item\((\bm{v})_E=(v_1,\ldots,v_n)=\bm{v}\)
+	\end{itemize}
+\end{itemize}
+
+\subsection{Properties of Coordinate Vector}
+\textbf{Theorem.} Let \(S\) be a \textbf{basis} for a \textbf{vector space} \(V\). Suppose \(\abs{S}=k\). Let \(\bm{v}_1,\ldots,\bm{v}_r\in V\)
+
+\subsubsection{Zero Coordinate Vector}
+\((\bm{v})_S=\bm{0}\Leftrightarrow\bm{v}=\bm{0}\)
+
+\subsubsection{Homogeneity of Degree One / Scalar Multiplication Preserving}
+For any \(c\in\mathbb{R}\) and \(\bm{v}\in V\), \((c\bm{v})_S=c(\bm{v})_S\).
+
+\subsubsection{Additivity / Addition Preserving}
+For any \(\bm{u},\bm{v}\in V\), \((\bm{u}+\bm{v})_S=(\bm{u})_S+(\bm{v})_S\).
+
+\subsubsection{Equal Coordinate Vectors}
+For any \(\bm{u},\bm{v}\in V\), \(\bm{u}=\bm{v}\Leftrightarrow(\bm{u})_S=(\bm{v})_S\).
+
+\subsubsection{Linear Combination Preserving}
+For any \(c_1,\ldots,c_r\in\mathbb{R}\), \((c_1\bm{v}_1+\cdots+c_r\bm{v}_r)_S=c_1(\bm{v}_1)_S+\cdots+c_r(\bm{v}_r)_S\).
+
+\subsubsection{Linear Independence Preserving}
+\(\bm{v}_1,\ldots,\bm{v}_r\) are \textbf{linearly independent} \(\Leftrightarrow(\bm{v}_1)_S,\ldots,(\bm{v}_r)_S\) are \textbf{linearly independent}.
+
+\subsubsection{Span Preserving}
+\(\vspan\{\bm{v}_1,\ldots,\bm{v}_r\}=V\Leftrightarrow\vspan\{(\bm{v}_1)_S,\ldots,(\bm{v}_r)_S\}=\mathbb{R}^k\).
+
+\section{Dimensions}
+\subsection{Dimension Theorem for Vector Spaces}
+\textbf{Theorem.} Let \(V\) be a \textbf{vector space} having a \textbf{basis} with \(k\) vectors. Then
+\begin{itemize}
+	\item Any subset of \(V\) of \(>k\) vectors is \textbf{linearly dependent}.
+	\item Any subset of \(V\) of \(<k\) vectors cannot span \(V\).
+\end{itemize}
+
+\subsubsection{Corollary}
+All \textbf{bases} of a \textbf{vector space} have the same cardinality.
+\begin{itemize}
+	\item To be more precise, if \(S_1\) and \(S_2\) are two \textbf{bases} of a \textbf{vector space} \(V\),
+	\begin{itemize}
+		\item then \(\abs{S_1}=\abs{S_2}\)
+	\end{itemize}
+\end{itemize}
+
+\subsection{Definition of Dimension}
+\textbf{Definition.} Let \(V\) be a \textbf{vector space} and \(S\) a \textbf{basis} for \(V\). Then
+\begin{itemize}
+	\item the \textbf{dimension} of \(V\), denoted by \(\dim(V)\), is \(\abs{S}\)
+\end{itemize}
+
+\subsubsection{Examples}
+\begin{itemize}
+	\item\(\dim(\{\bm{0}\})=0\)
+	\item\(\dim(\mathbb{R}^n)=n\)
+	\item\textbf{Straight Line Through the Origin in} \(\mathbb{R}^2\) \textbf{and} \(\mathbb{R}^3\)
+	\begin{itemize}
+		\item\(\dim(\vspan(\bm{v}))=1\) with \(\bm{v}\ne\bm{0}\).
+	\end{itemize}
+	\item\textbf{Plane Containing Origin in} \(\mathbb{R}^3\)
+	\begin{itemize}
+		\item\(\dim(\vspan(\bm{u},\bm{v}))=2\) where \(\bm{u}\) and \(\bm{v}\) are \textbf{linearly independent}.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Dimension of Solution Space}
+Let \(\bm{Ax}=\bm{0}\) be a \textbf{homogeneous linear system} and \(V\) be its \textbf{solution space}. Let \(\bm{R}\) be a \textbf{row-echelon form} of \(\bm{A}\). Then
+\begin{align*}
+	\text{no. of non-pivot colns of }\bm{R}
+	&=\text{no. of aribitrary parameters in soln} \\
+	&=\dim(V)
+\end{align*}
+
+\subsection{Easier Criterion for Basis}
+\textbf{Theorem.} Let \(S\) be a subset of a \textbf{vector space} \(V\). The following are equivalent:
+\begin{enumerate}
+	\item\(S\) is a \textbf{basis} for \(V\).
+	\item\(S\) is \textbf{linearly independent}, and \(\abs{S}=\dim(V)\).
+	\item\(\vspan(S)=V\) and \(\abs{S}=\dim(V)\).
+\end{enumerate}
+
+\subsection{Dimension for Subspaces}
+Let \(U\) be a \textbf{subspace} of a \textbf{vector space} \(V\). Then
+\begin{itemize}
+	\item\(U=V\Leftrightarrow\dim(U)=\dim(V)\).
+\end{itemize}
+
+\subsubsection{Corollary}
+Let \(U\) be a \textbf{subspace} of a \textbf{vector space} \(V\). Then
+\begin{itemize}
+	\item\(U\ne V\Leftrightarrow\dim(U)<\dim(V)\).
+\end{itemize}
+
+\subsection{Invertibility and Rows and Columns as Basis}
+\textbf{Theorem.} Let \(\bm{A}\) be a \textbf{square matrix} of \textbf{order} \(n\). Then the following are equivalent:
+\begin{enumerate}
+	\item\(\bm{A}\) is \textbf{invertible}.
+	\item The rows of \(\bm{A}\) form a \textbf{basis} for \(\mathbb{R}^n\).
+	\item The columns of \(\bm{A}\) form a \textbf{basis} for \(\mathbb{R}^n\).
+\end{enumerate}
+
+\section{Transition Matrices}
+\subsection{Coordinate Vector As a Column Vector}
+\textbf{Definition.} Let \(S\) be a \textbf{basis} for a \textbf{vector space} \(V\) and \(\bm{v}\in V\) such that \((\bm{v})_S=(c_1,\ldots,c_k)\). Then the \textbf{column vector} \([\bm{v}]_S=\begin{pmatrix}
+	c_1 \\ \vdots \\ c_k
+\end{pmatrix}\) is also called the \textbf{coordinate vector} of \(\bm{v}\) relative to \(S\).
+
+\subsection{Definition of Transition Matrix}
+\textbf{Definition.} Let \(V\) be a \textbf{vector space}, and \(S=\{\bm{u}_1,\ldots,\bm{u}_k\}\) and \(T\) be \textbf{bases} for \(V\). Then the \textbf{transition matrix} from \(S\) to \(T\) is
+\[\bm{P}=\begin{pmatrix}
+	[\bm{u}_1]_T & \cdots & [\bm{u}_k]_T
+\end{pmatrix}\]
+
+\subsection{Pre-Multiplication of Transition Matrix}
+\textbf{Theorem.} Let \(S\) and \(T\) be \textbf{bases} for a \textbf{vector space} \(V\), and \(\bm{P}\) be the \textbf{transition matrix} from \(S\) to \(T\). Then \(\forall\bm{w}\in V\quad\bm{P}[\bm{w}]_S=[\bm{w}]_T\).
+
+\subsection{Inverse of Transition Matrices}
+\textbf{Theorem.} Let \(S\) and \(T\) be \textbf{bases} for a \textbf{vector space} \(V\), and \(\bm{P}\) be the \textbf{transition matrix} from \(S\) to \(T\). Then
+
+\subsubsection{Transition Matrices Are Invertible}
+\(P\) is \textbf{invertible}.
+
+\subsubsection{Inverse is a Transition Matrix}
+\(P^{-1}\) is the \textbf{transition matrix} from \(T\) to \(S\).
+
+\end{document}

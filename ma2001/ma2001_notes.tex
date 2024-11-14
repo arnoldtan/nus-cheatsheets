@@ -1,0 +1,50 @@
+\documentclass[a4paper, 12pt, fleqn]{book}
+\usepackage{subfiles}
+\usepackage[a4paper,margin=0.75in]{geometry}
+\usepackage{amsmath,amssymb,mathtools,bm,systeme,array}
+\usepackage{titlesec}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{xcolor,soul}
+\linespread{1.25}
+\allowdisplaybreaks
+
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{5}
+
+\usepackage[pdfencoding=auto, psdextra, hidelinks]{hyperref}
+\hypersetup{allcolors=black}
+
+\renewcommand{\labelitemii}{$\circ$}
+
+\newcommand{\at}[3]{\left.#1\right|_{#2}^{#3}}
+\newcommand*{\ro}[2][]{\xrightarrow[#1]{\mathmakebox[4em]{#2}}}
+\newcommand{\mathcolorbox}[2]{\colorbox{#1}{$\displaystyle #2$}}
+
+\DeclarePairedDelimiter\norm{\|}{\|}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclareMathOperator{\adj}{\mathbf{adj}}
+\DeclareMathOperator{\vspan}{span}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator{\trace}{tr}
+\DeclareMathOperator{\R}{R}
+\DeclareMathOperator{\Ker}{Ker}
+
+\def\arraystretch{1}
+
+\begin{document}
+\title{MA2001 Linear Algebra I Notes}
+\date{}
+\maketitle
+
+\tableofcontents
+
+\subfile{chapters/1_linear_systems.tex}
+\subfile{chapters/2_matrices.tex}
+\subfile{chapters/3_vector_spaces.tex}
+\subfile{chapters/4_vector_spaces_associated_with_matrices.tex}
+\subfile{chapters/5_orthogonality.tex}
+\subfile{chapters/6_diagonalization.tex}
+\subfile{chapters/7_linear_transformation.tex}
+\end{document}

@@ -1,0 +1,298 @@
+\documentclass[../ma2001_notes.tex]{subfiles}
+
+\begin{document}
+\chapter{Diagonalization}
+\section{Eigenvalues and Eigenvectors}
+\subsection{Definition of Eigenvalues and Eigenvectors}
+\textbf{Definition.} Let \(\bm{A}\) be a \textbf{square matrix} of \textbf{order} \(n\). Suppose that for some \(\lambda\in\mathbb{R}\) and \textbf{nonzero} \(\bm{v}\in\mathbb{R}^n\), \(\bm{Av}=\lambda\bm{v}\). Then
+\begin{itemize}
+	\item\(\lambda\) is an \textbf{eigenvalue} of \(\bm{A}\).
+	\item\(\bm{v}\) is an \textbf{eigenvector} of \(\bm{A}\) associated with \(\lambda\).
+\end{itemize}
+
+\subsection{Characteristic Polynomial}
+\subsubsection{Definition of Characteristic Polynomial}
+\textbf{Definition.} Let \(\bm{A}\) be a \textbf{square matrix}. \(\det(\lambda\bm{I}-\bm{A})\) is the \textbf{characteristic polynomial} of \(\bm{A}\).
+
+\subsubsection{Characteristic Polynomial is a Monic Polynomial of Degree $n$}
+\textbf{Theorem.} Let \(\bm{A}\) be a \textbf{square matrix}. Then the \textbf{characteristic polynomial} of \(\bm{A}\) is a \textbf{monic polynomial} in \(\lambda\) of \textbf{degree} \(n\):
+\[\lambda^n+c_{n-1}\lambda^{n-1}+\cdots+c_1\lambda+c_0\]
+
+\subsection{Definition of Characteristic Equation}
+\textbf{Definition.} Let \(\bm{A}\) be a \textbf{square matrix}. \(\det(\lambda\bm{I}-\bm{A})=0\) is the \textbf{characteristic equation} of \(\bm{A}\).
+
+\subsection{Eigenvalues are the Roots to the Characteristic Equation}
+\textbf{Theorem.} Let \(\bm{A}\) be a \textbf{square matrix}. Then the \textbf{eigenvalues} of \(\bm{A}\) are all the \textbf{roots} to the \textbf{characteristic equation} of \(\bm{A}\).
+
+\subsection{Eigenvalue and Invertibility}
+\textbf{Theorem.} Let \(\bm{A}\) be a \textbf{square matrix} of \textbf{order} \(n\). Then
+\[0\text{ is not an }\textbf{eigenvalue}\text{ of }\bm{A}\Leftrightarrow\det(\bm{A})\ne0\Leftrightarrow\bm{A}\text{ is }\textbf{invertible}\]
+
+\subsection{Eigenvalues of Triangular Matrices are its Diagonal Entries}
+\textbf{Theorem.} Let \(\bm{A}\) be a \textbf{triangular matrix}. Then its \textbf{eigenvalues} are all the \textbf{diagonal entries} of \(\bm{A}\).
+
+\subsection{Eigenspace}
+\subsubsection{Definition of Eigenspace}
+\textbf{Definition.} Let \(\bm{A}\) be a \textbf{square matrix} and \(\lambda\) an \textbf{eigenvalue} of \(\bm{A}\). Then the \textbf{eigenspace} of \(\bm{A}\) associated to \(\lambda\), denoted by \(E_\lambda\) (or \(E_{\bm{A},\lambda}\)), is the \textbf{nullspace} of \(\lambda\bm{I}-\bm{A}\).
+
+\subsubsection{Properties of Eigenspace}
+\paragraph{Vectors in Eigenspace}\,\\
+\textbf{Theorem.} \(E_{\bm{A},\lambda}\) consists of all the \textbf{eigenvectors} of \(\bm{A}\) associated to \(\lambda\) and the \textbf{zero vector} \(\bm{0}\).
+
+\paragraph{Dimension of Eigenspace}\,\\
+\textbf{Theorem.} Since \(\lambda\bm{I}-\bm{A}\) is \textbf{singular}, \(\dim(E_\lambda)\geq1\).
+
+\paragraph{Eigenspace Associated To Eigenvalue Zero}\,\\
+\textbf{Theorem.} If \(\bm{A}\) is \textbf{singular}, then \(E_0=\) \textbf{nullspace} of \(\bm{A}\).
+
+\section{Diagonalization}
+\subsection{Definition of Diagonalizable Matrix}
+\textbf{Definition.} Let \(\bm{A}\) be a \textbf{square matrix}. \(\bm{A}\) is \textbf{diagonalizable} if \(\exists\) an \textbf{invertible matrix} \(\bm{P}\) such that \(\bm{P}^{-1}\bm{AP}\) is a \textbf{diagonal matrix}.
+
+\subsection{Criterion for Diagonalizability}
+\textbf{Theorem.} Let \(\bm{A}\) be a \textbf{square matrix} of \textbf{order} \(n\). Then
+\[\bm{A}\text{ is }\textbf{diagonalizable}\Leftrightarrow\bm{A}\text{ has }n\textbf{ linearly independent eigenvectors}\]
+
+\subsection{Eigenvectors associated to Distinct Eigenvalues are Linearly Independent}
+\textbf{Theorem.} Let \(\lambda_1,\ldots,\lambda_k\) be distinct \textbf{eigenvalues} of \(\bm{A}\) and \(\bm{v}_i\) be an \textbf{eigenvector} of \(\bm{A}\) associated to \(\lambda_i\). Then \(\bm{v}_1,\ldots,\bm{v}_k\) are \textbf{linearly independent}.
+
+\subsection{Algorithm of Diagonalization}
+Let \(\bm{A}\) be a \textbf{square matrix} of \textbf{order} \(n\).
+\begin{enumerate}
+	\item Find the \textbf{characteristic polynomial} \(\det(\lambda\bm{I}-\bm{A})\).
+	\item\textbf{Factorise} \(\det(\lambda\bm{I}-\bm{A})\) over \(\mathbb{R}\) (not \(\mathbb{C}\)) to find \textbf{eigenvalues} of \(\bm{A}\).
+	\begin{itemize}
+		\item If \(\det(\lambda\bm{I}-\bm{A})\) cannot be completely factorised, then \(\bm{A}\) is not \textbf{diagonalizable}.
+		\item If \(\det(\lambda\bm{I}-\bm{A})\) can be completely factorised, say \(\det(\lambda\bm{I}-\bm{A})=\prod\limits_{i=1}^k(\lambda-\lambda_i)^{r_i}\) where \(\lambda_1,\ldots,\lambda_k\) are all distinct. Then
+		\begin{itemize}
+			\item\textbf{algebraic multiplicity} of \(\lambda_i\), denoted by \(a(\lambda_i)\), is \(r_i\)
+			\item\textbf{geometric multiplicity} of \(\lambda_i\), denoted by \(g(\lambda_i)\), is \(\dim(E_{\lambda_i})\)
+			\item Moreover, \(1\leq g(\lambda_i)\leq a(\lambda_i)\), and \(\sum\limits_{i=1}^ka(\lambda_i)=n\).
+		\end{itemize}
+	\end{itemize}
+	\item For each \textbf{eigenvalue} \(\lambda_i\) of \(\bm{A}\), find a \textbf{basis} \(S_i\) for the \textbf{eigenspace} \(E_{\lambda_i}\).
+	\begin{itemize}
+		\item\(\exists i\quad g(\lambda_i)<a(\lambda_i)\Rightarrow\sum\limits_{i=1}^k\dim(E_{\lambda_i})<n\Rightarrow\bm{A}\) is not \textbf{diagonalizable}.
+	\end{itemize}
+	\item\(\forall i\quad g(\lambda_i)=a(\lambda_i)\Rightarrow\sum\limits_{i=1}^k\dim(E_{\lambda_i})=n\Rightarrow\bm{A}\) is \textbf{diagonalizable}, then
+	\begin{itemize}
+		\item\(\bigcup\limits_{i=1}^kS_i=\{\bm{v}_1,\ldots,\bm{v}_n\}\) is a \textbf{basis} for \(\mathbb{R}^n\).
+		\item\(\bm{P}=\begin{pmatrix}
+			\bm{v}_1 & \cdots & \bm{v}_n
+		\end{pmatrix}\) \textbf{diagonalizes} \(\bm{A}\), i.e. \(\bm{P}^{-1}\bm{AP}=\bm{D}\) is \textbf{diagonal}.
+		\item\(\bm{v}_i\) is an \textbf{eigenvector} of \(\bm{A}\) associated to the \(i\)th \textbf{diagonal entry} (eigenvalue) of \(\bm{D}\).
+	\end{itemize}
+\end{enumerate}
+
+\subsection{Matrix with $n$ Distinct Eigenvalues is Diagonalizable}
+\textbf{Theorem.} Let \(\bm{A}\) be a \textbf{square matrix} of \textbf{order} \(n\). \(\bm{A}\) has \(n\) distinct \textbf{eigenvalues} \(\Rightarrow\bm{A}\) is \textbf{diagonalizable}.
+
+\subsection{Application of Diagonalization}
+\subsubsection{Matrix Exponentiation}
+\textbf{Theorem.} Suppose that \(\bm{P}\) \textbf{diagonalizes} \(\bm{A}\) such that \(\bm{P}^{-1}\bm{AP}=\begin{pmatrix}
+	\lambda_1 & \cdots & 0 \\
+	\vdots & \ddots & \vdots \\
+	0 & \cdots & \lambda_n
+\end{pmatrix}\). Then for \(\begin{cases}
+	m\in\mathbb{Z},m\geq0, & \bm{A}\text{ is }\textbf{singular} \\
+	m\in\mathbb{Z}, & \bm{A}\text{ is }\textbf{invertible}
+\end{cases}\quad\bm{A}^m=\bm{P}\begin{pmatrix}
+	\lambda_1^m & \cdots & 0 \\
+	\vdots & \ddots & \vdots \\
+	0 & \cdots & \lambda_n^m
+\end{pmatrix}\bm{P}^{-1}\)
+
+\subsubsection{Example: Fibonacci Numbers}
+\begin{itemize}
+	\item The \textbf{fibonacci numbers} are defined as \(a_n=\begin{cases}
+		n, & n=0\text{ or }n=1 \\
+		a_{n-1}+a_{n-2}, & n\geq2
+	\end{cases}\)
+	\item Note that \(a_{n+1}=a_{n-1}+a_n\) for \(n\geq1\)
+	\item Let \(\bm{x}_n=\begin{pmatrix}
+		a_n \\ a_{n+1}
+	\end{pmatrix}=\begin{pmatrix}
+		a_n \\ a_{n-1}+a_n
+	\end{pmatrix}=\begin{pmatrix}
+		0 & 1 \\ 1 & 1
+	\end{pmatrix}\begin{pmatrix}
+		a_{n-1} \\ a_n
+	\end{pmatrix}\) and \(\bm{A}=\begin{pmatrix}
+		0 & 1 \\ 1 & 1
+	\end{pmatrix}\). Then
+	\item\(\bm{x}_n=\bm{Ax}_{n-1}=\bm{A}^2\bm{x}_{n-2}=\cdots=\bm{A}^n\bm{x}_0\), where \(\bm{x}_0=\begin{pmatrix}
+		0 \\ 1
+	\end{pmatrix}\)
+	\item To find \(\bm{A}^n\) for large \(n\), it will be easier to \textbf{diagonalize} \(\bm{A}\).
+\end{itemize}
+
+\section{Orthogonal Diagonalization}
+\subsection{Definition of Orthogonally Diagonalizable Matrix}
+\textbf{Definition.} A \textbf{square matrix} \(\bm{A}\) is \textbf{orthogonally diagonalizable} if it can be \textbf{diagonalized} by an \textbf{orthogonal matrix}, i.e.,
+\begin{itemize}
+	\item\(\exists\) an \textbf{orthogonal matrix} \(\bm{P}\) such that \(\bm{P}^T\bm{AP}=\bm{P}^{-1}\bm{AP}\) is a \textbf{diagonal matrix}.
+	\item\(\bm{P}\) is said to \textbf{orthogonally diagonalize} \(\bm{A}\).
+\end{itemize}
+
+\subsubsection{Remarks}
+\begin{itemize}
+	\item For any \textbf{eigenvalue} \(\lambda\) of \(\bm{A}\), we can always choose an \textbf{orthonormal basis} for \(E_\lambda\).
+	\item Suppose further that \(\bm{A}\) is \textbf{orthogonally diagonalizable}. Then
+	\begin{itemize}
+		\item for distinct \textbf{eigenvalues} \(\lambda\ne\mu\), every \textbf{eigenvector} of \(\lambda\) is \textbf{orthogonal} to that of \(\mu\).
+	\end{itemize}
+\end{itemize}
+
+\subsection{Only Symmetric Matrices are Orthogonally Diagonalizable}
+\textbf{Theorem.} A \textbf{square matrix} is \textbf{orthogonally diagonalizable} \(\Leftrightarrow\) it is a \textbf{symmetric matrix}.
+
+\subsection{Algorithm of Orthogonal Diagonalization}
+Let \(\bm{A}\) be a \textbf{symmetric matrix} of order \(n\).
+\begin{enumerate}
+	\item Find the \textbf{characteristic polynomial} \(\det(\lambda\bm{I}-\bm{A})\).
+	\item\textbf{Factorise} \(\det(\lambda\bm{I}-\bm{A})\) over \(\mathbb{R}\) to find \textbf{eigenvalues} of \(\bm{A}\).
+	\begin{itemize}
+		\item\(\det(\lambda\bm{I}-\bm{A})\) can definitely be completely factorised, say \(\det(\lambda\bm{I}-\bm{A})=\prod\limits_{i=1}^k(\lambda-\lambda_i)^{r_i}\) where \(\lambda_1,\ldots,\lambda_k\) are all distinct.
+		\begin{itemize}
+			\item\(\sum\limits_{i=1}^ka(\lambda_i)=n\).
+		\end{itemize}
+	\end{itemize}
+	\item For each \textbf{eigenvalue} \(\lambda_i\) of \(\bm{A}\), find an \textbf{orthonormal basis} \(T_{\lambda_i}\) for \(E_{\lambda_i}\).
+	\begin{enumerate}
+		\item Find a basis \(S_{\lambda_i}\) for \(E_{\lambda_i}\).
+		\begin{itemize}
+			\item\(\forall i\quad1\leq g(\lambda_i)=a(\lambda_i)\Rightarrow\sum\limits_{i=1}^k\dim(E_{\lambda_i})=n\)
+		\end{itemize}
+		\item Use Gram-Schmidt process to transfer \(S_{\lambda_i}\) to an \textbf{orthonormal basis} \(T_{\lambda_i}\) for \(E_{\lambda_i}\).
+	\end{enumerate}
+	\item\(\forall i\quad g(\lambda_i)=a(\lambda_i)\Rightarrow\sum\limits_{i=1}^k\dim(E_{\lambda_i})=n\Rightarrow\bm{A}\) is \textbf{diagonalizable}, then
+	\item\(\bigcup\limits_{i=1}^kT_{\lambda_i}=\{\bm{v}_1,\ldots,\bm{v}_n\}\) is an \textbf{orthonormal basis} for \(\mathbb{R}^n\).
+	\begin{itemize}
+		\item\(\bm{P}=\begin{pmatrix}
+			\bm{v}_1 & \cdots & \bm{v}_n
+		\end{pmatrix}\) \textbf{orthogonally diagonalizes} \(\bm{A}\)
+	\end{itemize}
+\end{enumerate}
+
+\section{Quadratic Forms and Conic Sections}
+\subsection{Quadratic Forms}
+\subsubsection{Definition of Quadratic Form}
+\textbf{Definition.} A \textbf{quadratic form}/\textbf{homogeneous} polynomial in degree \(2\) in \(n\) variables \(x_1,\ldots,x_n\) is
+\[Q(x_1,\ldots,x_n)=\sum_{i=1}^nq_{ii}x_i^2+\sum_{i<j}q_{ij}x_ix_j\]
+
+\subsubsection{Matrix Representation of Quadratic Forms}
+\textbf{Theorem.} Let \(Q(x_1,\ldots,x_n)=\sum\limits_{i=1}^nq_{ii}x_i^2+\sum\limits_{i<j}q_{ij}x_ix_j\) be a \textbf{quadratic form}. Let \(\bm{x}=(x_1,\ldots,x_n)^T\) and \(\bm{A}=(a_{ij})_{n\times n}\) where \(a_{ii}=q_{ii}\) and \(a_{ij}=a_{ji}=\displaystyle\frac{1}{2}q_{ij}\) for \(i<j\). Then \(Q(\bm{x})=\bm{x}^T\bm{Ax},\bm{x}\in\mathbb{R}^n\).
+
+\subsubsection{Simplification of Quadratic Forms}
+\textbf{Theorem.} Suppose \(Q(\bm{x})=\bm{x}^T\bm{Ax}\) is a \textbf{quadratic form} where \(\bm{x}=(x_1,\ldots,x_n)^T\in\mathbb{R}^n\) and \(\bm{A}\) is a \textbf{symmetrix matrix} of order \(n\). Then
+\begin{enumerate}
+	\item\(\exists\) an \textbf{orthogonal matrix} \(\bm{P}\) such that \(\bm{P}^T\bm{AP}=\begin{pmatrix}
+		\lambda_1 & \cdots & 0 \\
+		\vdots & \ddots & \vdots \\
+		0 & \cdots & \lambda_n
+	\end{pmatrix}\)
+	\item Let \(\bm{y}=\bm{P}^T\bm{x}=(y_1,\ldots,y_n)^T\in\mathbb{R}^n\). Then
+	\item\(Q(\bm{x})=\sum\limits_{i=1}^n\lambda_iy_i^2\).
+\end{enumerate}
+
+\subsection{Quadratic Equation}
+\subsubsection{Quadratic Equation in One Variable}
+\textbf{Definition.} A \textbf{quadratic equation} in variable \(x\) is of the form \(ax^2+bx=c\).
+
+\subsubsection{Quadratic Equation in Two Variables}
+\textbf{Definition.} A \textbf{quadratic equation} in variables \(x\) and \(y\) is
+\[ax^2+bxy+cy^2+dx+ey=f\]
+
+\paragraph{Matrix Representation}\,\\
+Let \(\bm{x}=\begin{pmatrix}
+	x \\ y
+\end{pmatrix},\bm{A}=\begin{pmatrix}
+	a & \frac{1}{2}b \\ \frac{1}{2}b & c
+\end{pmatrix}\), and \(\bm{b}=\begin{pmatrix}
+	d \\ e
+\end{pmatrix}\). Then \(\bm{x}^T\bm{Ax}+\bm{b}^T\bm{x}=f\).
+
+\paragraph{Quadratic Form Associated With Quadratic Equation}\,\\
+\textbf{Definition.} \(ax^2+bxy+cy^2=\bm{x}^T\bm{Ax}\) is the quadratic form \textbf{associated} with the quadratic equation.
+
+\subsubsection{Graph of a Quadratic Equation}
+\textbf{Theorem.} The graph of a \textbf{quadratic equation} is a \textbf{conic section}.
+
+\subsection{Classification of Conic Sections}
+\subsubsection{Table of Conics}
+\begin{center}
+\begin{tabular}{|m{3cm}|m{4cm}|m{6cm}|}
+\hline
+Degeneracy & Name & Equation / Standard Form \\
+\hline
+\multirow{5}{*}{Degenerated} & The whole plane \(\mathbb{R}^2\) & \(0=0\) \\
+\cline{2-3}
+& Empty Set & \(x^2+y^2=-1\) \\
+\cline{2-3}
+& A point & \(x^2+y^2=0\) \\
+\cline{2-3}
+& A line & \(x=0\) or \(x^2=0\) \\
+\cline{2-3}
+& A pair of distinct lines & \(x^2-y^2=0\) \\
+\hline
+\multirow{4}{*}{Non-degenerated} & Circle & \parbox[top][1.2cm][c]{6cm}{\(\displaystyle\frac{x^2}{\alpha^2}+\frac{y^2}{\alpha^2}=1,\quad\alpha>0\)} \\
+\cline{2-3}
+& Ellipse & \parbox[top][1.2cm][c]{6cm}{\(\displaystyle\frac{x^2}{\alpha^2}+\frac{y^2}{\beta^2}=1,\quad\alpha>0,\beta>0\)} \\
+\cline{2-3}
+& Hyperbola & \parbox[top][1.2cm][c]{6cm}{\(\displaystyle\pm\frac{x^2}{\alpha^2}\mp\frac{y^2}{\beta^2}=1,\quad\alpha>0,\beta>0\)} \\
+\cline{2-3}
+& Parabola & \(x^2=\alpha y\) or \(y^2=\alpha x\) \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsubsection{Algorithm to Classify Conic Sections}
+Given a \textbf{quadratic equation} \(\bm{x}^T\bm{Ax}+\bm{b}^T\bm{x}=f,\bm{x}\in\mathbb{R}^2\).
+\begin{enumerate}
+	\item\textbf{Orthogonally diagonalize} \(\bm{A}\).
+	\begin{itemize}
+		\item\(\bm{P}^T\bm{AP}=\begin{pmatrix}
+			\lambda & 0 \\ 0 & \mu
+		\end{pmatrix},\bm{P}\) an \textbf{orthogonal matrix}.
+	\end{itemize}
+	\item Let \(\bm{y}=\bm{P}^T\bm{x}\). Then
+	\begin{itemize}
+		\item\(\bm{y}^T\begin{pmatrix}
+			\lambda & 0 \\ 0 & \mu
+		\end{pmatrix}\bm{y}+\bm{b}^T\bm{Py}=f\)
+	\end{itemize}
+	\item Complete the squares.
+\end{enumerate}
+
+\paragraph{Determinant of Symmetric Matrix and Type of Conic Sections}\,\\
+Suppose the conic section is \textbf{non-degenerate}. Since \(\lambda\mu=\det(\bm{A})\), then
+\begin{itemize}
+	\item\(\det(\bm{A})>0\Leftrightarrow\) ellipse (or circle).
+	\item\(\det(\bm{A})<0\Leftrightarrow\) hyperbola.
+	\item\(\det(\bm{A})=0\Leftrightarrow\) parabola.
+\end{itemize}
+
+\paragraph{Rotating and Reflecting Conic Sections}\,\\
+Let \(\bm{P}\) be \textbf{orthogonal} of order \(2\). Then \(\det(\bm{P})=\pm1\).
+\begin{itemize}
+	\item\(\det(\bm{P})=1\Rightarrow\bm{P}=\begin{pmatrix}
+		\cos\theta & -\sin\theta \\ \sin\theta & \cos\theta
+	\end{pmatrix}\). Let \(\bm{y}=\bm{P}^T\bm{x}\). Then
+	\begin{itemize}
+		\item the new axes are obtained by rotating the original axes about origin anticlockwise by \(\theta\).
+	\end{itemize}
+	\item\(\det(\bm{P})=-1\Rightarrow\bm{P}=\begin{pmatrix}
+		\cos\theta & \sin\theta \\ \sin\theta & -\cos\theta
+	\end{pmatrix}=\begin{pmatrix}
+		\cos\theta & -\sin\theta \\ \sin\theta & \cos\theta
+	\end{pmatrix}\begin{pmatrix}
+		1 & 0 \\ 0 & -1
+	\end{pmatrix}\). Let \(\bm{y}=\bm{P}^T\bm{x}\). Then
+	\begin{itemize}
+		\item the new axes are obtained by first rotating the original axes about origin anticlockwise by \(\theta\), then reflecting w.r.t. the \(x'\)-axis.
+	\end{itemize}
+\end{itemize}
+
+\paragraph{Can Always Orthogonally Diagonalize by Matrix with Determinant One}
+By multiplying the \(2\)nd column of \(\bm{P}\) by \(-1\) if necessary, we can always \textbf{diagonalize} a \textbf{symmetric matrix} \(\bm{A}\) by an \textbf{orthogonal matrix} with \textbf{determinant} 1.
+\end{document}

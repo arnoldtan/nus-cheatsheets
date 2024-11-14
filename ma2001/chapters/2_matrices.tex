@@ -1,0 +1,886 @@
+\documentclass[../ma2001_notes.tex]{subfiles}
+
+\begin{document}
+\chapter{Matrices}
+
+\section{Introduction to Matrices}
+\subsection{Definition of Matrix}
+\textbf{Definition.} A \textbf{matrix} (plural \textbf{matrices}) is a rectangular array of numbers
+\[\left(\begin{array}{cccc}
+a_{11} & a_{12} & \ldots & a_{1n} \\ 
+a_{21} & a_{22} & \ldots & a_{2n} \\ 
+\vdots & \vdots & & \vdots \\ 
+a_{m1} & a_{m2} & \ldots & a_{mn} \\
+\end{array}\right)\]
+where
+\begin{itemize}
+	\item \(m\) is the number of \textbf{rows} in the matrix.
+	\item \(n\) is the number of \textbf{columns} in the matrix.
+	\item The \textbf{size} of the matrix is given by \(\bm{m\times n}\).
+	\item The \(\bm{(i,j)}\)\textbf{-entry} is the entry in the \(i\)th row and \(j\)th column.
+	\begin{itemize}
+		\item In the given matrix, the \((i,j)\)-entry is \(\bm{a_{ij}}\).
+	\end{itemize}
+\end{itemize}
+\subsubsection{Remarks}
+\begin{itemize}
+	\item Some books use \([\ldots]\) instead of \((\ldots)\).
+	\item A \(1\times1\) matrix is usually treated as a real number in computation.
+\end{itemize}
+
+\subsection{Notation of Matrices}
+A \textbf{matrix} is usually denoted by capital letters \(\bm{A},\bm{B},\bm{C},\ldots\). Given a
+\[\bm{m\times n}\text{ matrix }\bm{A}=
+\left(\begin{array}{cccc}
+a_{11} & a_{12} & \ldots & a_{1n} \\ 
+a_{21} & a_{22} & \ldots & a_{2n} \\ 
+\vdots & \vdots & & \vdots \\ 
+a_{m1} & a_{m2} & \ldots & a_{mn} \\
+\end{array}\right),\]
+\begin{itemize}
+	\item \(a_{ij}\) is the \((i,j)\)-entry of \(\bm{A}\).
+	\item The matrix is denoted by \(\bm{A=(a_{ij})_{m\times n}}\)
+	\item If the size of \(\bm{A}\) is known (or not important)
+	\begin{itemize}
+		\item The matrix can also be denoted by \(\bm{A=(a_{ij})}\).
+	\end{itemize}
+\end{itemize}
+
+\subsection{Row Matrix}
+\textbf{Definition.} A \textbf{row matrix} (\textbf{row vector}) is a \textbf{matrix} with only one \textbf{row}.
+
+\subsection{Column Matrix}
+\textbf{Definition.} A \textbf{column matrix} (\textbf{column vector}) is a \textbf{matrix} with only one \textbf{column}.
+
+\subsection{Square Matrix}
+\textbf{Definition.} A \textbf{square matrix} is a \textbf{matrix} with the same number of \textbf{rows} and \textbf{columns}.
+
+\subsubsection{Order of Square Matrix}
+\textbf{Definition.} An \(n\times n\) matrix is a \textbf{square matrix} of \textbf{order} \(n\).
+
+\subsubsection{Diagonal / Diagonal Entries of Square Matrix}
+\textbf{Definition.} Let \(\bm{A}=(a_{ij})\) be a \textbf{square matrix} of order \(n\).
+\begin{itemize}
+	\item The \textbf{diagonal}/\textbf{principle diagonal}/\textbf{major diagonal} of \(\bm{A}\) is the \textbf{sequence} of entries
+	\begin{itemize}
+		\item\(\bm{a_{11},a_{22},\ldots,a_{nn}}\)
+	\end{itemize}
+	\item The entries \(a_{ii}\), for \(i=1,\ldots,n\) are the \textbf{diagonal entries}
+	\item The entries \(a_{ij}\), \(i\ne j\) are the \textbf{non-diagonal entries}
+	\item The \textbf{anti-diagonal}/\textbf{minor diagonal} of \(\bm{A}\) is the \textbf{sequence} of entries from the right top to the left bottom
+	\begin{itemize}
+		\item\(\bm{a_{1n},a_{2,n-1},\ldots,a_{n1}}\)
+	\end{itemize}
+\end{itemize}
+
+\subsection{Diagonal Matrix}
+\textbf{Definition.} A \textbf{square matrix} is a \textbf{diagonal matrix} if all its \textbf{non-diagonal entries} are zero.
+\begin{itemize}
+	\item\(\bm{A}=(a_{ij})_{n\times n}\) is \textbf{diagonal}\(\iff a_{ij}=0\) for all \(i\ne j\)
+\end{itemize}
+
+\subsection{Scalar Matrix}
+\textbf{Definition.} A \textbf{diagonal matrix} is a \textbf{scalar matrix} if all its \textbf{diagonal entries} are the same.
+\begin{itemize}
+	\item\(\bm{A}=(a_{ij})_{n\times n}\) is \textbf{scalar}\(\iff a_{ij}=\begin{cases}
+		c & \text{if }i=j \\
+		0 & \text{if }i\ne j
+	\end{cases}\)
+\end{itemize}
+
+\subsection{Identity Matrix}
+\textbf{Definition.} A \textbf{scalar matrix} is an \textbf{identity matrix} if all its \textbf{diagonal entries} are 1.
+\begin{itemize}
+	\item\(\bm{A}=(a_{ij})_{n\times n}\) is \textbf{identity}\(\iff a_{ij}=\begin{cases}
+		1 & \text{if }i=j \\
+		0 & \text{if }i\ne j
+	\end{cases}\)
+\end{itemize}
+\textbf{Note:} There is exactly one identity matrix of order \(n\).
+
+\subsubsection{Notation for Identity Matrix}
+\begin{itemize}
+	\item The \textbf{identity matrix} of \textbf{order} \(n\) is denoted by \(\bm{I}_n\).
+	\item If no confusion in order, we may write \(\bm{I}\) instead of \(\bm{I}_n\).
+\end{itemize}
+
+\subsection{Zero Matrix}
+\textbf{Definition.} A \textbf{matrix} with all entries equal to zero is a \textbf{zero matrix}.
+\begin{itemize}
+	\item\(\bm{A}=(a_{ij})_{m\times n}\) is \textbf{zero}\(\iff a_{ij}=0\) for all \(i, j\)
+\end{itemize}
+\textbf{Note:} There is exactly one zero matrix of size \(m\times n\).
+
+\subsubsection{Notation for Zero Matrix}
+\begin{itemize}
+	\item The \textbf{zero matrix} of \textbf{size} \(m\times n\) is denoted by \(\bm{0}_{m\times n}\).
+	\item If no confusion in size, we may write \(\bm{0}\) instead of \(\bm{0}_{m\times n}\).
+\end{itemize}
+
+\subsection{Symmetric Square Matrix}
+\textbf{Definition.} A \textbf{square matrix} is \textbf{symmetric} if it is symmetric with respect to the diagonal.
+\begin{itemize}
+	\item\(\bm{A}=(a_{ij})_{n\times n}\) is \textbf{symmetric}\(\iff a_{ij}=a_{ji}\) for all \(i, j\)
+	\begin{itemize}
+		\item There is no restriction to the \textbf{diagonal entries}.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Upper Triangular Square Matrix}
+\textbf{Definition.} A \textbf{square matrix} is \textbf{upper triangular} if all the entries \textbf{below} the diagonal are zero.
+\begin{itemize}
+	\item\(\bm{A}=(a_{ij})_{n\times n}\) is \textbf{upper triangular}\(\iff a_{ij}=0\) if \(i>j\)
+	\begin{itemize}
+		\item There is no restriction to the \textbf{diagonal entries}.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Lower Triangular Square Matrix}
+\textbf{Definition.} A \textbf{square matrix} is \textbf{lower triangular} if all the entries \textbf{above} the diagonal are zero.
+\begin{itemize}
+	\item\(\bm{A}=(a_{ij})_{n\times n}\) is \textbf{lower triangular}\(\iff a_{ij}=0\) if \(i<j\)
+	\begin{itemize}
+		\item There is no restriction to the \textbf{diagonal entries}.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Triangular Square Matrix}
+\textbf{Definition.} Both \textbf{upper triangular matrices} and \textbf{lower triangular matrices} are \textbf{triangular matrices}.
+
+\subsection{Diagonal and Triangular Square Matrices}
+A \textbf{square matrix} is both upper and lower triangular \(\iff\) it is diagonal.
+
+\section{Matrix Operations}
+\subsection{Identical Matrices}
+\begin{itemize}
+	\item A matrix is completely determined by its \textbf{size} and \textbf{entries}.
+	\item\textbf{Definition.} Two matrices are \textbf{equal} if
+	\begin{itemize}
+		\item they have the same \textbf{size} (same number of rows and same number of columns), and
+		\item all the corresponding entries are the same.
+	\end{itemize}
+	Let \(\bm{A}=(a_{ij})_{m\times n}\) and \(\bm{B}=(b_{ij})_{p\times q}\). Then
+	\begin{itemize}
+		\item\(\bm{A}=\bm{B}\iff m=p\ \&\ n=q\ \&\ a_{ij}=b_{ij}\) for all \(i,j\)
+	\end{itemize}
+\end{itemize}
+
+\subsection{Matrix Addition, Subtraction \& Scalar Multiplication}
+\textbf{Definition.} Let \(\bm{A}=(a_{ij})_{m\times n}\) and \(\bm{B}=(b_{ij})_{m\times n}\) be matrices, and \(c\) a constant. The following operations are defined:
+\begin{itemize}
+	\item\textbf{Addition}: \(\bm{A}+\bm{B}=(a_{ij}+b_{ij})_{m\times n}\)
+	\item\textbf{Substraction}: \(\bm{A}-\bm{B}=(a_{ij}-b_{ij})_{m\times n}\)
+	\item\textbf{Scalar Multiplication}: \(c\bm{A}=(ca_{ij})_{m\times n}\)
+\end{itemize}
+\textbf{Remarks.}
+\begin{itemize}
+	\item\((-1)\bm{A}\) is usually denoted by \(-\bm{A}\).
+	\item It can be proved that \(\bm{A}-\bm{B}=\bm{A}+(-\bm{B})\).
+	\begin{itemize}
+		\item In the discussion we usually only consider addition and scalar multiplication.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Properties of Matrix Addition, Subtraction \& Scalar Multiplication}
+\textbf{Theorem.} Let \(\bm{A},\bm{B},\bm{C}\) be matrices of the same size, and \(c,d\) be constants. Then
+\begin{itemize}
+	\item\(\bm{A}-\bm{B}=\bm{A}+(-\bm{B})\)
+	\item Commutative Law for Matrix Addition:
+	\begin{itemize}
+		\item\(\bm{A}+\bm{B}=\bm{B}+\bm{A}\)
+	\end{itemize}
+	\item Associative Law for Matrix Addition:
+	\begin{itemize}
+		\item\((\bm{A}+\bm{B})+\bm{C}=\bm{A}+(\bm{B}+\bm{C})\)
+	\end{itemize}
+	\item Let \(\bm{0}\) be the zero matrix of the same size as \(\bm{A}\). Then
+	\begin{itemize}
+		\item\(\bm{0}+\bm{A}=\bm{A};\quad\bm{A}-\bm{A}=\bm{0};\quad0\bm{A}=\bm{0};\quad c\bm{0}=\bm{0}\).
+	\end{itemize}
+	\item Distributive Law for Scalar Multiplication over Addition:
+	\begin{itemize}
+		\item\(c(\bm{A}+\bm{B})=c\bm{A}+c\bm{B}\)
+		\item\((c+d)\bm{A}=c\bm{A}+d\bm{A}\)
+	\end{itemize}
+	\item\(c(d\bm{A})=(cd)\bm{A},\quad1\bm{A}=\bm{A}\)
+\end{itemize}
+
+\subsection{Matrix Multiplication}
+\textbf{Definition.} Let \(\bm{A}=(a_{ij})_{m\times p}\) and \(\bm{B}=(b_{ij})_{p\times n}\). Then \(\bm{AB}\) is the \(m\times n\) matrix such that its \((i,j)\)-entry is
+\[a_{i1}b_{1j}+a_{i2}b_{2j}+\ldots+a_{ip}b_{pj}=\sum_{k=1}^pa_{ik}b_{kj}\]
+\textbf{Note:} No. of columns of \(\bm{A}=\) the no. of rows of \(\bm{B}\).
+
+\subsubsection{Matrix Multiplication Explained in Words}
+In order to get the \((i,j)\)-entry of the \textbf{product} matrix:
+\begin{enumerate}
+	\item Find the \(i\)th \textbf{row} of the first matrix;
+	\item Find the \(j\)th \textbf{column} of the second matrix;
+	\item Multiply the corresponding entries;
+	\item Add the products together.
+\end{enumerate}
+
+\subsection{Noncommutativity of Matrix Multiplication}
+Matrix Multiplication is \textbf{not commutative} in general. For example, let \(\bm{A}=\begin{pmatrix}
+	0 & 1 \\ 0 & 0
+\end{pmatrix}\) and \(\bm{B}=\begin{pmatrix}
+	0 & 0 \\ 1 & 0
+\end{pmatrix}\). \(\bm{AB}=\begin{pmatrix}
+	1 & 0 \\ 0 & 0
+\end{pmatrix}\ne\begin{pmatrix}
+	0 & 0 \\ 0 & 1
+\end{pmatrix}=\bm{BA}\).
+\begin{itemize}
+	\item\(\bm{A}\bm{B}\) is the \textbf{pre-multiplication} of \(\bm{A}\) to \(\bm{B}\) (to \(\bm{B}\) by \(\bm{A}\)).
+	\item\(\bm{B}\bm{A}\) is the \textbf{post-multiplication} of \(\bm{A}\) to \(\bm{B}\) (to \(\bm{B}\) by \(\bm{A}\)).
+\end{itemize}
+
+\subsection{Properties of Matrix Multiplication}
+\textbf{Theorem.}
+\begin{itemize}
+	\item Let \(\bm{A},\bm{B},\bm{C}\) be \(m\times p,p\times q,q\times n\) matrices, resp. Then
+	\begin{itemize}
+		\item Associative Law: \(\bm{A}(\bm{B}\bm{C})=(\bm{A}\bm{B})\bm{C}\).
+	\end{itemize}
+	\item Let \(\bm{A}\) be a \(m\times p\) matrix, \(\bm{B}_1, \bm{B}_2\) be \(p\times n\) matrices. Then
+	\begin{itemize}
+		\item Distributive Law: \(\bm{A}(\bm{B}_1+\bm{B}_2)=\bm{A}\bm{B}_1+\bm{A}\bm{B}_2\).
+	\end{itemize}
+	\item Let \(\bm{A}_1,\bm{A}_2\) be \(m\times p\) matrices, \(\bm{B}\) be a \(p\times n\) matrix. Then
+	\begin{itemize}
+		\item Distributive Law: \((\bm{A}_1+\bm{A}_2)\bm{B}=\bm{A}_1\bm{B}+\bm{A}_2\bm{B}\).
+	\end{itemize}
+	\item Let \(\bm{A}, \bm{B}\) be \(m\times p, p\times n\) matrices resp. and \(c\) be a constant. Then
+	\begin{itemize}
+		\item\(c(\bm{A}\bm{B})=(c\bm{A})\bm{B}=\bm{A}(c\bm{B})\).
+	\end{itemize}
+	\item Let \(\bm{A}\) be a \(m\times n\) matrix. Then
+	\begin{itemize}
+		\item\(\bm{A}\bm{0}_{n\times p}=\bm{0}_{m\times p};\quad\bm{0}_{p\times m}\bm{A}=\bm{0}_{p\times n}\).
+		\item\(\bm{A}\bm{I}_n=\bm{A};\quad\bm{I}_m\bm{A}=\bm{A}\).
+	\end{itemize}
+\end{itemize}
+
+\subsection{Nonnegative Integer Powers of Square Matrices}
+\subsubsection{Multiplying a Matrix With Itself}
+Let \(\bm{A}\) be a \(m\times n\) matrix. Then
+\begin{itemize}
+	\item\(\bm{A}\bm{A}\) is well-defined \(\iff m=n\iff\bm{A}\) is a \textbf{square matrix}.
+\end{itemize}
+
+\subsubsection{Nonnegative Integer Powers of Square Matrices}
+\textbf{Definition.} Let \(\bm{A}\) be a \textbf{square matrix} of order \(n\). For nonnegative integers \(k\), the \textbf{powers} of \(\bm{A}\) are defined as
+\[\bm{A}^k=\begin{cases}
+	\bm{I}_n & \text{if } k=0 \\
+	\underbrace{\bm{A}\bm{A}\ldots\bm{A}}_{k\text{ times}} & \text{if } k\geq1
+\end{cases}\]
+
+\subsection{Properties of Nonnegative Integer Powers of Square Matrices}
+Let \(\bm{A},\bm{B}\) be square matrices of the same size, and \(m,n\) nonnegative integers. Then
+\begin{itemize}
+	\item\(\bm{A}^m\bm{A}^n=\bm{A}^{m+n}\).
+	\item In general, \((\bm{A}\bm{B})^n\ne\bm{A}^n\bm{B}^n\) for \(n=2,3,\ldots\)
+	\begin{itemize}
+		\item Since matrix multiplication is not commutative,
+		\begin{align*}
+			(\bm{A}\bm{B})^n
+			&=\underbrace{(\bm{A}\bm{B})(\bm{A}\bm{B})\ldots(\bm{A}\bm{B})}_{n\text{ times}} \\
+			&\ne\underbrace{\bm{A}\bm{A}\ldots\bm{A}}_{n\text{ times}}\underbrace{\bm{B}\bm{B}\ldots\bm{B}}_{n\text{ times}} \\
+			&=\bm{A}^n\bm{B}^n
+		\end{align*}
+	\end{itemize}
+	\item However, suppose that \(\bm{A}\bm{B}=\bm{B}\bm{A}\). Then
+	\begin{itemize}
+		\item\((\bm{A}\bm{B})^n=\bm{A}^n\bm{B}^n\) for all nonnegative integers \(n\).
+	\end{itemize}
+\end{itemize}
+
+\subsection{Matrix Representation}
+Let \(\bm{A}=(a_{ij})_{m\times n}=\left(\begin{array}{cccc}
+a_{11} & a_{12} & \ldots & a_{1n} \\ 
+a_{21} & a_{22} & \ldots & a_{2n} \\ 
+\vdots & \vdots & & \vdots \\ 
+a_{m1} & a_{m2} & \ldots & a_{mn} \\
+\end{array}\right)\)
+
+\subsubsection{Matrix as a Column of Row Vectors}
+\begin{itemize}
+	\item Let \(\bm{a}_i\) denote the \(i\)th row of \(\bm{A}\), for \(i=1,2,\ldots,m\).
+	\begin{align*}
+		\bm{a}_1 &= \begin{pmatrix}
+			a_{11} & a_{12} & \ldots & a_{1n}
+		\end{pmatrix} \\
+		\bm{a}_2 &= \begin{pmatrix}
+			a_{21} & a_{22} & \ldots & a_{2n}
+		\end{pmatrix} \\
+		&\vdots \\
+		\bm{a}_m &= \begin{pmatrix}
+			a_{m1} & a_{m2} & \ldots & a_{mn}
+		\end{pmatrix}
+	\end{align*}
+	\item Then each \(\bm{a}_i\) is a \(1\times n\) matrix (row vector).
+	\item Then \(\bm{A}\) can be represented as
+	\[\bm{A}=\left(\begin{array}{c}
+		\bm{a}_1 \\
+		\bm{a}_2 \\
+		\vdots \\
+		\bm{a}_m \\
+	\end{array}\right)\]
+\end{itemize}
+
+\subsubsection{Matrix as a Row of Column Vectors}
+\begin{itemize}
+	\item Let \(\bm{b}_j\) denote the \(j\)th column of \(\bm{A}\), for \(j=1,2,\ldots,n\).
+	\begin{align*}
+		\bm{b}_1 = \left(\begin{array}{c}
+			a_{11} \\
+			a_{21} \\
+			\vdots \\
+			a_{m1} \\
+		\end{array}\right),
+		\bm{b}_2 = \left(\begin{array}{c}
+			a_{12} \\
+			a_{22} \\
+			\vdots \\
+			a_{m2} \\
+		\end{array}\right),
+		\ldots,
+		\bm{b}_n &= \left(\begin{array}{c}
+			a_{1n} \\
+			a_{2n} \\
+			\vdots \\
+			a_{mn} \\
+		\end{array}\right)
+	\end{align*}
+	\item Then each \(\bm{b}_j\) is a \(m\times1\) matrix (column vector).
+	\item Then \(\bm{A}\) can be represented as
+	\[\bm{A}=\left(\begin{array}{cccc}
+		\bm{b}_1 & \bm{b}_2 & \ldots & \bm{b}_n \\
+	\end{array}\right)\]
+\end{itemize}
+
+\subsection{Decomposing Matrix Multiplication}
+Suppose \(\bm{A}=(a_{ij})_{m\times p}\).
+\begin{itemize}
+	\item Let \(\bm{a}_i=\left(\begin{array}{cccc}
+		a_{i1} & a_{i2} & \ldots & a_{ip}
+	\end{array}\right)\) be the \(i\)th row of \(\bm{A}\).
+\end{itemize}
+Suppose \(\bm{B}=(b_{ij})_{p\times n}\).
+\begin{itemize}
+	\item Let \(\bm{b}_j=\left(\begin{array}{c}
+		b_{1j} \\
+		b_{2j} \\
+		\vdots \\
+		b_{pj} \\
+	\end{array}\right)\) be the \(j\)th column of \(\bm{B}\).
+\end{itemize}
+Then
+\[\bm{AB}=\left(\begin{array}{cccc}
+	\bm{a}_1\bm{b}_1 & \bm{a}_1\bm{b}_2 & \ldots & \bm{a}_1\bm{b}_n \\
+	\bm{a}_2\bm{b}_1 & \bm{a}_2\bm{b}_2 & \ldots & \bm{a}_2\bm{b}_n \\
+	\vdots & \vdots & & \vdots \\
+	\bm{a}_m\bm{b}_1 & \bm{a}_m\bm{b}_2 & \ldots & \bm{a}_m\bm{b}_n \\
+\end{array}\right)\]
+
+\subsubsection{Decomposing Into Entries}
+\begin{align*}
+	(i,j)\text{-entry of }\bm{AB}
+	&=a_{i1}b_{1j}+a_{i2}b_{2j}+\ldots+a_{ip}b_{pj} \\
+	&=\bm{a}_i\bm{b}_j
+\end{align*}
+
+\subsubsection{Decomposing Into Rows}
+\begin{align*}
+	i\text{th row of }\bm{AB}
+	&=\begin{pmatrix}
+		\bm{a}_i\bm{b}_1 & \bm{a}_i\bm{b}_2 & \ldots & \bm{a}_i\bm{b}_n
+	\end{pmatrix} \\
+	&=\bm{a}_i\begin{pmatrix}
+		\bm{b}_1 &\bm{b}_2 & \ldots & \bm{b}_n
+	\end{pmatrix} \\
+	&=\bm{a}_i\bm{B}
+\end{align*}
+Thus,
+\(\bm{AB}
+=\begin{pmatrix}
+	\bm{a}_1 \\
+	\bm{a}_2 \\
+	\vdots \\
+	\bm{a}_m \\
+\end{pmatrix}\bm{B}
+=\begin{pmatrix}
+	\bm{a}_1\bm{B} \\
+	\bm{a}_2\bm{B} \\
+	\vdots \\
+	\bm{a}_m\bm{B} \\
+\end{pmatrix}\)
+
+\subsubsection{Decomposing Into Columns}
+\begin{align*}
+	j\text{th column of }\bm{AB}
+	&=\begin{pmatrix}
+		\bm{a}_1\bm{b}_j \\
+		\bm{a}_2\bm{b}_j \\
+		\vdots \\
+		\bm{a}_m\bm{b}_j \\
+	\end{pmatrix}
+	=\begin{pmatrix}
+		\bm{a}_1 \\
+		\bm{a}_2 \\
+		\vdots \\
+		\bm{a}_m \\
+	\end{pmatrix}\bm{b}_j \\
+	&=\bm{A}\bm{b}_j
+\end{align*}
+Thus, \(\bm{AB}
+	=\bm{A}\begin{pmatrix}
+		\bm{b}_1 & \bm{b}_2 & \ldots & \bm{b}_n
+	\end{pmatrix}
+	=\begin{pmatrix}
+		\bm{Ab}_1 & \bm{Ab}_2 & \ldots & \bm{Ab}_n
+	\end{pmatrix}\)
+
+\subsubsection{Decomposing Into Blocks}
+Matrices can be multiplied in blocks (provided that the sizes are matched).
+
+\subsection{Matrix Representation of Linear Equation}
+Given a \textbf{linear equation} in \(n\) variables \(x_1,\ldots,x_n\)
+\[a_1x_1+a_2x_2+\ldots+a_nx_n=b\]
+The corresponding matrix representation is
+\[\begin{pmatrix}
+	a_1 & a_2 & \ldots & a_n
+\end{pmatrix}\begin{pmatrix}
+	x_1 \\ x_2 \\ \vdots \\ x_n
+\end{pmatrix}=b\]
+
+\subsection{Matrix Representation of Linear System}
+Given a \textbf{linear system} of \(m\) equations in \(n\) variables \(x_1,\ldots,x_n\)
+\[\left\{\arraycolsep=1.4pt\begin{matrix}
+	a_{11}x_1 & + & a_{12}x_2 & + & \ldots & + & a_{1n}x_n & = & b_1 \\
+	a_{21}x_1 & + & a_{22}x_2 & + & \ldots & + & a_{2n}x_n & = & b_2 \\
+	& \vdots & & & & & & \vdots & \\
+	a_{m1}x_1 & + & a_{m2}x_2 & + & \ldots & + & a_{mn}x_n & = & b_m \\
+\end{matrix}\right.\]
+Then the corresponding matrix representation is as follows:
+\begin{itemize}
+	\item The \textbf{coefficient matrix} is \(\bm{A}=\begin{pmatrix}
+		a_{11} & a_{12} & \ldots & a_{1n} \\
+		a_{21} & a_{22} & \ldots & a_{2n} \\
+		\vdots & \vdots & & \vdots \\
+		a_{m1} & a_{m2} & \ldots & a_{mn} \\
+	\end{pmatrix}\)
+	\item The \textbf{variable matrix} is \(\bm{x}=\begin{pmatrix}
+		x_1 \\ \vdots \\ x_n
+	\end{pmatrix}\)
+	\item The \textbf{constant matrix} is \(\bm{b}=\begin{pmatrix}
+		b_1 \\ \vdots \\ b_n
+	\end{pmatrix}\)
+	\item Then \(\bm{Ax}=\bm{b}\)
+\end{itemize}
+
+\subsubsection{Solution Vector to Linear System}
+Let \(\bm{u}=\begin{pmatrix}
+	u_1 \\ \vdots \\ u_n
+\end{pmatrix}\). Then
+\begin{align*}
+	x_1&=u_1,\ldots,x_n=u_n\text{ is a solution to the system} \\
+	&\iff\bm{Au}=\bm{b} \\
+	&\iff\bm{u}\text{ is a solution to }\bm{Ax}=\bm{b}
+\end{align*}
+
+\subsubsection{Alternative Matrix Representation of Linear System}
+Let \(\bm{a}_j\) denote the \(j\)th column of \(\bm{A}\). Then
+\begin{align*}
+	\bm{b}
+	&=\bm{Ax}
+	=\begin{pmatrix}
+		a_{11} & \ldots & a_{1n} \\
+		\vdots & & \vdots \\
+		a_{m1} & \ldots & a_{mn}
+	\end{pmatrix}\begin{pmatrix}
+		x_1 \\ \vdots \\ x_n
+	\end{pmatrix}
+	=\arraycolsep=1.4pt\begin{pmatrix}
+		a_{11}x_1 & + & \ldots & + & a_{1n}x_n \\
+		& & \vdots & & \\
+		a_{m1}x_1 & + & \ldots & + & a_{mn}x_n
+	\end{pmatrix} \\
+	&=x_1\begin{pmatrix}
+		a_{11} \\ \vdots \\ a_{m1}
+	\end{pmatrix}+\ldots+x_n\begin{pmatrix}
+		a_{1n} \\ \vdots \\ a_{mn}
+	\end{pmatrix}
+	=x_1\bm{a}_1+\ldots+x_n\bm{a}_n \\
+	&=\sum_{j=1}^nx_j\bm{a}_j
+\end{align*}
+
+\subsection{Transpose of Matrix}
+\textbf{Definition.} Let \(\bm{A}=(a_{ij})_{m\times n}\) be a \textbf{matrix}. The \textbf{transpose} of \(\bm{A}\) is the \(n\times m\) matrix \(\bm{A}^T\) (or \(\bm{A}^t\))
+\begin{itemize}
+	\item whose \((i,j)\)-entry is \(a_{ji}\). 
+\end{itemize}
+\textbf{Remarks.}
+\begin{itemize}
+	\item The \(i\)th row of \(\bm{A}^T\) is the \(i\)th column of \(\bm{A}\).
+	\item The \(j\)th column of \(\bm{A}^T\) is the \(j\)th row of \(\bm{A}\).
+\end{itemize}
+
+\subsection{Properties of Transpose of Matrix}
+\textbf{Theorem.} Let \(\bm{A}\) be an \(m\times n\) matrix. Then
+\begin{itemize}
+	\item\((\bm{A}^T)^T=\bm{A}\).
+	\item\(\bm{A}\) is symmetric\(\iff\bm{A}=\bm{A}^T\).
+	\item Let \(c\) be a scalar. Then \((c\bm{A})^T=c\bm{A}^T\).
+	\item Let \(\bm{B}\) be \(m\times n\). Then \((\bm{A}+\bm{B})^T=\bm{A}^T+\bm{B}^T\).
+	\item Let \(\bm{B}\) be \(n\times p\). Then \((\bm{AB})^T=\bm{B}^T\bm{A}^T\).
+	\begin{itemize}
+		\item\textbf{Note:} In general, \((\bm{AB})^T\ne\bm{A}^T\bm{B}^T\).
+	\end{itemize}
+\end{itemize}
+
+\section{Inverse of Square Matrices}
+\subsection{Additive Inverse of Matrices}
+Let \(\bm{A}\) be a \textbf{matrix}. Then \(-\bm{A}\) is the \textbf{additive inverse} of \(\bm{A}\).
+
+\subsection{Inverse of Square Matrices}
+\textbf{Definition.} Let \(\bm{A}\) be a \textbf{square matrix} of order \(n\).
+\begin{itemize}
+	\item If there exists a \textbf{square matrix} \(\bm{B}\) of order \(n\) so that
+	\begin{itemize}
+		\item\(\bm{AB}=\bm{I}_n\) and \(\bm{BA}=\bm{I}_n\),
+	\end{itemize}
+	then \(\bm{A}\) is \textbf{invertible}, and \(\bm{B}\) is an \textbf{inverse} of \(\bm{A}\).
+	\item If \(\bm{A}\) is not \textbf{invertible}, then \(\bm{A}\) is \textbf{singular}.
+\end{itemize}
+\textbf{Note:} Non-square matrix is neither \textbf{invertible} nor \textbf{singular}.
+
+\subsection{Uniqueness of Inverse of Invertible Matrices}
+\textbf{Theorem.} Let \(\bm{A}\) be a \textbf{square matrix}. If \(\bm{A}\) is \textbf{invertible}
+\begin{itemize}
+	\item then its \textbf{inverse} is unique.
+	\item\textbf{Notation.} The unique inverse of \(\bm{A}\), is denoted by \(\bm{A}^{-1}\)
+	\begin{itemize}
+		\item\(\bm{AA}^{-1}=\bm{A}^{-1}\bm{A}=\bm{I}\).
+	\end{itemize}
+\end{itemize}
+
+\subsection{Cancellation Law for Invertible Matrices}
+\textbf{Theorem.} Let \(\bm{A}\) be an \textbf{invertible matrix}. Then
+\begin{itemize}
+	\item\(\bm{AB}_1=\bm{AB}_2\implies\bm{B}_1=\bm{B}_2\).
+	\item\(\bm{C}_1\bm{A}=\bm{C}_2\bm{A}\implies\bm{C}_1=\bm{C}_2\).
+\end{itemize}
+\textbf{Remark.} The cancellation law fails if \(\bm{A}\) is \textbf{singular}.
+
+\subsection{Inverse of Square Matrix of Order Two}
+\textbf{Theorem.} Let \(\bm{A}=\begin{pmatrix}
+	a & b \\ c & d
+\end{pmatrix}\). Then
+\begin{itemize}
+	\item\(\bm{A}\) is \textbf{invertible}\(\iff ad-bc\ne0\).
+	\item If \(\bm{A}\) is \textbf{invertible}, then \(\displaystyle\bm{A}^{-1}=\frac{1}{ad-bc}\begin{pmatrix}
+		d & -b \\ -c & a
+	\end{pmatrix}\).
+\end{itemize}
+
+\subsection{Properties of Invertible Matrices}
+\textbf{Theorem.} Let \(\bm{A},\bm{B}\) be \textbf{invertible matrices} of same size. Then
+\begin{itemize}
+	\item Let \(c\ne0\). \(c\bm{A}\) is \textbf{invertible}, and \(\displaystyle(c\bm{A})^{-1}=\frac{1}{c}\bm{A}^{-1}\).
+	\item\(\bm{A}^T\) is \textbf{invertible}, and \((\bm{A}^T)^{-1}=(\bm{A}^{-1})^T\).
+	\item\(\bm{A}^{-1}\) is \textbf{invertible}, and \((\bm{A}^{-1})^{-1}=\bm{A}\).
+	\item\(\bm{AB}\) is \textbf{invertible}, and \((\bm{AB})^{-1}=\bm{B}^{-1}\bm{A}^{-1}\).
+\end{itemize}
+Let \(\bm{A}_1,\bm{A}_2,\ldots,\bm{A}_k\) be \textbf{invertible matrices} of the same size. Then
+\begin{itemize}
+	\item\((\bm{A}_1\bm{A}_2\ldots\bm{A}_k)^{-1}=\bm{A}_k^{-1}\ldots\bm{A}_2^{-1}\bm{A}_1^{-1}\).
+\end{itemize}
+In particular, \((\underbrace{\bm{A}\bm{A}\ldots\bm{A}}_{k\text{ times}})^{-1}=\underbrace{\bm{A}^{-1}\ldots\bm{A}^{-1}\bm{A}^{-1}}_{k\text{ times}}\). Thus,
+\begin{itemize}
+	\item\((\bm{A}^k)^{-1}=(\bm{A}^{-1})^k\).
+\end{itemize}
+
+\subsection{Negative Integer Powers of Square Matrices}
+\textbf{Definition.} Let \(\bm{A}\) be an \textbf{invertible matrix}. For any positive integer \(k\), \(\bm{A}^{-k}=(\bm{A}^{-1})^k\).
+
+\subsection{Properties of Integer Powers of Square Matrices}
+\textbf{Theorem.} Let \(\bm{A}\) be an \textbf{invertible matrix}. For any integers \(m\) and \(n\),
+\begin{itemize}
+	\item\(\bm{A}^{m+n}=\bm{A}^m\bm{A}^n\) and \((\bm{A}^m)^n=\bm{A}^{mn}\).
+\end{itemize}
+\textbf{Note:} If \(\bm{A}\) is \textbf{singular}, then \(\bm{A}^{-1}\) is undefined.
+
+\section{Elementary Matrices}
+\subsection{Definition of Elementary Matrices}
+\textbf{Definition.} A \textbf{square matrix} is called an \textbf{elementary matrix} if it can be obtained from the \textbf{identity matrix} by performing a single \textbf{elementary row operation}.
+
+\subsection{Connection of Elementary Matrices to Pre-Matrix Multiplication}
+\textbf{Theorem.} Let \(\bm{E}\) be an \textbf{elementary matrix} obtained by performing an \textbf{elementary row operation} on \(\bm{I}_m\). Then for any \(m\times n\) matrix \(\bm{A}\), \(\bm{EA}\) can be obtained by performing the same \textbf{elementary row operation} to \(\bm{A}\).
+\begin{itemize}
+	\item Let \(\bm{A}\) be an \(m\times n\) matrix.
+	\begin{itemize}
+		\item\(\bm{I}_m\ro{$$cR_i$$}\bm{E}\implies\bm{A}\ro{$$cR_i$$}\bm{EA}\).
+		\item\(\bm{I}_m\ro{$$R_i\leftrightarrow R_j$$}\bm{E}\implies\bm{A}\ro{$$R_i\leftrightarrow R_j$$}\bm{EA}\).
+		\item\(\bm{I}_m\ro{$$R_i+cR_j$$}\bm{E}\implies\bm{A}\ro{$$R_i+cR_j$$}\bm{EA}\).
+	\end{itemize}
+\end{itemize}
+
+\subsection{Elementary Matrices are Invertible}
+\textbf{Theorem.}
+\begin{itemize}
+	\item Every \textbf{elementary matrix} is \textbf{invertible}.
+	\item The \textbf{inverse} of an \textbf{elementary matrix} is \textbf{elementary}.
+\end{itemize}
+Let \(\bm{E}\) be an \textbf{elementary matrix}.
+\begin{itemize}
+	\item\(\bm{I}\ro{$$cR_i$$}\bm{E}\implies\bm{I}\ro{$$\frac{1}{c}R_i$$}\bm{E}^{-1}\).
+	\item\(\bm{I}\ro{$$R_i\leftrightarrow R_j$$}\bm{E}\implies\bm{I}\ro{$$R_i\leftrightarrow R_j$$}\bm{E}^{-1}\). (So \(\bm{E}=\bm{E}^{-1}\)).
+	\item\(\bm{I}\ro{$$R_i+cR_j$$}\bm{E}\implies\bm{I}\ro{$$R_i-cR_j$$}\bm{E}^{-1}\).
+\end{itemize}
+
+\subsection{Row Equivalent Matrices are Linked by Elementary Matrices}
+\textbf{Theorem.} Two \textbf{matrices} \(\bm{A}\) and \(\bm{B}\) are \textbf{row equivalent}\(\iff\)there exist \textbf{elementary matrices} \(\bm{E}_1,\bm{E}_2,\ldots,\bm{E}_k\) such that \(\bm{B}=\bm{E}_k\bm{E}_{k-1}\ldots\bm{E}_2\bm{E}_1\bm{A}\). \\
+\textbf{Remarks.} Suppose that \(\bm{B}=\bm{E}_k\bm{E}_{k-1}\ldots\bm{E}_2\bm{E}_1\bm{A}\). Then \(\bm{A}=\bm{E}_1^{-1}\bm{E}_2^{-1}\ldots\bm{E}_{k-1}^{-1}\bm{E}_k^{-1}\bm{B}\)
+
+\subsection{Main Theorem for Invertible Matrices}
+\textbf{Theorem.} Let \(\bm{A}\) be a \textbf{square matrix}. Then the following are equivalent:
+\begin{enumerate}
+	\item\(\bm{A}\) is an \textbf{invertible matrix}.
+	\item Linear system \(\bm{Ax}=\bm{b}\) has a unique solution.
+	\item Linear system \(\bm{Ax}=\bm{0}\) has only the trivial solution.
+	\item The \textbf{reduced row-echelon form} of \(\bm{A}\) is \(\bm{I}\).
+	\item\(\bm{A}\) is the product of \textbf{elementary matrices}.
+\end{enumerate}
+
+\subsection{Checking Whether a Square Matrix is Invertible}
+\begin{itemize}
+	\item A \textbf{square matrix} is \textbf{invertible}
+	\begin{align*}
+		&\iff\text{Its reduced row-echelon form is }\bm{I} \\
+		&\iff\text{All the columns in its row-echelon form are pivot}. \\
+		&\iff\text{All the rows in its row-echelon form are nonzero}.
+	\end{align*}
+	\item A \textbf{square matrix} is \textbf{singular}
+	\begin{align*}
+		&\iff\text{Its reduced row-echelon form is not }\bm{I} \\
+		&\iff\text{Some columns in its row-echelon form are non-pivot}. \\
+		&\iff\text{Some rows in its row-echelon form are zero}.
+	\end{align*}
+\end{itemize}
+
+\subsection{Finding Inverse of an Invertible Matrix}
+\textbf{Theorem.} Let \(\bm{A}\) be an \textbf{invertible matrix}. The \textbf{reduced row-echelon form} of \(\left(\begin{array}{c|c}
+	\bm{A} & \bm{I}
+\end{array}\right)\) is \(\left(\begin{array}{c|c}
+	\bm{I} & \bm{A}^{-1}
+\end{array}\right)\).
+
+\subsection{Weaker Requirement for Invertible Matrices}
+\textbf{Theorem.} Let \(\bm{A}\) and \(\bm{B}\) be \textbf{square matrices} of the same size. If \(\bm{AB}=\bm{I}\), then \(\bm{A}\) and \(\bm{B}\) are \textbf{invertible}, and \(\bm{A}^{-1}=\bm{B}\), \(\bm{B}^{-1}=\bm{A}\).
+
+\subsection{Invertibility of Product of Matrices}
+\textbf{Corollary.} Let \(\bm{A}_1,\bm{A}_2,\ldots,\bm{A}_k\) be \textbf{square matrices} of the same size. Then
+\begin{itemize}
+	\item\(\bm{A}_1\bm{A}_2\ldots\bm{A}_k\) is \textbf{invertible}\(\iff\)all \(\bm{A}_i\) are \textbf{invertible}.
+	\item\(\bm{A}_1\bm{A}_2\ldots\bm{A}_k\) is \textbf{singular}\(\iff\)some \(\bm{A}_i\) are \textbf{singular}.
+\end{itemize}
+
+\subsection{Elementary Column Operations}
+\textbf{Definition.} The \textbf{elementary column operations} are the following operations on columns of a matrix:
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Description of Operation} & \textbf{Notation} \\
+\hline
+Multiply the \(i\)th column by a nonzero constant \(k\) & \(kC_i\) \\
+\hline
+Interchange the \(i\)th and \(j\)th columns & \(C_i\leftrightarrow C_j\) \\
+\hline
+Add \(k\) times the \(j\)th column to the \(i\)th column & \(C_i+kC_j\) \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Performing a Single Elementary Column Operation on Identity Matrix Gives an Elementary Matrix}
+Let \(\bm{E}\) be the \textbf{matrix} obtained from \(\bm{I}\) by a single \textbf{elementary column operation}. Then \(\bm{E}\) is an \textbf{elementary matrix} (i.e. \(\bm{E}\) can be obtained from \(\bm{I}\) by a single \textbf{elementary row operation}).
+\begin{itemize}
+	\item\(\bm{I}\ro{$$kC_i$$}\bm{E}\iff\bm{I}\ro{$$kR_i$$}\bm{E}\).
+	\item\(\bm{I}\ro{$$C_i\leftrightarrow C_j$$}\bm{E}\iff\bm{I}\ro{$$R_i\leftrightarrow R_j$$}\bm{E}\).
+	\item\(\bm{I}\ro{$$C_i+kC_j$$}\bm{E}\iff\bm{I}\ro{$$R_j+kR_i$$}\bm{E}\).
+\end{itemize}
+
+\subsection{Connection of Elementary Matrices to Matrix Post-Multiplication}
+\textbf{Theorem.} Let \(\bm{E}\) be an \textbf{elementary matrix} obtained by performing an \textbf{elementary column operation} on \(\bm{I}_n\). Then for any \(m\times n\) matrix \(\bm{A}\), \(\bm{AE}\) can be obtained by performing the same \textbf{elementary column operation} to \(\bm{A}\).
+\begin{itemize}
+	\item\(\bm{I}\ro{$$kC_i$$}\bm{E}\implies\bm{A}\ro{$$kC_i$$}\bm{AE}\).
+	\item\(\bm{I}\ro{$$C_i\leftrightarrow C_j$$}\bm{E}\implies\bm{A}\ro{$$C_i\leftrightarrow C_j$$}\bm{AE}\).
+	\item\(\bm{I}\ro{$$C_i+kC_j$$}\bm{E}\implies\bm{A}\ro{$$C_i+kC_j$$}\bm{AE}\).
+\end{itemize}
+
+\section{Determinant}
+\subsection{$(i,j)$-cofactor}
+\textbf{Definition.} Let \(\bm{A}=(a_{ij})_{n\times n}\). Let \(\bm{M}_{ij}\) be the \textbf{submatrix} obtained from \(\bm{A}\) by deleting the \(i\)th row and \(j\)th column. Then for \(1\leq i,j\leq n\), the \(\bm{(i,j)}\)\textbf{-cofactor} of \(\bm{A}\) is
+\[A_{ij}=(-1)^{i+j}\det(\bm{M}_{ij})\]
+
+\subsection{Definition of Determinant of Square Matrix}
+\textbf{Definition.} Let \(\bm{A}=(a_{ij})_{n\times n}\). Its \textbf{determinant} is:
+\begin{itemize}
+	\item If \(n=1\), define \(\det(\bm{A})=a_{11}\).
+	\item If \(n>1\), let \(A_{ij}\) be its \((i,j)\)-cofactor, define
+	\begin{itemize}
+		\item\(\det(\bm{A})=a_{11}A_{11}+a_{12}A_{12}+\ldots+a_{1n}A_{1n}\)
+	\end{itemize}
+\end{itemize}
+
+\subsection{Determinant of $2\times 2$ Matrix}
+Let \(\bm{A}=\begin{pmatrix}
+	a & b \\ c & d
+\end{pmatrix}\). Then \(\det(A)=ad-bc\).
+
+\subsection{Broken Diagonal Formula for Determinant of $3\times 3$ Matrix}
+Let \(\bm{A}=\begin{pmatrix}
+	a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\
+	a_{31} & a_{32} & a_{33}
+\end{pmatrix}\). Then
+\[\det(\bm{A})=(a_{11}a_{22}a_{33}+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32})-(a_{11}a_{23}a_{32}+a_{12}a_{21}a_{33}+a_{13}a_{22}a_{31})\]
+\begin{itemize}
+	\item The positive terms come from the
+	\begin{itemize}
+		\item 3 (broken) diagonals from the top left to the bottom right.
+	\end{itemize}
+	\item The negative terms come from the
+	\begin{itemize}
+		\item 3 (broken) diagonals from the top right to the bottom left.
+	\end{itemize}
+\end{itemize}
+\textbf{Warning:} The "diagonal expansion" of \(\det(A)\) for \(2\times2\) or \(3\times3\) matrices is not valid if the order \(\geq4\).
+
+\subsection{Properties of Determinant}
+\subsubsection{Properties of Determinant}
+\textbf{Theorem.} For any \textbf{square matrices} \(\bm{A}\) and \(\bm{B}\) of the same size and any scalar \(c\),
+\begin{itemize}
+	\item For \(n\in\mathbb{N}\), \(\det(\bm{I}_n)=1\).
+	\item\(\det(\bm{A})=\det(\bm{A}^T)\).
+	\item\(\det(\bm{AB})=\det(\bm{A})\det(\bm{B})\).
+	\item\(\det(c\bm{A})=c^n\det(\bm{A})\), where \(\bm{A}\) is \(n\times n\).
+	\item\(\det(\bm{A}^{-1})=\det(\bm{A})^{-1}\) if \(\bm{A}\) is \textbf{invertible}.
+\end{itemize}
+
+\subsubsection{Change in Determinant by Elementary Row Operations}
+\textbf{Theorem.} For any square matrices \(\bm{A}\) and \(\bm{B}\),
+\begin{itemize}
+	\item\(\bm{A}\ro{$$cR_i$$}\bm{B}\implies\det(\bm{B})=c\det(\bm{A})\).
+	\begin{itemize}
+		\item In particular, \(\bm{I}\ro{$$cR_i$$}\bm{E}\implies\det(\bm{E})=c\).
+	\end{itemize}
+	\item\(\bm{A}\ro{$$R_i\leftrightarrow R_j$$}\bm{B}\implies\det(\bm{B})=-\det(\bm{A})\).
+	\begin{itemize}
+		\item In particular, \(\bm{I}\ro{$$R_i\leftrightarrow R_j$$}\bm{E}\implies\det(\bm{E})=-1\).
+	\end{itemize}
+	\item\(\bm{A}\ro{$$R_i+cR_j$$}\bm{B}\implies\det(\bm{B})=\det(\bm{A})\).
+	\begin{itemize}
+		\item In particular, \(\bm{I}\ro{$$R_i+cR_j$$}\bm{E}\implies\det(\bm{E})=1\).
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{Change in Determinant by Elementary Matrices}
+\textbf{Theorem.} Let \(\bm{A}\) be a \textbf{square matrix}. For any \textbf{elementary matrix} of the same order,
+\[\det(\bm{EA})=\det(\bm{E})\det(\bm{A})\]
+
+\subsubsection{Change in Determinant Between Row Equivalent Matrices}
+\textbf{Theorem.} Suppose \textbf{square matrices} \(\bm{A}\) and \(\bm{B}\) are \textbf{row equivalent}. Then there exist \textbf{elementary matrices} \(\bm{E}_1, \bm{E}_2, \ldots, \bm{E}_k\) such that
+\[\bm{B}=\bm{E}_k\ldots\bm{E}_2\bm{E}_1\bm{A}\]
+Then
+\[\det(\bm{B})=\det(\bm{E}_k)\ldots\det(\bm{E}_2)\det(\bm{E}_1)\det(\bm{A})\]
+Since \(\det(\bm{E})\ne0\) for every \textbf{elementary matrix} \(\bm{E}\),
+\begin{itemize}
+	\item\(\det(\bm{A})=0\iff\det(\bm{B})=0\);
+	\item Equivalently, \(\det(\bm{A})\ne0\iff\det(\bm{B})\ne0\).
+\end{itemize}
+
+
+\subsubsection{Determinant of Square Matrix With Zero Row}
+\textbf{Theorem.} Suppose a \textbf{square matrix} \(\bm{A}\) has a \textbf{zero row}. Then \(\det(\bm{A})=0\).
+
+\subsubsection{Invertibility and Determinant}
+\textbf{Theorem.} For any \textbf{square matrix} \(\bm{A}\)
+\begin{itemize}
+	\item\(\det(\bm{A})=0\iff\bm{A}\) is \textbf{singular};
+	\item Equivalently, \(\det(\bm{A})\ne0\iff\bm{A}\) is \textbf{invertible},
+\end{itemize}
+
+\subsubsection{Determinant of Triangular Matrix}
+\textbf{Theorem.} Suppose \(\bm{A}=(a_{ij})_{n\times n}\) is \textbf{triangular}. Then
+\[\det(\bm{A})=a_{11}a_{22}\ldots a_{nn}\]
+\textbf{Remarks.}
+\begin{itemize}
+	\item Note that a \textbf{row-echelon form} of a \textbf{square matrix} is always \textbf{upper triangular}.
+	\begin{itemize}
+		\item To find the \textbf{determinant} using \textbf{elementary row operation}, it suffices to use \textbf{Gaussian elimination} to get a \textbf{row-echelon form}.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Cofactor Expansion}
+\textbf{Theorem.} Let \(\bm{A}=(a_{ij})_{n\times n}\) and \(A_{ij}\) denote the \((i,j)\)-cofactor of \(\bm{A}\). Then for \(1\leq i\leq n\),
+\begin{itemize}
+	\item\(\det(\bm{A})=a_{i1}A_{i1}+a_{i2}A_{i2}+\ldots+a_{in}A_{in}\)
+	\item This is called the \textbf{cofactor expansion along the} \(i\)\textbf{th row}.
+\end{itemize}
+and for \(1\leq j\leq n\),
+\begin{itemize}
+	\item\(\det(\bm{A})=a_{1j}A_{1j}+a_{2j}A_{2j}+\ldots+a_{nj}A_{nj}\)
+	\item This is called the \textbf{cofactor expansion along the} \(j\)\textbf{th column}.
+\end{itemize}
+\textbf{Remarks.}
+\begin{itemize}
+	\item In evaluating the \textbf{determinant} using \textbf{cofactor expansion},
+	\begin{itemize}
+		\item expand along the row or column with the most zeros.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Finding Determinant Efficiently}
+Given \(\bm{A}=(a_{ij})_{n\times n}\), \(\det(\bm{A})\) may be found as follows:
+\begin{itemize}
+	\item\(\bm{A}\) has a zero row/column \(\implies\det(\bm{A})=0\).
+	\item\(\bm{A}\) is \textbf{triangular} \(\implies\det(\bm{A})=a_{11}a_{22}\ldots a_{nn}\).
+	\item Suppose that \(\bm{A}\) is not \textbf{triangular}.
+	\begin{itemize}
+		\item\(n=2\implies\det(\bm{A})=a_{11}a_{22}-a_{12}a_{21}\)
+		\item If a row/column has many \(0\), use \textbf{cofactor expansion}.
+		\item Otherwise, use \textbf{elementary row operations} to get \textbf{row-echelon form}.
+		\begin{itemize}
+			\item\(\det(\bm{EA})=\det(\bm{E})\det(\bm{A})\).
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+
+\subsection{Adjoint Matrix}
+\subsubsection{Definition of Adjoint Matrix}
+\textbf{Definition.} Let \(\bm{A}\) be a \textbf{square matrix} of order \(n\). The \textbf{(classical) adjoint} (or \textbf{adjugate}, or \textbf{adjunct}) of \(\bm{A}\) is
+\[\adj(\bm{A})=(A_{ji})_{n\times n}\]
+where \(A_{ij}\) is the \((i,j)\)-cofactor of \(\bm{A}\).
+
+\subsubsection{Properties of Adjoint Matrix}
+\textbf{Theorem.} Let \(\bm{A}\) and \(\bm{B}\) be \textbf{square matrices} of order \(n\). Then
+\begin{itemize}
+	\item\(\bm{A}[\adj(\bm{A})]=\det(\bm{A})\bm{I}\).
+	\item\([\adj(\bm{A})]\bm{A}=\det(\bm{A})\bm{I}\).
+	\item If \(\bm{A}\) is \textbf{invertible}, then
+	\begin{itemize}
+		\item\(\displaystyle\bm{A}^{-1}=\frac{1}{\det(\bm{A})}\adj(\bm{A})\)
+		\item\(\displaystyle[\adj(\bm{A})]^{-1}=\frac{1}{\det(\bm{A})}\bm{A}\)
+		\item\(\adj(\bm{A}^{-1})=[\adj(\bm{A})]^{-1}\)
+		\item\(\det(\adj(\bm{A}))=[\det(\bm{A})]^{n-1}\)
+		\item\(\adj(\bm{AB})=\adj(\bm{B})\adj(\bm{A})\)
+	\end{itemize}
+\end{itemize}
+
+\subsection{Cramer's Rule}
+Let \(\bm{A}\) be an \textbf{invertible matrix} of order \(n\). Then for every \textbf{column matrix} \(\bm{b}\) of size \(n\times1\), the \textbf{linear system} \(\bm{Ax}=\bm{b}\) has a unique solution:
+\[\bm{x}=\frac{1}{\det(\bm{A})}\begin{pmatrix}
+	\det(\bm{A}_1) \\ \det(\bm{A}_2) \\ \vdots \\ \det(\bm{A}_n)
+\end{pmatrix}\]
+where \(\bm{A}_j\) is obtained from \(\bm{A}\) by replacing its \(j\)th column by \(\bm{b}\). Therefore, for \(j=1,2,\ldots,n\),
+\[x_j=\frac{\det(\bm{A}_j)}{\det(\bm{A})}\]
+\end{document}

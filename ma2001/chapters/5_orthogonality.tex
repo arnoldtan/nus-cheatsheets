@@ -1,0 +1,428 @@
+\documentclass[../ma2001_notes.tex]{subfiles}
+
+\begin{document}
+\chapter{Orthogonality}
+
+\section{The Dot Product}
+\subsection{Pythagoras' Theorem}
+\textbf{Theorem.} In a right-angled triangle, let \(c\) be the length of the \textbf{hypotenuse}, and \(a\) and \(b\) be the lengths of the other two sides. Then
+\[a^2+b^2=c^2\]
+
+\subsection{Cosine Rule}
+\textbf{Theorem.} Given any triangle with sides of length \(a\), \(b\), and \(c\). Let \(\theta\) be the angle contained between the sides of lengths \(a\) and \(b\). Then
+\[c^2=a^2+b^2-2ab\cos\theta\]
+
+\subsection{Definitions}
+\textbf{Definition.} Let \(\bm{u}=(u_1,\ldots,u_n),\bm{v}=(v_1,\ldots,v_n)\in\mathbb{R}^n\).
+
+\subsubsection{Dot Product (Inner Product)}
+The \textbf{dot product} (\textbf{inner product}) of \(\bm{u}\) and \(\bm{v}\) is
+\[\bm{u}\cdot\bm{v}=u_1v_1+\cdots+u_nv_n\]
+
+\subsubsection{Norm (Length)}
+The \textbf{norm} (\textbf{length}) of \(\bm{v}\) is
+\[\norm{\bm{v}}=\sqrt{v_1^2+\cdots+v_n^2}\]
+
+\subsubsection{Unit Vector}
+\textbf{Definition.} \(\bm{v}\) is a \textbf{unit vector} if \(\norm{v}=1\).
+
+\subsubsection{Distance}
+The \textbf{distance} between \(\bm{u}\) and \(\bm{v}\) is
+\[d(\bm{u},\bm{v})=\norm{\bm{u}-\bm{v}}=\sqrt{\sum_{i=1}^n(u_i-v_i)^2}\]
+
+\subsubsection{Angle}
+The \textbf{angle} between \(\bm{u}\) and \(\bm{v}\) (\(\bm{u}\ne\bm{0}\) and \(\bm{v}\ne\bm{0}\)) is
+\[\theta=\cos^{-1}\left(\frac{\bm{u}\cdot\bm{v}}{\norm{\bm{u}}\norm{\bm{v}}}\right),\quad0\leq\theta\leq\pi\]
+
+\subsection{Dot Product and Matrix Multiplication}
+\subsubsection{Dot Product As Matrix Multiplication}
+\textbf{Theorem.} Let \(\bm{u},\bm{v}\in\mathbb{R}^n\).
+\begin{itemize}
+	\item If \(\bm{u}\) and \(\bm{v}\) are viewed as \textbf{row vectors}, then \(\bm{u}\cdot\bm{v}=\bm{u}\bm{v}^T\).
+	\item If \(\bm{u}\) and \(\bm{v}\) are viewed as \textbf{column vectors}, then \(\bm{u}\cdot\bm{v}=\bm{u}^T\bm{v}\).
+\end{itemize}
+
+\subsubsection{Matrix Multiplication As Dot Products}
+\textbf{Theorem.} Let \(\bm{A}\) be a \(m\times n\) \textbf{matrix} and \(\bm{B}\) be a \(n\times p\) \textbf{matrix}. Let the \textbf{row vector} \(\bm{a}_i\in\mathbb{R}^n\) be the \(i\)th row of \(\bm{A}\) and the \textbf{column vector} \(\bm{b}_j\in\mathbb{R}^n\) be the \(j\)th column of \(\bm{B}\). Then
+\[(i,j)\text{-entry of }\bm{AB}=\bm{a}_i\bm{b}_j=\bm{a}_i\cdot\bm{b}_j\]
+
+\subsection{Properties of Dot Product and Norm}
+\textbf{Theorem.} Let \(\bm{u},\bm{v}=(v_1,\ldots,v_n),\bm{w}\in\mathbb{R}^n\) and \(c\in\mathbb{R}\).
+
+\subsubsection{Dot Product is Commutative}
+\begin{itemize}
+	\item\(\bm{u}\cdot\bm{v}=\bm{v}\cdot\bm{u}\)
+\end{itemize}
+
+\subsubsection{Dot Product is Distributive Over Vector Addition}
+\begin{itemize}
+	\item\((\bm{u}+\bm{v})\cdot\bm{w}=\bm{u}\cdot\bm{w}+\bm{v}\cdot\bm{w}\)
+	\item\(\bm{w}\cdot(\bm{u}+\bm{v})=\bm{w}\cdot\bm{u}+\bm{w}\cdot\bm{v}\)
+\end{itemize}
+
+\subsubsection{Dot Product and Scalar Multiplication}
+\begin{itemize}
+	\item\((c\bm{u})\cdot\bm{v}=\bm{u}\cdot(c\bm{v})=c(\bm{u}\cdot\bm{v})\)
+\end{itemize}
+
+\subsubsection{Absolute Homogeneity of Norm}
+\begin{itemize}
+	\item\(\norm{c\bm{v}}=\abs{c}\norm{\bm{v}}\)
+\end{itemize}
+
+\subsubsection{Dot Product of a Vector with Itself}
+\begin{itemize}
+	\item\(\bm{v}\cdot\bm{v}\geq0\)
+	\item\(\bm{v}\cdot\bm{v}=0\Leftrightarrow\bm{v}=\bm{0}\)
+\end{itemize}
+
+\subsubsection{Norm and Dot Product}
+\begin{itemize}
+	\item\(\norm{\bm{v}}=\sqrt{v_1^2+\cdots+v_n^2}=\sqrt{\bm{v}\cdot\bm{v}}\)
+\end{itemize}
+
+\subsubsection{Nonnegativity of Norm and When Norm is Zero}
+\begin{itemize}
+	\item\(\norm{\bm{v}}\geq0\)
+	\item\(\norm{\bm{v}}=0\Leftrightarrow\bm{v}=\bm{0}\)
+\end{itemize}
+
+\subsection{Inequalities of Norm and Distance}
+\textbf{Theorem.} Let \(\bm{u},\bm{v},\bm{w}\in\mathbb{R}^n\)
+
+\subsubsection{Cauchy-Schwarz Inequality}
+\begin{itemize}
+	\item\(\abs{\bm{u}\cdot\bm{v}}\leq\norm{\bm{u}}\norm{\bm{v}}\)
+\end{itemize}
+
+\subsubsection{Triangle Inequality (Norm Version)}
+\begin{itemize}
+	\item\(\norm{\bm{u}+\bm{v}}\leq\norm{\bm{u}}+\norm{\bm{v}}\)
+\end{itemize}
+\subsubsection{Triangle Inequality (Distance Version)}
+\begin{itemize}
+	\item\(d(\bm{u},\bm{w})\leq d(\bm{u},\bm{v})+d(\bm{v},\bm{w})\)
+\end{itemize}
+
+\subsection{Results for Multiplying a Matrix with its Transpose}
+\subsubsection{When Multiplying a Matrix with its Transpose Gives the Zero Matrix}
+\textbf{Theorem.} Let \(\bm{A}\) be a \(m\times n\) matrix.
+\[\bm{AA}^T=\bm{0}_{m\times m}\implies\bm{A}=\bm{0}_{m\times n}\]
+
+\subsubsection{When the Trace of Multiplying a Matrix with its Transpose is Zero}
+\textbf{Theorem.} Let \(\bm{A}\) be a \(m\times n\) matrix. Then
+\[\trace(\bm{AA}^T)=0\Leftrightarrow\bm{A}=\bm{0}_{m\times n}\]
+
+\section{Orthogonality, Orthogonal and Orthonormal Sets}
+\subsection{Definition of Orthogonal for Two Vectors}
+\textbf{Definition.} Let \(\bm{u},\bm{v}\in\mathbb{R}^n\). They are \textbf{orthogonal}, denoted by \(\bm{u}\perp\bm{v}\), if \(\bm{u}\cdot\bm{v}=0\).
+
+\subsubsection{Zero Vector is Orthogonal to Every Vector in $\mathbb{R}^n$}
+\textbf{Theorem.} Let \(\bm{0}\in\mathbb{R}^n\). Then \(\forall\bm{v}\in\mathbb{R}^n\quad\bm{0}\perp\bm{v}\)
+
+\subsection{Definition of Orthogonal / Orthonormal Sets}
+\subsubsection{Definition of Orthogonal for a Subset of $\mathbb{R}^n$}
+\textbf{Definition.} Let \(S=\{\bm{v}_1,\ldots,\bm{v}_k\}\subseteq\mathbb{R}^n\). \(S\) is \textbf{orthogonal} if \(\bm{v}_i\perp\bm{v}_j\) for all \(i\ne j\), that is
+\[\bm{v}_i\cdot\bm{v}_j=0\quad\text{for all }i\ne j\]
+
+\subsubsection{Definition of Orthonormal for a Subset of $\mathbb{R}^n$}
+\textbf{Definition.} Let \(S=\{\bm{v}_1,\ldots,\bm{v}_k\}\subseteq\mathbb{R}^n\). \(S\) is \textbf{orthonormal} if \(S\) is \textbf{orthogonal} and \(\forall\bm{v}_i\in S\quad\norm{\bm{v}_i}=1\), that is
+\[\bm{v}_i\cdot\bm{v}_j=\begin{cases}
+	0 & \text{if }i\ne j \\
+	1 & \text{if }i=j
+\end{cases}\]
+
+\subsection{Properties of Orthogonal / Orthonormal Sets}
+\begin{itemize}
+	\item\(S\) is \textbf{orthonormal}\(\implies S\) is \textbf{orthogonal}.
+	\item\(S\) is \textbf{orthogonal}\(\implies\) a subset of \(S\) is \textbf{orthogonal}.
+	\item\(S\) is \textbf{orthonormal}\(\implies\) a subset of \(S\) is \textbf{orthonormal}.
+	\item\(S\) is \textbf{orthogonal}\(\implies S\cup\{\bm{0}\}\) is \textbf{orthogonal}.
+	\item\(S\) is \textbf{orthonormal}\(\implies\bm{0}\notin S\).
+\end{itemize}
+
+\subsection{Normalizing: Converting an Orthogonal Set to an Orthonormal Set}
+The following process of converting an \textbf{orthogonal} set of nonzero vectors to an \textbf{orthonormal} set of vectors, is called \textbf{normalizing}:
+\begin{enumerate}
+	\item Let \(S=\{\bm{u}_1,\ldots,\bm{u}_k\}\subseteq\mathbb{R}^n\) be an \textbf{orthogonal} set of \textbf{nonzero vectors}
+	\item For all \(\bm{u}_i\in S\), set \(\displaystyle\bm{v}_i=\frac{\bm{u}_i}{\norm{\bm{u}_i}}\).
+	\item Then \(\{\bm{v}_1,\ldots,\bm{v}_k\}\) is an \textbf{orthonormal} set.
+\end{enumerate}
+
+\subsection{Using Matrix Multiplication to Check for Orthogonal / Orthonormal Set}
+\textbf{Theorem.} To check whether a set \(S=\{\bm{v}_1,\ldots,\bm{v}_k\}\subseteq\mathbb{R}^n\) is \textbf{orthogonal} / \textbf{orthonormal}, let \(\bm{A}=\begin{pmatrix}
+	\bm{v}_1 & \cdots & \bm{v}_k
+\end{pmatrix}\). Then
+\begin{itemize}
+	\item\(S\) is \textbf{orthogonal} \(\Leftrightarrow\bm{v}_i\cdot\bm{v}_j=0\) for all \(i\ne j\Leftrightarrow\bm{A}^T\bm{A}\) is \textbf{diagonal}
+	\item\(S\) is \textbf{orthonormal} \(\Leftrightarrow\bm{v}_i\cdot\bm{v}_j=\begin{cases}
+	0 & \text{if }i\ne j \\
+	1 & \text{if }i=j
+\end{cases}\Leftrightarrow\bm{A}^T\bm{A}=\bm{I}_k\).
+\end{itemize}
+
+\subsubsection{Standard Basis is An Orthonormal Set}
+\textbf{Theorem.} The \textbf{standard basis} \(E=\{\bm{e}_1,\ldots,\bm{e}_n\}\subseteq\mathbb{R}^n\) is an \textbf{orthonormal} set.
+
+\subsubsection{An Orthonormal Subset of $\mathbb{R}^n$ with $n$ Vectors is a Basis for $\mathbb{R}^n$}
+\textbf{Theorem.} Let \(\{\bm{u}_1,\ldots,\bm{u}_n\}\subseteq\mathbb{R}^n\). Let \(\bm{A}=\begin{pmatrix}
+	\bm{u}_1 & \cdots & \bm{u}_n
+\end{pmatrix}\). Then
+\begin{align*}
+	\bm{A}^T\bm{A}=\bm{I}_n
+	&\implies\bm{A}\text{ is invertible} \\
+	&\implies\{\bm{u}_1,\ldots,\bm{u}_n\}\text{ is a }\textbf{basis}\text{ for }\mathbb{R}^n\quad(\text{refer to section 3.7.6})
+\end{align*}
+
+\subsection{Orthogonal Nonzero Sets are Linearly Independent}
+\textbf{Theorem.} Let \(S=\{\bm{v}_1,\ldots,\bm{v}_k\}\) be an \textbf{orthogonal set} of \textbf{nonzero vectors} in \(\mathbb{R}^n\). Then \(S\) is \textbf{linearly independent}.
+
+\subsubsection{Orthonormal Sets are Linearly Independent}
+\textbf{Corollary.} Let \(S=\{\bm{v}_1,\ldots,\bm{v}_k\}\) be an \textbf{orthonormal set} in \(\mathbb{R}^n\). Then \(S\) is \textbf{linearly independent}.
+
+\section{Orthogonal and Orthonormal Bases}
+\subsection{Orthogonal / Orthonormal Bases}
+\textbf{Definition.} Let \(S\) be a \textbf{basis} for a \textbf{vector space}.
+\begin{itemize}
+	\item\(S\) is an \textbf{orthogonal basis} if it is \textbf{orthogonal}.
+	\item\(S\) is an \textbf{orthonormal basis} if it is \textbf{orthonormal}.
+\end{itemize}
+
+\subsection{Criterion for Orthogonal / Orthonormal Set to be Basis}
+\textbf{Theorem.} Suppose \(S\) is a subset of \textbf{vector space} \(V\), where \(S\) is an \textbf{orthogonal}/\textbf{orthonormal set} and \(\bm{0}\notin S\), then
+\[\abs{S}=\dim(V)\text{ or }\vspan(S)=V\implies S\text{ is an }\textbf{orthogonal}/\textbf{orthonormal}\text{ (respectively) }\textbf{basis}\text{ for }V\]
+
+\subsection{Simpler Formula for Coordinate Vectors Relative to Orthogonal / Orthonormal Bases}
+\subsubsection{Orthogonal Bases}
+\textbf{Theorem.} Let \(S=\{\bm{u}_1,\ldots,\bm{u}_k\}\) be an \textbf{orthogonal basis} for a \textbf{vector space} \(V\). Then
+\[\forall\bm{w}\in V\quad(\bm{w})_S=\left(\frac{\bm{w}\cdot\bm{u}_1}{\bm{u}_1\cdot\bm{u}_1},\ldots,\frac{\bm{w}\cdot\bm{u}_k}{\bm{u}_k\cdot\bm{u}_k}\right)\]
+
+\subsubsection{Orthonormal Bases}
+\textbf{Theorem.} Let \(S=\{\bm{u}_1,\ldots,\bm{u}_k\}\) be an \textbf{orthonormal basis} for a \textbf{vector space} \(V\). Then
+\[\forall\bm{w}\in V\quad(\bm{w})_S=\left(\bm{w}\cdot\bm{u}_1,\ldots,\bm{w}\cdot\bm{u}_k\right)\]
+
+\subsection{Orthogonality between a Vector and a Subspace}
+\textbf{Definition.} Let \(V\) be a \textbf{subspace} of \(\mathbb{R}^n\). \(\bm{u}\in\mathbb{R}^n\) is \textbf{orthogonal} (\textbf{perpendicular}) to \(V\) if \(\forall\bm{v}\in V\quad\bm{u}\perp\bm{v}\).
+
+\subsubsection{Example: Normal Vector of a Plane in $\mathbb{R}^3$}
+Let \(V=\{(x,y,z)\mid ax+by+cz=0\}\) be a plane in \(\mathbb{R}^3\) containing the origin. Then \(\bm{n}=(a,b,c)\) is \textbf{orthogonal} to \(V\) and is a \textbf{normal vector} of the plane \(V\).
+
+\subsection{Easier Criterion for Vector to be Orthogonal to a Vector Space}
+\textbf{Theorem.} Let \(V=\vspan\{\bm{v}_1,\ldots,\bm{v}_k\}\) be a \textbf{vector space}. Then
+\[\bm{w}\text{ is }\textbf{orthogonal}\text{ to }V\Leftrightarrow\bm{w}\perp\bm{v}_i\text{ for all }\bm{v}_i\in V\]
+
+\subsection{The Set of All Vectors Orthogonal to a Subspace is a Subspace}
+\textbf{Theorem.} Let \(W\) be a \textbf{subspace} of \(\mathbb{R}^n\). Then \(W^\perp=\{\bm{v}\in\mathbb{R}^n\mid\bm{v}\text{ is }\textbf{orthogonal}\text{ to }W\}\) is a \textbf{subspace} of \(\mathbb{R}^n\).
+
+\subsection{Projection of a Vector Onto a Vector Space}
+\subsubsection{With Orthonormal Basis}
+\textbf{Theorem.} Let \(\{\bm{v}_1,\ldots,\bm{v}_k\}\) be an \textbf{orthonormal basis} for a \textbf{vector space} \(V\). Then the \textbf{projection} of \(\bm{w}\) onto \(V\) is
+\[(\bm{w}\cdot\bm{v}_1)\bm{v}_1+\cdots+(\bm{w}\cdot\bm{v}_k)\bm{v}_k\]
+
+\subsubsection{With Orthogonal Basis}
+\textbf{Theorem.} Let \(\{\bm{u}_1,\ldots,\bm{u}_k\}\) be an \textbf{orthogonal basis} for a \textbf{vector space} \(V\). Then the \textbf{projection} of \(\bm{w}\) onto \(V\) is
+\[\left(\frac{\bm{w}\cdot\bm{u}_1}{\bm{u}_1\cdot\bm{u}_1}\right)\bm{u}_1+\cdots+\left(\frac{\bm{w}\cdot\bm{u}_k}{\bm{u}_k\cdot\bm{u}_k}\right)\bm{u}_k\]
+\textbf{Remarks.} It is the sum of projections of \(\bm{w}\) onto \(\bm{u}_1,\ldots,\bm{u}_k\).
+
+\subsection{Gram-Schmidt Process: Generating Orthogonal / Orthonormal Basis}
+Let \(\{\bm{u}_1,\ldots,\bm{u}_k\}\) be a \textbf{basis} for a \textbf{vector space} \(V\). Define
+\[\def\arraystretch{1.5}
+\arraycolsep=1.4pt
+\begin{array}{*3c{>{\displaystyle}l}}
+	\bm{v}_1 & = & \bm{u}_1 & \\
+	\bm{v}_2 & = & \displaystyle\bm{u}_2 & -\frac{\bm{u}_2\cdot\bm{v}_1}{\bm{v}_1\cdot\bm{v}_1}\bm{v}_1 \\
+	\bm{v}_3 & = & \bm{u}_3& -\displaystyle\frac{\bm{u}_3\cdot\bm{v}_1}{\bm{v}_1\cdot\bm{v}_1}\bm{v}_1-\frac{\bm{u}_3\cdot\bm{v}_2}{\bm{v}_2\cdot\bm{v}_2}\bm{v}_2 \\
+	\vdots & & \vdots \\
+	\bm{v}_k & = & \bm{u}_k& -\displaystyle\frac{\bm{u}_k\cdot\bm{v}_1}{\bm{v}_1\cdot\bm{v}_1}\bm{v}_1-\frac{\bm{u}_k\cdot\bm{v}_2}{\bm{v}_2\cdot\bm{v}_2}\bm{v}_2-\cdots-\frac{\bm{u}_k\cdot\bm{v}_{k-1}}{\bm{v}_{k-1}\cdot\bm{v}_{k-1}}\bm{v}_{k-1} \\
+\end{array}\]
+\begin{itemize}
+	\item Then \(\{\bm{v}_1,\ldots,\bm{v}_k\}\) is an \textbf{orthogonal basis} for \(V\).
+	\item\(\{\bm{v}_1,\ldots,\bm{v}_k\}\) can be \textbf{normalized} to obtain an \textbf{orthonormal basis} for \(V\) (refer to section 5.2.4).
+\end{itemize}
+
+\subsection{Solving a Linear System whose Coefficient Matrix's Columns are Linearly Independent}
+\subsubsection{Decomposition}
+\textbf{Theorem.} Let \(\bm{A}\) be a \(m\times n\) matrix whose columns are \textbf{linearly independent}. Then there exists
+\begin{itemize}
+	\item A \(m\times n\) \textbf{matrix} \(\bm{Q}\) whose columns form an \textbf{orthonormal set}, and
+	\item An \textbf{invertible} \(n\times n\) \textbf{uppper triangular matrix} \(\bm{R}\)
+\end{itemize}
+such that \(\bm{A}=\bm{QR}\).
+
+\subsubsection{Algorithm}
+To solve a \textbf{linear system} \(\bm{Ax}=\bm{b}\) where the columns of \(\bm{A}\) are \textbf{linearly independent}.
+\begin{enumerate}
+	\item\((\bm{QR})\bm{x}=\bm{b}\)
+	\item\(\mathcolorbox{yellow}{\bm{Rx}}=\bm{IRx}=\bm{Q}^T\bm{QRx}=\mathcolorbox{yellow}{\bm{Q}^T\bm{b}}\)
+	\item Solve \(\bm{x}\) by \textbf{back-substitution}.
+\end{enumerate}
+
+
+\subsubsection{Remark}
+There exists a \(\bm{R}\) such that the \textbf{diagonal entries} are all positive.
+
+\section{Best Approximations}
+
+\subsection{The Projection of a Vector on a Subspace is its Best Approximation in that Subspace}
+\textbf{Theorem.} Let \(V\) be a \textbf{subspace} of \(\mathbb{R}^n\). \(\forall\bm{u}\in\mathbb{R}^n\), let \(\bm{p}\) be the \textbf{projection} of \(\bm{u}\) onto \(V\). Then
+\begin{itemize}
+	\item\(\bm{p}\) is the \textbf{best approximation} of \(\bm{u}\) in \(V\), i.e.
+	\begin{itemize}
+		\item\(\forall\bm{v}\in V\quad d(\bm{u},\bm{p})\leq d(\bm{u},\bm{v})\)
+	\end{itemize}
+	\item Moreover, \(\bm{p}\) is the \textbf{only best approximation} of \(\bm{u}\) in \(V\).
+	\begin{itemize}
+		\item\(d(\bm{u},\bm{p})=d(\bm{u},\bm{v})\Leftrightarrow\bm{v}=\bm{p}\)
+	\end{itemize}
+\end{itemize}
+
+\subsection{Least Squares Solution}
+\subsubsection{Definition of Least Squares Solution}
+\textbf{Definition.} Let \(\bm{A}\) be a \(m\times n\) \textbf{matrix} and \(\bm{b}\in\mathbb{R}^m\). \(\bm{u}\in\mathbb{R}^n\) is a \textbf{least squares solution} to the \textbf{linear system} \(\bm{Ax}=\bm{b}\) if
+\[\forall\bm{v}\in\mathbb{R}^n\quad\norm{\bm{b}-\bm{Au}}\leq\norm{\bm{b}-\bm{Av}}\]
+
+\subsubsection{Least Squares Solution and Projection}
+\textbf{Theorem.} Let \(\bm{A}\) be a \(m\times n\) \textbf{matrix} and \(\bm{b}\in\mathbb{R}^m\). Let \(\bm{p}\) be the \textbf{projection} of \(\bm{b}\) onto the \textbf{column space} of \(\bm{A}\). Then
+\begin{itemize}
+	\item\(\forall\bm{v}\in\mathbb{R}^n\quad\norm{\bm{b}-\bm{p}}\leq\norm{\bm{b}-\bm{Av}}\)
+	\item\(\bm{u}\) is a \textbf{least squares solution} to \(\bm{Ax}=\bm{b}\Leftrightarrow\bm{u}\) is a \textbf{solution} to \(\bm{Ax}=\bm{p}\).
+\end{itemize}
+
+\subsection{Methodology: Finding Least Squares Solution}
+\subsubsection{Tedious Method}
+To find a \textbf{least squares solution} to \(\bm{Ax}=\bm{b}\), proceed as follows:
+\begin{enumerate}
+	\item Find an \textbf{orthogonal} (\textbf{orthonormal}) \textbf{basis} for \(V=\) \textbf{column space} of \(\bm{A}\).
+	\item Find the \textbf{projection} \(\bm{p}\) of \(\bm{b}\) onto \(V\).
+	\item Solve the \textbf{linear system} \(\bm{Ax}=\bm{p}\).
+	\begin{itemize}
+		\item A \textbf{solution} to \(\bm{Ax}=\bm{p}\) is a \textbf{least squares solution} to \(\bm{Ax}=\bm{b}\). 
+	\end{itemize}
+\end{enumerate}
+\textbf{Remarks.}
+\begin{itemize}
+	\item The \textbf{linear system} \(\bm{Ax}=\bm{p}\) is always \textbf{consistent} since \(\bm{p}\) lies in the \textbf{column space} of \(\bm{A}\).
+	\item If \(\bm{Ax}=\bm{b}\) is already \textbf{consistent}, then
+	\begin{itemize}
+		\item\(\bm{b}=\bm{p}\in V\)
+		\item(\textbf{solution} to \(\bm{Ax}=\bm{b})=\) (\textbf{least squares solution} to \(\bm{Ax}=\bm{b}\)).
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{Easy Method}
+\textbf{Theorem.} \(\bm{u}\) is a \textbf{least squares solution} to \(\bm{Ax}=\bm{b}\Leftrightarrow\bm{u}\) is a \textbf{solution} to \(\bm{A}^T\bm{Ax}=\bm{A}^T\bm{b}\).
+
+\section{Orthogonal Matrices}
+\subsection{Definition of Orthogonal Matrices}
+\textbf{Definition.} Let \(\bm{A}\) be a \textbf{square matrix}. Then
+\begin{align*}
+	\bm{A}\text{ is an }\textbf{orthogonal matrix}
+	&\Leftrightarrow\bm{A}^T\bm{A}=\bm{I} \\
+	&\Leftrightarrow\bm{A}^{-1}=\bm{A}^T \\
+	&\Leftrightarrow\bm{AA}^T=\bm{I}
+\end{align*}
+
+\subsubsection{Example: Identity Matrix is an Orthogonal Matrix}
+\textbf{Theorem.} The \textbf{identity matrix} \(\bm{I}_n\) is an \textbf{orthogonal matrix}.
+
+\subsection{Properties of Orthogonal Matrices}
+\subsubsection{Rows and Columns of Orthogonal Matrix Form an Orthonormal Basis for $\mathbb{R}^n$}
+\textbf{Theorem.} Let \(\bm{A}\) be a \textbf{square matrix} of \textbf{order} \(n\). Then
+\begin{align*}
+	\bm{A}\text{ is an }\textbf{orthogonal matrix}
+	&\Leftrightarrow\text{columns of }\bm{A}\text{ form an }\textbf{orthonormal basis}\text{ for }\mathbb{R}^n \\
+	&\Leftrightarrow\text{rows of }\bm{A}\text{ form an }\textbf{orthonormal basis}\text{ for }\mathbb{R}^n
+\end{align*}
+
+\subsubsection{The Transpose or Inverse of an Orthogonal Matrix is Orthogonal}
+\textbf{Theorem.} If \(\bm{A}\) is an \textbf{orthogonal matrix}, then \(\bm{A}^T=\bm{A}^{-1}\) is an \textbf{orthogonal matrix}.
+
+\subsubsection{The Product of Two Orthogonal Matrices is Orthogonal}
+\textbf{Theorem.} If \(\bm{A}\) and \(\bm{B}\) are \textbf{orthogonal matrices} of the same size, then \(\bm{AB}\) is an \textbf{orthogonal matrix}.
+
+\subsubsection{Condition for Rows/Columns of a Matrix to Form an Orthonormal Set}
+
+\paragraph{Condition for Columns of a Matrix to Form an Orthonormal Set}\,\\
+Refer to section 5.2.5.
+
+\paragraph{Condition for Rows of a Matrix to Form an Orthonormal Set}\,\\
+\textbf{Theorem.} For any \(m\times n\) \textbf{matrix} \(\bm{A}\), \(\bm{AA}^T=\bm{I}_m\Leftrightarrow\) the \textbf{rows} of \(\bm{A}\) form an \textbf{orthonormal set}.
+
+\subsubsection{Pre-Multiplication of an Orthogonal Matrix to an Orthonormal Set}
+\textbf{Theorem.} Let \(S=\{\bm{u}_1\ldots,\bm{u}_k\}\) be an \textbf{orthonormal} subset of \(\mathbb{R}^n\) and \(\bm{P}\) be a \(n\times n\) \textbf{orthogonal matrix}. Then \(\{\bm{Pu}_1,\ldots,\bm{Pu}_k\}\) is an \textbf{orthonormal set}.
+
+\subsection{Transition Matrices Between Orthonormal Bases}
+\subsubsection{Formula for Transition Matrices Between Orthonormal Bases}
+\textbf{Theorem.} Let \(S=\{\bm{u}_1,\ldots,\bm{u}_k\}\) and \(T=\{\bm{v}_1,\ldots,\bm{v}_k\}\) be \textbf{orthonormal bases} for a \textbf{vector space} \(V\). Let \(\bm{A}=\begin{pmatrix}
+	\bm{u}_1 & \cdots & \bm{u}_k
+\end{pmatrix}\) and \(\bm{B}=\begin{pmatrix}
+	\bm{v}_1 & \cdots & \bm{v}_k
+\end{pmatrix}\). Then
+\begin{itemize}
+	\item\(\bm{P}=\bm{B}^T\bm{A}\) is the \textbf{transition matrix} from \(S\) to \(T\).
+	\item\(\bm{Q}=\bm{A}^T\bm{B}\) is the \textbf{transition matrix} from \(T\) to \(S\).
+\end{itemize}
+
+\subsubsection{Transition Matrices Between Orthonormal Bases are Orthogonal}
+\textbf{Theorem.} Let \(S\) and \(T\) be \textbf{orthonormal bases} for a \textbf{vector space} \(V\) and \(\bm{P}\) be the \textbf{transition matrix} from \(S\) to \(T\). Then \(\bm{P}\) is an \textbf{orthogonal matrix}.
+
+\subsection{Classification of Orthogonal Matrices}
+\subsubsection{Table of Orthogonal Matrices By Order}
+\textbf{Theorem.} The following table lists all the \textbf{orthogonal matrices} in increasing \textbf{order}:
+\begin{center}
+\begin{tabular}{|c|c|c|}
+
+\hline
+Order & Determinant & Formulae \\
+\hline
+\multirow{2}{*}{\(1\)} & \(1\) & \(\begin{pmatrix}1\end{pmatrix}\) \\
+\cline{2-3}
+& \(-1\) & \(\begin{pmatrix}-1\end{pmatrix}\) \\
+\hline
+\multirow{2}{*}{\(2\)} & \(1\) & \(\begin{pmatrix}
+	\cos\theta & -\sin\theta \\
+	\sin\theta & \cos\theta
+\end{pmatrix}\) \\
+\cline{2-3}
+& \(-1\) & \(\begin{pmatrix}
+	\cos\theta & \sin\theta \\
+	\sin\theta & -\cos\theta
+\end{pmatrix}\) \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Geometric Representation of Orthogonal Matrix}
+\subsubsection{Rotation Matrix}
+\begin{itemize}
+	\item Let \(\bm{u}_1=\begin{pmatrix}
+	\cos\theta \\ \sin\theta
+\end{pmatrix},\bm{u}_2=\begin{pmatrix}
+	-\sin\theta \\ \cos\theta
+\end{pmatrix}\).
+	\begin{itemize}
+		\item Then \(\{\bm{u}_1,\bm{u}_2\}\) is an \textbf{orthonormal basis} for \(\mathbb{R}^2\).
+	\end{itemize}
+	\item Let \(\bm{P}_\theta=\begin{pmatrix}
+		\bm{u}_1 & \bm{u}_2
+	\end{pmatrix}=\begin{pmatrix}
+		\cos\theta & -\sin\theta \\ \sin\theta & \cos\theta
+	\end{pmatrix}\). Then
+	\begin{itemize}
+		\item\(\bm{P}_\theta\) is \textbf{orthogonal}, and
+		\item\(\bm{P}_\theta\) is the \textbf{transition matrix} from \(\{\bm{u}_1,\bm{u}_2\}\) to \(\{\bm{e}_1,\bm{e}_2\}\).
+	\end{itemize}
+	\item\(\forall\bm{u}\in\mathbb{R}^2\quad\bm{P}_\theta\bm{u}\) is the \textbf{rotation} of \(\bm{u}\) about the \textbf{origin} by \(\theta\) anticlockwise.
+\end{itemize}
+
+\subsubsection{Composition of Rotation Matrices}
+\begin{itemize}
+	\item Moreover, \(\bm{P}_\beta\bm{P}_\alpha=\bm{P}_{\alpha+\beta}\)
+\end{itemize}
+
+\subsubsection{Deriving Sum Laws for Sine and Cosine}
+\begin{itemize}
+	\item\(\cos(\alpha+\beta)=\cos\alpha\cos\beta-\sin\alpha\sin\beta\)
+	\item\(\sin(\alpha+\beta)=\sin\alpha\cos\beta+\cos\alpha\sin\beta\)
+\end{itemize}
+\end{document}

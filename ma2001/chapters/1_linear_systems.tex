@@ -1,0 +1,478 @@
+\documentclass[../ma2001_notes.tex]{subfiles}
+
+\begin{document}
+\chapter{Linear Systems \& Gaussian Elimination}
+
+\section{Linear Systems \& Their Solutions}
+\subsection{Linear Equations}
+\textbf{Definition.} A \textbf{linear equation} in \(n\) \textbf{variables} (\textbf{unknowns}) \(x_1, x_2, \ldots, x_n\) is an equation of the form
+\[a_1x_1+a_2x_2+\ldots+a_nx_n=b\]
+where \(a_1, a_2, \ldots, a_n\) and \(b\) are real constants.
+
+\subsubsection{Zero Equation}
+\textbf{Definition.} A linear equation is a \textbf{zero equation} if
+\[a_1=a_2=\ldots=a_n=b=0\]
+
+\subsubsection{Nonzero Equation}
+\textbf{Definition.} A linear equation is a \textbf{nonzero equation} if it is not a zero equation
+
+\subsubsection{Inconsistent Equation}
+\textbf{Definition.} A linear equation is \textbf{inconsistent} if
+\[a_1=a_2=\ldots=a_n=0 \text{ but } b\ne0\]
+
+\subsection{Solutions of a Linear Equation}
+Let \(a_1x_1+a_2x_2+\ldots+a_nx_n=b\) be a linear equation in \(n\) variables \(x_1,x_2,\ldots,x_n\). \\ \\
+\textbf{Definition.} For all \(s_1, s_2,\ldots,s_n\in\mathbb{R}\), if
+\[a_1s_1+a_2s_2+\ldots+a_ns_n=b\]
+then \(\bm{x_1=s_1, x_2=s_2, \ldots, x_n=s_n}\) is a \textbf{solution} to the given linear equation.
+
+\subsubsection{Solution Set}
+\textbf{Definition.} The set of all solutions is called the \textbf{solution set}.
+
+\subsubsection{General Solution}
+\textbf{Definition.} An expression that gives the entire solution set is a \textbf{general solution}.
+
+\subsection{Solution Set of Zero Equation}
+The zero equation in \(n\) variables \(x_1, x_2,\ldots, x_n\) is satisfied by any values of \(x_1, x_2, \ldots, x_n\).
+
+\subsection{Solution Set of Inconsistent Linear Equation}
+An inconsistent linear equation in \(n\) variables \(x_1, x_2,\ldots, x_n\) is not satisfied by any values of \(x_1, x_2, \ldots, x_n\).
+
+\subsection{General Solution of Consistent Nonzero Equation}
+The general solution of a consistent nonzero equation \(a_1x_1+a_2x_2+\ldots+a_nx_n=b\) in \(n\) variables \(x_1, x_2, \ldots, x_n\) has \(n-1\) arbitrary parameters and is of the following form: For any integer \(i\in[1,n]\),
+\[\left\{
+\arraycolsep=1.4pt
+\begin{array}{ccc}
+	x_1 & = & s_1, \\
+	x_2 & = & s_2, \\
+	& \vdots & \\
+	x_{i-1} & = & s_{i-1}, \\
+	x_i & = & \frac{1}{a_i}(b-a_1s_1-a_2s_2-\ldots-a_{i-1}s_{i-1}-a_{i+1}s_{i+1}-\ldots-a_ns_n),\\
+	x_{i+1} & = & s_{i+1}, \\
+	& \vdots & \\
+	x_n & = & s_n
+\end{array}\right.
+\]
+where \(s_1,s_2,\ldots,s_{i-1},s_{i+1},\ldots,s_n\) are arbitrary parameters.
+
+\subsection{Geometrical Interpretation of Linear Equations}
+\subsubsection{In Two Variables}
+The solution set of the linear equation
+\[ax+by=c\ (\text{in }x,y)\]
+where \(a\) and \(b\) are not both zero represents a \textbf{straight line} in the \(xy\)-plane.
+
+\subsubsection{In Three Variables}
+The solution set of the linear equation
+\[ax+by+cz=d\ (\text{in }x,y,z)\]
+where \(a,b,c\) are not all zero represents a \textbf{plane} in the \(xyz\)-space.
+
+\subsection{Linear Systems}
+\textbf{Definition.} A \textbf{linear system} (\textbf{system of linear equations}) of \(m\) linear equations in \(n\) variables \(x_1, x_2, \ldots, x_n\) is
+\[\left\{
+\arraycolsep=1.4pt
+\begin{array}{ccccccccc}
+	a_{11}x_1 & + & a_{12}x_2 & + & \ldots & + & a_{1n}x_n & = & b_1, \\
+	a_{21}x_1 & + & a_{22}x_2 & + & \ldots & + & a_{2n}x_n & = & b_2, \\
+	& \vdots & & & & & & \vdots & \\
+	a_{m1}x_1 & + & a_{m2}x_2 & + & \ldots & + & a_{mn}x_n & = & b_m,
+\end{array}\right.
+\]
+where \(a_{ij}\) and \(b_i\) are real constants.
+\begin{itemize}
+	\item \(a_{ij}\) is the \textbf{coefficient} of \(x_j\) in the \(i\)th equation,
+	\item \(b_i\) is the \textbf{constant term} of the \(i\)th equation.
+\end{itemize}
+
+\subsubsection{Zero System}
+\textbf{Definition.} If all \(a_{ij}\) and \(b_i\) are zero, the linear system is a \textbf{zero system}.
+
+\subsubsection{Nonzero System}
+\textbf{Definition.} If some \(a_{ij}\) or \(b_i\) is nonzero, the linear system is a \textbf{nonzero system}.
+
+\subsection{Solution of Linear Systems}
+Given a linear system in \(n\) variables \(x_1, x_2, \ldots, x_n\), if \(x_1=s_1, x_2=s_2, \ldots, x_n=s_n\) is a solution to \textbf{every equation} of the linear system, then it is a \textbf{solution} to the system.
+
+\subsubsection{Solution Set}
+\textbf{Definition.} The set of all solutions to the linear system is called the \textbf{solution set}.
+
+\subsubsection{General Solution}
+\textbf{Definition.} An expression that gives the entire solution set of the linear system is a \textbf{general solution}.
+
+\subsection{Consistency of Linear Systems}
+\textbf{Definition.} A linear system is
+\begin{itemize}
+	\item \textbf{consistent} if it has at least one solution;
+	\item \textbf{inconsistent} if it has no solution.
+\end{itemize}
+
+\subsection{Number of Solutions to Linear Systems}
+A linear system has either
+\begin{itemize}
+	\item no solution, or
+	\item exactly one solution, or
+	\item infinitely many solutions
+\end{itemize}
+
+\subsection{Geometric Interpretation of Linear Systems}
+\subsubsection{In Two Variables of Two Equations}
+Given a linear system in variables \(x, y\) of two equations
+\[\left\{
+\arraycolsep=1.4pt
+\begin{array}{cccccc}
+	a_1x & + & b_1y & = & c_1, & \ (L_1) \\
+	a_2x & + & b_2y & = & c_2, & \ (L_2)
+\end{array}\right.\]
+where \(a_1, b_1\) are not both zero and \(a_2, b_2\) are not both zero. The system has
+\begin{itemize}
+	\item no solution \(\iff L_1\) and \(L_2\) are parallel but distinct;
+	\item exactly one solution \(\iff L_1\) and \(L_2\) are not parallel;
+	\item infinitely many solutions \(\iff L_1\) and \(L_2\) are the same line.
+\end{itemize}
+
+\subsubsection{In Three Variables of Two Equations}
+Given a linear system in variables \(x, y, z\) of two equations
+\[\left\{
+\arraycolsep=1.4pt
+\begin{array}{cccccccc}
+	a_1x & + & b_1y & + & c_1z & = & d_1, & \ (P_1) \\
+	a_2x & + & b_2y & + & c_2z & = & d_2, & \ (P_2)
+\end{array}\right.\]
+where \(a_1, b_1, c_1\) are not all zero and \(a_2, b_2, c_2\) are not all zero. The system has
+\begin{itemize}
+	\item no solution \(\iff P_1\) and \(P_2\) are parallel but distinct\\\\
+	\(\quad\displaystyle\iff\frac{a_1}{a_2}=\frac{b_1}{b_2}=\frac{c_1}{c_2}\);
+	\item infinitely many solutions \(\iff P_1\) and \(P_2\) intersect at a straight line\\\\
+	\(\quad\displaystyle\iff\frac{a_1}{a_2},\frac{b_1}{b_2},\frac{c_1}{c_2}\) are not all the same;
+	\item infinitely many solutions \(\iff P_1\) and \(P_2\) are the same plane\\\\
+	\(\quad\displaystyle\iff\frac{a_1}{a_2}=\frac{b_1}{b_2}=\frac{c_1}{c_2}=\frac{d_1}{d_2}\).
+\end{itemize}
+
+\section{Elementary Row Operations}
+\subsection{Augmented Matrix Representation of a Linear System}
+\textbf{Definition.} Given a linear system in variables \(x_1, x_2, \ldots, x_n\):
+\[\left\{
+\arraycolsep=1.4pt
+\begin{array}{ccccccccc}
+	a_{11}x_1 & + & a_{12}x_2 & + & \ldots & + & a_{1n}x_n & = & b_1, \\
+	a_{21}x_1 & + & a_{22}x_2 & + & \ldots & + & a_{2n}x_n & = & b_2, \\
+	& \vdots & & & & & & \vdots & \\
+	a_{m1}x_1 & + & a_{m2}x_2 & + & \ldots & + & a_{mn}x_n & = & b_m,
+\end{array}\right.\]
+The rectangular array of constants
+\[\left(\begin{array}{cccc|c}
+	a_{11} & a_{12} & \ldots & a_{1n} & b_1 \\
+	a_{21} & a_{22} & \ldots & a_{2n} & b_2 \\
+	\vdots & \vdots & & \vdots & \vdots \\
+	a_{m1} & a_{m2} & \ldots & a_{mn} & b_m
+\end{array}\right)\]
+is called the \textbf{augmented matrix} of the linear system.
+
+\subsection{Elementary Row Operations on Augmented Matrices}
+\textbf{Definition.} The \textbf{elementary row operations} are the following operations on rows of an augmented matrix:
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Description of Operation} & \textbf{Notation} \\
+\hline
+Multiply the \(i\)th row by a nonzero constant \(k\) & \(kR_i\) \\
+\hline
+Interchange the \(i\)th and \(j\)th rows & \(R_i\leftrightarrow R_j\) \\
+\hline
+Add \(k\) times the \(i\)th row to the \(j\)th row & \(R_j+kR_i\) \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsubsection{Correspondence to Operations on Equations in Linear System}
+Each elementary row operation corresponds to operations on the equations of the linear system as follows:
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Elementary Row Operation} & \textbf{Equation Operation} \\
+\hline
+\(kR_i\) & Multiply the \(i\)th equation by a nonzero constant \(k\) \\
+\hline
+\(R_i\leftrightarrow R_j\) & Interchange the \(i\)th and \(j\)th equations \\
+\hline
+\(R_j+kR_i\) & Add \(k\) times the \(i\)th equation to the \(j\)th equation \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsubsection{Interchanging two rows can be decomposed further}
+Interchanging two rows can be obtained by using the other two operations.
+\begin{align*}
+	\left(\begin{array}{c}
+	a \\
+	b
+	\end{array}\right)
+	& \ro{$$R_1+R_2$$}
+	\left(\begin{array}{c}
+	a+b \\
+	b
+	\end{array}\right)
+	\ro{$$R_2-R_1$$}
+	\left(\begin{array}{c}
+	a+b \\
+	-a
+	\end{array}\right) \\
+	& \ro{$$R_1+R_2$$}
+	\left(\begin{array}{c}
+	b \\
+	-a
+	\end{array}\right)
+	\ro{$$-R_2$$}
+	\left(\begin{array}{c}
+	b \\
+	a
+	\end{array}\right)
+\end{align*}
+
+\subsubsection{Inverse Elementary Row Operations}
+Each \textbf{elementary row operation} has an inverse operation, which undoes the said \textbf{elementary row operation} and is also an \textbf{elementary row operation}, as follows:
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Elementary Row Operation} & \textbf{Its Inverse} \\
+\hline
+\(\bm{A}\ro{$$kR_i$$}\bm{B}\) & \(\bm{B}\ro{$$\frac{1}{k}R_i$$}\bm{A}\) \\
+\hline
+\(\bm{A}\ro{$$R_i\leftrightarrow R_j$$}\bm{B}\) & \(\bm{B}\ro{$$R_i\leftrightarrow R_j$$}\bm{A}\) \\
+\hline
+\(\bm{A}\ro{$$R_j+kR_i$$}\bm{B}\) & \(\bm{B}\ro{$$R_j-kR_i$$}\bm{A}\) \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Row Equivalent Matrices}
+\textbf{Definition.} Two \textbf{augmented matrices} are \textbf{row equivalent} if one can be obtained from the other by a \textbf{series} of \textbf{elementary row operations}.
+
+\subsection{Row Equivalence as an Equivalence Relation}
+\textbf{Theorem.} Let \(\bm{A}, \bm{B}, \bm{C}\) be any \textbf{augmented matrices}.
+\begin{itemize}
+	\item \(\bm{A}\) is row equivalent to \(\bm{A}\) (reflexive);
+	\item \(\bm{A}\) is row equivalent to \(\bm{B}\iff\bm{B}\) is row equivalent to \(\bm{A}\) (symmetric);
+	\item \(\bm{A}\) is row equivalent to \(\bm{B}\) and \(\bm{B}\) is row equivalent to \(\bm{C}\implies\bm{A}\) is row equivalent to \(\bm{C}\) (transitive).
+\end{itemize}
+Therefore \textbf{row equivalence} is an \textbf{equivalence relation}.
+
+\subsection{Row Equivalence Implies Same Solution Set}
+\textbf{Theorem.} Let \(\bm{A}\) and \(\bm{B}\) be \textbf{augmented matrices} of two \textbf{linear systems}. Suppose \(\bm{A}\) and \(\bm{B}\) are \textbf{row equivalent}.
+\begin{itemize}
+	\item Then the corresponding linear systems have the same solution set.
+\end{itemize}
+
+\section{Row-Echelon Form}
+\subsection{Leading Entry}
+\textbf{Definition.} The \textbf{leading entry} for any \textbf{nonzero row} of any \textbf{augmented matrix} is the first nonzero number of that row, from leftmost to rightmost column.
+
+\subsection{Row-Echelon Form (REF)}
+\textbf{Definition.} An \textbf{augmented matrix} is in \textbf{row-echelon form (REF)} if the following properties are satisfied:
+\begin{itemize}
+	\item The \textbf{zero rows} are grouped together at the bottom;
+	\item For any two successive \textbf{nonzero rows}, the \textbf{leading entry} in the lower row appears to the right of the \textbf{leading entry} in the higher row.
+\end{itemize}
+
+\subsection{Pivot Points, Pivot Columns, and Non-pivot Columns}
+\textbf{Definition.} Suppose an \textbf{augmented matrix} is in \textbf{row-echelon form}.
+\subsubsection{Pivot Point}
+Then the \textbf{leading entry} of a \textbf{nonzero row} is a \textbf{pivot point}.
+
+\subsubsection{Pivot and Non-pivot Columns}
+A column of the \textbf{augmented matrix} is called a
+\begin{itemize}
+	\item \textbf{pivot column} if it contains a \textbf{pivot point};
+	\item \textbf{non-pivot column} if it contains no \textbf{pivot point}.
+\end{itemize}
+
+\subsubsection{Each Pivot Column Contains Exactly One Pivot Point}
+By the second property of the \textbf{row-echelon form}, every \textbf{pivot column} contains exactly one \textbf{pivot point}.
+
+\subsection{Reduced Row-Echelon Form (RREF)}
+\textbf{Definition.} Suppose an \textbf{augmented matrix} is in \textbf{row-echelon form}. It is in \textbf{reduced row-echelon form (RREF)} if
+\begin{itemize}
+	\item The \textbf{leading entry}, or equivalently the \textbf{pivot point}, of every \textbf{nonzero row} is 1;
+	\item In each \textbf{pivot column}, all entries except the \textbf{pivot point} are 0.
+\end{itemize}
+
+\subsection{General Solution From Row-echelon Form}
+Suppose that the \textbf{augmented matrix} corresponding to a \textbf{linear system} is in \textbf{row-echelon form}. Then the \textbf{general solution} of the \textbf{linear system} can be obtained by the following algorithm:
+\begin{enumerate}
+	\item\textbf{Set} the variables corresponding to \textbf{non-pivot columns} to be arbitrary parameters.
+	\item\textbf{Solve} the variables corresponding to \textbf{pivot columns} by \textbf{back substitution} (from the bottom equation to the top).
+\end{enumerate}
+
+\subsection{General Solution From Reduced Row-echelon Form}
+Suppose that the \textbf{augmented matrix} corresponding to a \textbf{linear system} is in \textbf{reduced row-echelon form}. Then the \textbf{general solution} of the \textbf{linear system} can be obtained by the following algorithm:
+\begin{enumerate}
+	\item\textbf{Set} the variables corresponding to \textbf{non-pivot columns} to be arbitrary parameters.
+	\item\textbf{Solve} the variables corresponding to \textbf{pivot columns} in any order.
+\end{enumerate}
+
+\section{Gaussian Elimination}
+\subsection{REF/RREF of Augmented Matrics}
+\textbf{Definition.} Let \(\bm{A}\) and \(\bm{R}\) be \textbf{augmented matrices}. Suppose that \(\bm{A}\) is \textbf{row equivalent} to \(\bm{R}\).
+\begin{itemize}
+	\item If \(\bm{R}\) is in \textbf{row-echelon form},
+	\begin{enumerate}
+		\item then \(\bm{R}\) is a \textbf{row-echelon form} of \(\bm{A}\);
+	\end{enumerate}
+	\item If \(\bm{R}\) is in \textbf{reduced row-echelon form},
+	\begin{enumerate}
+		\item then \(\bm{R}\) is a \textbf{reduced row-echelon form} of \(\bm{A}\).
+	\end{enumerate}
+\end{itemize}
+Therefore, by section 1.16 and 1.21, solving a \textbf{linear system} with \textbf{augmented matrix} \(\bm{A}\iff\) solving a \textbf{linear system} with \textbf{augmented matrix} that is the \textbf{REF}/\textbf{RREF} of \(\bm{A}\).
+
+\subsection{Gaussian Elimination: Finding REF of Augmented Matrices}
+Given an \textbf{augmented matrix}, we can find its \textbf{row-echelon form} by an algorithm called \textbf{Gaussian Elimination}. The algorithm is as follows:
+\begin{enumerate}
+	\item Find the \textbf{leftmost column} which is not entirely zero.
+	\item Check the \textbf{top entry} of such column. If it is 0,
+	\begin{itemize}
+		\item replace it by a nonzero number by interchanging the top row with another row below.
+	\end{itemize}
+	\item For \textbf{each row below} the top row,
+	\begin{itemize}
+		\item add a suitable multiple of the \textbf{top row} to it so that its \textbf{leading entry} becomes 0.
+	\end{itemize}
+	\item If the entire matrix is not in \textbf{row-echelon form},
+	\begin{itemize}
+		\item then cover the top row and repeat steps 1-3 to the remaining matrix.
+	\end{itemize}
+\end{enumerate}
+
+\subsection{Gauss-Jordan Elimination: Finding RREF of Augmented Matrices}
+Given an \textbf{augmented matrix}, we can find its \textbf{reduced row-echelon form} by an algorithm called \textbf{Gauss-Jordan Elimination}. The algorithm is as follows:
+\begin{enumerate}
+	\item Use \textbf{Gaussian Elimination} to get a \textbf{row-echelon form}.
+	\item For \textbf{each nonzero row}, multiply a suitable constant so that the \textbf{pivot point} becomes 1.
+	\item For each row, starting from the last nonzero row and working backwards,
+	\begin{itemize}
+		\item Add a suitable multiple of the current row to each of the rows above to introduce 0 above the \textbf{pivot point} of the current row.
+	\end{itemize}
+\end{enumerate}
+
+\subsection{Infinitely Many REFs}
+Every nonzero matrix has infinitely many non-reduced \textbf{row-echelon forms}.
+
+\subsection{Uniqueness of RREF}
+Every matrix has a unique \textbf{reduced row-echelon form}.
+
+\subsection{Deducing Consistency of Linear Systems from its REF}
+Suppose that \(\bm{A}\) is the \textbf{augmented matrix} of a \textbf{linear system}, and \(\bm{R}\) is a \textbf{row-echelon form} of \(\bm{A}\).
+
+\subsubsection{Inconsistent With No Solutions}
+The \textbf{linear system} is \textbf{inconsistent}, i.e. \textbf{no solution} if 
+\begin{itemize}
+	\item the last column is a \textbf{pivot column} \(\iff\) the last nonzero row has a \textbf{pivot point} in the last column.
+\end{itemize}
+
+\subsubsection{Consistent With One Solution}
+The \textbf{linear system} is \textbf{consistent} with exactly one solution if 
+\begin{itemize}
+	\item the last column is a \textbf{non-pivot column}, and
+	\item all other columns are \textbf{pivot columns}.
+\end{itemize}
+
+\subsubsection{Consistent With Infinitely Many Solutions \& Arbitrary Parameters}
+The \textbf{linear system} is \textbf{consistent} with infinitely many solution if 
+\begin{itemize}
+	\item the last column is a \textbf{non-pivot column}, and
+	\item some other column(s) is/are \textbf{non-pivot column(s)}.
+\end{itemize}
+The number of arbitrary parameters \(=\) the number of \textbf{non-pivot columns} excluding the last column.
+
+\subsection{Geometrical Interpretation of Linear Systems with RREF}
+\subsubsection{Linear System in Three Variables of Three Equations}
+Given a linear system in variables \(x, y, z\) of three equations:
+\[\left\{
+\arraycolsep=1.4pt
+\begin{array}{cccccccc}
+	a_{11}x & + & a_{12}y & + & a_{13}z & = & b_1 & \ (P_1), \\
+	a_{21}x & + & a_{22}y & + & a_{23}z & = & b_2 & \ (P_2), \\
+	a_{31}x & + & a_{32}y & + & a_{33}z & = & b_3 & \ (P_3)
+\end{array}\right.\]
+where \(a_{i1}, a_{i2}, a_{i3}\) are not all zero for \(i=1,2,3\). The \textbf{reduced row-echelon form} \(\bm{R}\) has three rows and four coloumns. The following table summarises the possible solutions sets:
+\begin{center}
+\begin{tabular}{|c|c|p{2.5cm}|p{3cm}|c|}
+\hline
+\textbf{Consistent} & \textbf{Last Column} & \textbf{Other Pivot Columns} & \textbf{Other Non-pivot Columns / Arbitrary Parameters} & \textbf{Intersection} \\
+\hline
+No & Pivot & 0-2 & 1-3 & null set \\
+\hline
+Yes & Non-pivot & 1 & 2 & plane (three planes coincide) \\
+\hline
+Yes & Non-pivot & 2 & 1 & line \\
+\hline
+Yes & Non-pivot & 3 & 0 & point \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Homogeneous Linear Systems}
+\subsection{Homogeneous Linear Equation}
+\textbf{Definition.} A \textbf{linear equation} in variables \(x_1,x_2,\ldots,x_n\) is \textbf{homogeneous} if it is of the form
+\[a_1x_1+a_2x_2+\ldots+a_nx_n=0\]
+
+\subsubsection{Remarks}
+A \textbf{linear equation} is homogeneous \(\iff x_1=0,x_2=0,\ldots x_n=0\) is a solution.
+
+\subsection{Geometrical Interpretation of Homogeneous Linear Equations}
+\subsubsection{In Two Variables}
+The solution set of the linear equation
+\[ax+by=0\ (\text{in }x,y)\]
+where \(a\) and \(b\) are not both zero represents a \textbf{straight line}, in the \(xy\)-plane, that passes through the origin \(O(0,0)\).
+
+\subsubsection{In Three Variables}
+The solution set of the linear equation
+\[ax+by+cz=0\ (\text{in }x,y,z)\]
+where \(a,b,c\) are not all zero represents a \textbf{plane}, in the \(xyz\)-space, that contains the origin \(O(0,0,0)\).
+
+\subsection{Homogeneous Linear System}
+\textbf{Definition.} A \textbf{linear system} is \textbf{homogeneous} if every linear equation of the system is homogeneous. That is the linear system is of the form
+\[\left\{
+\arraycolsep=1.4pt
+\begin{array}{ccccccccc}
+	a_{11}x_1 & + & a_{12}x_2 & + & \ldots & + & a_{1n}x_n & = & 0, \\
+	a_{21}x_1 & + & a_{22}x_2 & + & \ldots & + & a_{2n}x_n & = & 0, \\
+	& \vdots & & & & & & \vdots & \\
+	a_{m1}x_1 & + & a_{m2}x_2 & + & \ldots & + & a_{mn}x_n & = & 0,
+\end{array}\right.\]
+
+\subsection{Trivial Solution of Homogeneous Linear Systems}
+A \textbf{linear system} in \(x_1,x_2,\ldots,x_n\) is \textbf{homogeneous} \(\iff x_1=0,x_2=0,\ldots,x_n=0\) is a solution.
+\begin{itemize}
+	\item This is the \textbf{trivial solution} of a \textbf{homogeneous linear system}
+	\item Other solutions are called \textbf{non-trivial solutions}.
+\end{itemize}
+
+\subsection{Geometric Interpretation of Homogeneous Linear Systems}
+\subsubsection{In Two Variables of Two Equations}
+Given a \textbf{homogeneous linear system} in variables \(x, y\) of two equations
+\[\left\{
+\arraycolsep=1.4pt
+\begin{array}{cccccc}
+	a_1x & + & b_1y & = & 0, & \ (L_1) \\
+	a_2x & + & b_2y & = & 0, & \ (L_2)
+\end{array}\right.\]
+where \(a_1, b_1\) are not both zero and \(a_2, b_2\) are not both zero. \(\) The system has
+\begin{itemize}
+	\item only the \textbf{trivial solution} \(\iff L_1\) and \(L_2\) are different;
+	\item \textbf{non-trivial solutions} \(\iff L_1\) and \(L_2\) are the same.
+\end{itemize}
+
+\subsubsection{In Three Variables of Two Equations}
+Given a linear system in variables \(x, y, z\) of two equations
+\[\left\{
+\arraycolsep=1.4pt
+\begin{array}{cccccccc}
+	a_1x & + & b_1y & + & c_1z & = & 0, & \ (P_1) \\
+	a_2x & + & b_2y & + & c_2z & = & 0, & \ (P_2)
+\end{array}\right.\]
+where \(a_1, b_1, c_1\) are not all zero and \(a_2, b_2, c_2\) are not all zero. The system has infinitely many solutions with only two cases
+\begin{itemize}
+	\item The two planes are the same, or
+	\item The two planes intersect at a straight line passing through \(O(0,0,0)\).
+\end{itemize}
+\end{document}
